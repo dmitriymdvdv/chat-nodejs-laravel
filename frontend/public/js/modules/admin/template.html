@@ -1,0 +1,22 @@
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="admin">iTechArt PHP Labs</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="admin.users" ui-sref-active="active">Users ({{ totalUsers }})</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-content">
+        <ui-view></ui-view>
+    </div>
+
+</div>
