@@ -10,19 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['prefix' => 'api/v1/'], function () {
-    Route::get('/', function () {
-        return ['Api' => 'v1'];
-    });
-    Route::group(['middleware' => 'auth'], function () {
-        Route::get('/login', function () {
-            return ['Logged' => 'in'];
-        });
-    });
-});
 
-Route::get('/', function () {
-    return ['Hello' => 'world'];
-});
+Route::get('/', 'WelcomeController@index');
 
+Route::get('home', 'HomeController@index');
 
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
