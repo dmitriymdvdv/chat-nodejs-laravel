@@ -31,6 +31,12 @@ class CreateUserRestoreHashesTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('user_restore_hashes', function ($table) {
+
+			$table->dropForeign('user_restore_hashes_user_id_foreign');
+
+		});
+
 		Schema::drop('user_restore_hashes');
 	}
 

@@ -33,6 +33,12 @@ class CreateMessagesTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('messages', function ($table) {
+
+			$table->dropForeign('messages_user_id_foreign');
+
+		});
+
 		Schema::drop('messages');
 	}
 

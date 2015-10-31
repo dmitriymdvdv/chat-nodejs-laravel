@@ -32,6 +32,13 @@ class CreateUsersToChatsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('users_to_chats', function ($table) {
+
+			$table->dropForeign('users_to_chats_user_id_foreign');
+			$table->dropForeign('users_to_chats_chat_id_foreign');
+
+		});
+
 		Schema::drop('users_to_chats');
 	}
 

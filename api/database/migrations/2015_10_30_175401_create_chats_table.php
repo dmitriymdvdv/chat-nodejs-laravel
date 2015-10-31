@@ -18,11 +18,6 @@ class CreateChatsTable extends Migration {
             $table->string('name',255);
             $table->string('description',255);
             $table->boolean('is_private');
-			$table->unsignedInteger('user_id');
-
-			$table->foreign('user_id')->references('id')->on('users');
-
-            $table->index(['user_id','name'],'idx_user_id_name');
 
 		});
 	}

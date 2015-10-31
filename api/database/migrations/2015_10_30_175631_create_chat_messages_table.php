@@ -31,6 +31,13 @@ class CreateChatMessagesTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('chat_messages', function ($table) {
+
+			$table->dropForeign('chat_messages_message_id_foreign');
+			$table->dropForeign('chat_messages_chat_id_foreign');
+
+		});
+
 		Schema::drop('chat_messages');
 	}
 
