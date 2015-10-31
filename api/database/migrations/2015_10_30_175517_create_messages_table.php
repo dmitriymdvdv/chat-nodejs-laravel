@@ -17,6 +17,11 @@ class CreateMessagesTable extends Migration {
 			$table->increments('id');
 			$table->text('message');
 			$table->dateTime('date_of_creation');
+			$table->unsignedInteger('user_id');
+
+			$table->foreign('user_id')->references('id')->on('users');
+
+			$table->index(['user_id', 'id'], 'idx_user_id_message_id');
 
 		});
 	}

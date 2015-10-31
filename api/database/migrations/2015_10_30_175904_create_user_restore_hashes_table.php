@@ -14,9 +14,9 @@ class CreateUserRestoreHashesTable extends Migration {
 	{
 		Schema::create('user_restore_hashes', function(Blueprint $table)
 		{
-			$table->unsignedInteger('user_id');
 			$table->string('restore_token',255);
 			$table->dateTime('expired');
+			$table->unsignedInteger('user_id');
 
 			$table->foreign('user_id')->references('id')->on('users');
 
