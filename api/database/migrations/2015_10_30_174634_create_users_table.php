@@ -24,11 +24,9 @@ class CreateUsersTable extends Migration {
 			$table->string('mobile_phone')->unique();
 			$table->string('avatar_url');
 
-			/*DB::raw("CREATE INDEX reverse_email
- 					 ON (SELECT REVERSE('email')
- 					 FROM 'users')");*/
-
 		});
+
+		DB::statement("ALTER TABLE users ADD FULLTEXT users_email_fulltext(email)");
 	}
 
 	/**

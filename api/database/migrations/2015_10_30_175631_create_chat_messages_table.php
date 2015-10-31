@@ -15,12 +15,12 @@ class CreateChatMessagesTable extends Migration {
 		Schema::create('chat_messages', function(Blueprint $table)
 		{
 			$table->unsignedInteger('message_id');
-			$table->unsignedInteger('user_id');
+			$table->unsignedInteger('chat_id');
 
 			$table->foreign('message_id')->references('id')->on('messages');
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('chat_id')->references('id')->on('chats');
 
-			$table->index(['message_id','user_id'],'idx_message_id_user_id');
+			$table->index(['message_id','chat_id'],'idx_message_id_chat_id');
 		});
 	}
 
