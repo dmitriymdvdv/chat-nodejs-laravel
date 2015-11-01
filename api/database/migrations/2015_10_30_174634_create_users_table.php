@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration {
 
@@ -15,12 +16,17 @@ class CreateUsersTable extends Migration {
 		Schema::create('users', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->string('email')->unique();
-			$table->string('password', 60);
-			$table->rememberToken();
-			$table->timestamps();
+			$table->string('email',255)->unique();
+			$table->string('password_hash',255);
+			$table->string('first_name',255);
+			$table->string('last_name',255);
+			$table->date('date_of_birth');
+			$table->string('mobile_phone')->unique();
+			$table->string('avatar_url');
+
 		});
+
+		DB::statement("ALTER TABLE users ADD FULLTEXT users_email_fulltext(email)");
 	}
 
 	/**
