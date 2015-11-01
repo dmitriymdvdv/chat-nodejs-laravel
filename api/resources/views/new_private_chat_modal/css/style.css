@@ -1,0 +1,11 @@
+.modal {
+    display: block;
+}
+
+.modal-dialog {
+    margin-top: 200px;
+}
+
+textarea {
+    resize: none;
+}
