@@ -34,8 +34,15 @@ class Message extends Model
     /*
      *
      */
-    public function users()
+    public function author()
     {
-        return $this->hasMany('App\Model\User','user_id');
+        return $this->belongsTo('App\Model\User', 'user_id');
+    }
+    /*
+     *
+     */
+    public function usersMessages()
+    {
+        return $this->hasOne('App\Model\UserMessages','message_id');
     }
 }

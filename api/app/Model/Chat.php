@@ -41,8 +41,15 @@ class Chat extends Model
     /*
      *
      */
+    public function users()
+    {
+        return $this->hasMany('App\Model\UserToChat','chat_id');
+    }
+    /*
+     *
+     */
     public function author()
     {
-        return $this->belongsTo('App\Model\UserToChat','chat_id');
+        return $this->belongsTo('App\Model\User','user_id');
     }
 }

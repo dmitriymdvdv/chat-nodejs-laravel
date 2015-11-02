@@ -2,4 +2,4 @@
 .idea
 */.idea
 node_modules
-/api/config/app.php
+/api/config/*

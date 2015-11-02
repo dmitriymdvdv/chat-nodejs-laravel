@@ -39,21 +39,21 @@ class User extends Model
      */
     public function chats()
     {
-        return $this->belongsTo('App\Model\UserToChat','user_id');
+        return $this->hasMany('App\Model\UserToChat','user_id');
     }
     /*
      *
      */
     public function message()
     {
-        return $this->belongsTo('App\Model\Message','user_id');
+        return $this->hasMany('App\Model\Message','user_id');
     }
     /*
      *
      */
     public function userMessages()
     {
-        return $this->belongsTo('App\Model\UserMessages','user_id');
+        return $this->hasMany('App\Model\UserMessages','user_id');
     }
     /*
      *
@@ -61,5 +61,12 @@ class User extends Model
     public function userRestoreHashes()
     {
         return $this->hasMany('App\Model\UserRestoreHashes','user_id');
+    }
+    /*
+     *
+     */
+    public function chatMaster()
+    {
+        return $this->hasMany('App\Model\Chat','user_id');
     }
 }
