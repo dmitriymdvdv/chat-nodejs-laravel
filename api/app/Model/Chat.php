@@ -36,7 +36,7 @@ class Chat extends Model
      */
     public function messages()
     {
-        return $this->belonsTo('App\Model\ChatMessages','chat_id');
+        return $this->hasMany('App\Model\ChatMessages','chat_id');
     }
     /*
      *

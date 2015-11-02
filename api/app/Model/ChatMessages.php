@@ -35,7 +35,7 @@ class ChatMessages extends Model
     /*
      *
      */
-    public function messages()
+    public function message()
     {
         return $this->hasOne('App\Model\Message', 'message_id');
     }
@@ -43,8 +43,8 @@ class ChatMessages extends Model
     /*
      *
      */
-    public function chats()
+    public function chat()
     {
-        return $this->hasMany('App\Model\Chat','chat_id');
+        return $this->belongsTo('App\Model\Chat','chat_id');
     }
 }
