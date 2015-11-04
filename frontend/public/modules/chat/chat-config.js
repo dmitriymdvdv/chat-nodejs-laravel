@@ -1,3 +1,13 @@
-/**
- * Created by med on 11/4/15.
- */
+'use strict';
+
+module.exports = [
+    '$stateProvider',
+    function ($stateProvider) {
+        $stateProvider
+            .state('chats', {
+                url: '/api/v1/chats'
+              , controller: 'ChatController'
+              //, template: require('./template.html')
+            });
+    }
+];
