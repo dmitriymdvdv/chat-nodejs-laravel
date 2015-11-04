@@ -11,31 +11,44 @@ require('./common/ita-loading');
 //require project modules
 require('./modules/home');
 require('./modules/admin');
+require('./modules/auth');
 
-domready(function () {
-    angular
-        .module('PHPLabs', [
-            'ui.router',
-            'ui.bootstrap',
+var initInject = angular.injector(['ng']);
+var $http = initInject.get('$http');
 
-            'ITA.EmbeddedData',
-            'ITA.Request',
-            'ITA.Loading',
+$http.get('js/fakeJson.json').then(function (response) {
+    domready(function () {
+        angular
+            .module('PHPLabs', [
+                'ui.router',
+                'ui.bootstrap',
 
-            'Home',
-            'Admin'
-        ])
-        .config([
-            'itaEmbeddedDataServiceProvider',
-            'itaRequestServiceProvider',
-            '$urlRouterProvider',
-            function(itaEmbeddedDataServiceProvider, itaRequestServiceProvider, $urlRouterProvider) {
-                itaEmbeddedDataServiceProvider.init(window.embeddedData);
-                itaRequestServiceProvider.baseUrl(window.embeddedData.api.url);
+                'ITA.EmbeddedData',
+                'ITA.Request',
+                'ITA.Loading',
 
-                $urlRouterProvider.otherwise('/');
-            }
-        ]);
+                'Home',
+                'Admin',
+                'Auth'
+            ])
+            .config([
+                'itaEmbeddedDataServiceProvider',
+                'itaRequestServiceProvider',
+                '$urlRouterProvider',
+                'authServiceProvider',
+                function (itaEmbeddedDataServiceProvider, itaRequestServiceProvider, $urlRouterProvider, authServiceProvider) {
+                    itaEmbeddedDataServiceProvider.init(window.embeddedData);
+                    itaRequestServiceProvider.baseUrl(window.embeddedData.api.url);
 
-    angular.bootstrap(document, ['PHPLabs']);
+                    $urlRouterProvider.otherwise('/');
+
+                    authServiceProvider.authData = response.data;
+
+
+                }
+            ]);
+
+        angular.bootstrap(document, ['PHPLabs']);
+
+    });
 });
