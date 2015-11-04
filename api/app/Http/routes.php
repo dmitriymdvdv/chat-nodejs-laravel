@@ -11,6 +11,22 @@
 |
 */
 
+Route::resource(
+    'user',
+    'UserController',
+    ['only' => ['store', 'index', 'show']]
+);
+
+// User routes
+Route::get('/api/v1/user/{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
+
+Route::post('/api/v1/user', ['as' => 'user.store', 'uses' => 'UserController@store']);
+
+Route::put('/api/v1/user{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
+
+Route::delete('/api/v1/user{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+
+// Default routes
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
