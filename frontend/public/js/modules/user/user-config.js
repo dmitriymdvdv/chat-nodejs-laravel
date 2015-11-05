@@ -1,14 +1,27 @@
 'use strict';
 
-module.exports = [
-    '$stateProvider',
-    function ($stateProvider) {
+module.exports = function() {
+
+    userStates.$inject = [
+        '$stateProvider',
+        'authConfig'
+    ];
+
+    function userStates($stateProvider, authConfig) {
+
         $stateProvider
             .state('user', {
-                url: '/api/v1/user'
-              , controller: 'UserController'
-              //, template: require('./template.html')
+                url: '/api/v1/user',
+                controller: 'UserController',
+                data: {
+                    access: [
+                        authConfig.user
+                    ]
+                }
             });
-    }
-];
 
+    }
+
+    return userStates;
+
+};

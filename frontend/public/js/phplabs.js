@@ -46,7 +46,8 @@ $http.get('js/fakeJson.json').then(function (response) {
 
 
                 }
-            ]);
+            ])
+            .run(require('./app-run'));
 
         angular.bootstrap(document, ['PHPLabs']);
 

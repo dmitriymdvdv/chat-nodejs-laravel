@@ -3,8 +3,7 @@
 var angular = require('angular');
 
 angular
-    .module('Chat', ['ngCookies', 'ui.router'])
+    .module('Chat', [])
     .config(require('./chat-config'))
-    .run(require('./chat-run'))
     .controller('ChatController', require('./chat-controller'))
     .factory('ChatFactory', require('./chat-factory'));

@@ -1,42 +1,25 @@
 'use strict';
 
-module.exports = [
-    '$stateProvider',
-    '$urlRouterProvider',
-    '$locationProvider',
-    '$httpProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+module.exports = function() {
 
-        var access = routingConfig.accessLevels;
+    chatStates.$inject = [
+        '$stateProvider',
+        'authConfig'
+    ];
 
-        // Guest routes
+    function chatStates($stateProvider, authConfig) {
+
         $stateProvider
-            .state('public', {
-                abstract: true,
-                template: '<ui-view>',
+            .state('chats', {
+                template: '',
                 data: {
-                    access: access.public
+                    access: [
+                        authConfig.user
+                    ]
                 }
             })
-            .state('public.404', {
-                url: '/api/v1/#/404',
-                templateUrl: '404'
-            });
-
-        // User routes
-        $stateProvider
-            .state('chat', {
-                abstract: true,
-                template: '<ui-view>',
-                data: {
-                    access: access.user
-                }
-            })
-            .state('chat.home', {
-                url: '/api/v1/#/chat/home',
-                templateUrl: 'chatHome'
-            });
-
-        $urlRouterProvider.otherwise("/api/v1/#/404");
     }
-];
+
+    return chatStates;
+
+};
