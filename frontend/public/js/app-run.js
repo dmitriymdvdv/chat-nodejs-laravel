@@ -13,16 +13,18 @@ module.exports = function() {
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState) {
 
             if(authService.hasIdentity()) {
-                 if (toState.data.access.indexOf(authConfig.user) !== -1) {
+                 if(toState.data.access.indexOf(authConfig.user) !== -1) {
                      $state.go(toState.to);
                  } else {
                      $state.go('chats');
                  }
             }
-            else if(toState.data.access.indexOf(authConfig.guest) !== -1) {
+            else {
+                if(toState.data.access.indexOf(authConfig.guest) !== -1) {
                     $state.go(toState.to);
-            } else {
-                $state.go('login');
+                } else {
+                    $state.go('login');
+                }
             }
 
         });
