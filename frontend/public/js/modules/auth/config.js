@@ -2,12 +2,12 @@
 
 module.exports = function () {
 
-    authStates.$inject = [
+    authConfig.$inject = [
         '$stateProvider',
-        'authConfig'
+        'authRoles'
     ];
 
-    function authStates($stateProvider, authConfig) {
+    function authConfig($stateProvider, authRoles) {
 
         $stateProvider
             .state('login', {
@@ -15,7 +15,7 @@ module.exports = function () {
                 controller: 'authController',
                 data: {
                     access: [
-                        authConfig.guest
+                        authRoles.guest
                     ]
                 }
             })
@@ -24,7 +24,7 @@ module.exports = function () {
                 controller: 'authController',
                 data: {
                     access: [
-                        authConfig.user
+                        authRoles.user
                     ]
                 }
             })
@@ -33,12 +33,12 @@ module.exports = function () {
                 controller: 'authController',
                 data: {
                     access: [
-                        authConfig.guest
+                        authRoles.guest
                     ]
                 }
             });
 
     }
 
-    return authStates;
+    return authConfig;
 };
