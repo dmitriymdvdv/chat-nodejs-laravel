@@ -14,8 +14,20 @@ module.exports = function () {
 
             return {
 
-                getIdentity: function () {
-                    return self.authData
+                getIdentity: function() {
+                    return self.authData;
+                },
+
+                setIdentity: function(data) {
+                    self.authData = data;
+                },
+
+                clearIdentity: function() {
+                    self.authData = {};
+                },
+
+                hasIdentity: function() {
+                    return self.authData.id ? true : false;
                 }
             };
         }
