@@ -22,16 +22,16 @@ module.exports = [
             logOut: function () {
 
                 return $http
-                    .post('api/v1/auth/logout')
+                    .post('/api/v1/auth/logout')
                     .then(function (data) {
 
                         if (data.status === 200) {
-                            authService.deleteAllCookies();
+                            authService.clearIdentity();
                         }
 
                     });
 
-            },
+            }
 
 
 
