@@ -4,26 +4,25 @@ module.exports = function() {
     appRun.$inject = [
         '$rootScope',
         '$state',
-        'authService'
+        'authService',
+        'authConfig'
     ];
 
-    function appRun($rootScope, $state, authService) {
+    function appRun($rootScope, $state, authService, authConfig) {
 
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState) {
 
-            if(fromState.url === '^') {
-                if(authService.hasIdentity()) {
-                    $state.go('home');
-                } else {
-                    $rootScope.error = null;
-                    $state.go('login');
-                }
+            if(authService.hasIdentity()) {
+                 if (toState.data.access.indexOf(authConfig.user) !== -1) {
+                     $state.go(toState.to);
+                 } else {
+                     $state.go('chats');
+                 }
             }
-            else {
-                if (!authService.hasIdentity()) {
-                    $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
-                    event.preventDefault();
-                }
+            else if(toState.data.access.indexOf(authConfig.guest) !== -1) {
+                    $state.go(toState.to);
+            } else {
+                $state.go('login');
             }
 
         });
