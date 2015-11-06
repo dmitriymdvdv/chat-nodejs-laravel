@@ -4,7 +4,7 @@ var angular = require('angular');
 
 angular
     .module('Auth', [])
-    .config('authConfig', require('./config'))
+    .config(require('./config'))
     .constant('authRoles', require('./roles'))
     .controller('authController', require('./controller'))
     .provider('authService', require('./provider'))
