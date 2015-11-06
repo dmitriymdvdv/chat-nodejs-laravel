@@ -4,17 +4,17 @@ module.exports = function() {
 
     chatStates.$inject = [
         '$stateProvider',
-        'authConfig'
+        'authRoles'
     ];
 
-    function chatStates($stateProvider, authConfig) {
+    function chatStates($stateProvider, authRoles) {
 
         $stateProvider
             .state('chats', {
                 template: '',
                 data: {
                     access: [
-                        authConfig.user
+                        authRoles.user
                     ]
                 }
             })

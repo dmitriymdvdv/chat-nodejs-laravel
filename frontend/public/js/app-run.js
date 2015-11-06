@@ -5,22 +5,22 @@ module.exports = function() {
         '$rootScope',
         '$state',
         'authService',
-        'authConfig'
+        'authRoles'
     ];
 
-    function appRun($rootScope, $state, authService, authConfig) {
+    function appRun($rootScope, $state, authService, authRoles) {
 
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState) {
 
             if(authService.hasIdentity()) {
-                 if(toState.data.access.indexOf(authConfig.user) !== -1) {
+                 if(toState.data.access.indexOf(authRoles.user) !== -1) {
                      $state.go(toState.to);
                  } else {
                      $state.go('chats');
                  }
             }
             else {
-                if(toState.data.access.indexOf(authConfig.guest) !== -1) {
+                if(toState.data.access.indexOf(authRoles.guest) !== -1) {
                     $state.go(toState.to);
                 } else {
                     $state.go('login');

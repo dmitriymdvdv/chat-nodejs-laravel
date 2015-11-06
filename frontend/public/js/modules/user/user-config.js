@@ -4,10 +4,10 @@ module.exports = function() {
 
     userStates.$inject = [
         '$stateProvider',
-        'authConfig'
+        'authRoles'
     ];
 
-    function userStates($stateProvider, authConfig) {
+    function userStates($stateProvider, authRoles) {
 
         $stateProvider
             .state('user', {
@@ -15,7 +15,7 @@ module.exports = function() {
                 controller: 'UserController',
                 data: {
                     access: [
-                        authConfig.user
+                        authRoles.user
                     ]
                 }
             });
