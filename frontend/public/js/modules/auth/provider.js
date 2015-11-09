@@ -15,7 +15,7 @@ module.exports = function () {
             return {
 
                 getIdentity: function() {
-                    return self.authData;
+                    return angular.copy(self.authData);
                 },
 
                 setIdentity: function(data) {
