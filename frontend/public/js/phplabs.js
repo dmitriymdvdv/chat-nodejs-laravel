@@ -12,6 +12,7 @@ require('./common/ita-loading');
 require('./modules/home');
 require('./modules/admin');
 require('./modules/auth');
+require('./modules/chat');
 
 var initInject = angular.injector(['ng']);
 var $http = initInject.get('$http');
@@ -29,7 +30,8 @@ $http.get('js/fakeJson.json').then(function (response) {
 
                 'Home',
                 'Admin',
-                'Auth'
+                'Auth',
+                'Chat'
             ])
             .config([
                 'itaEmbeddedDataServiceProvider',
@@ -46,8 +48,8 @@ $http.get('js/fakeJson.json').then(function (response) {
 
 
                 }
-            ])
-            .run(require('./app-run'));
+            ]);
+            //.run(require('./app-run'));
 
         angular.bootstrap(document, ['PHPLabs']);
 

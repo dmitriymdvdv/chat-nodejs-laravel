@@ -1,12 +1,8 @@
 'use strict';
 
-module.exports = function() {
-
-    userStates.$inject = [
-        '$stateProvider',
-        'authRoles'
-    ];
-
+module.exports = [
+    '$stateProvider',
+    'authRoles',
     function userStates($stateProvider, authRoles) {
 
         $stateProvider
@@ -21,7 +17,4 @@ module.exports = function() {
             });
 
     }
-
-    return userStates;
-
-};
+];
