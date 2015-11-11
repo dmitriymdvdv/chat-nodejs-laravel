@@ -11,11 +11,6 @@
 |
 */
 
-Route::resource(
-    'user',
-    'UserController',
-    ['only' => ['store', 'index', 'show']]
-);
 Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
 
