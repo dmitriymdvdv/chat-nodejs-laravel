@@ -3,10 +3,14 @@ a {
     cursor: pointer;
 }
 
-.table td {
-    width: 33%;
-}
+.table {
 
-.table th {
+  td {
+    width: 33%;
+  }
+
+  th {
     text-align: center;
+  }
+
 }

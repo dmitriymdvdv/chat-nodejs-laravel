@@ -9,7 +9,6 @@ module.exports = function() {
     ];
 
     function appRun($rootScope, $state, authService, authRoles) {
-        console.log('hello');
 
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState) {
 

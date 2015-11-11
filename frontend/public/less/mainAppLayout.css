@@ -33,20 +33,25 @@ There is no no-color option ("less --help" for help)
 
   .user-block {
     padding: 10px;
+
+    &:hover {
+      background-color: #555459;
+      color: #fff;
+    }
   }
 
-  .user-block:hover {
-    background-color: #555459;
-    color: #fff;
-  }
+
 
   dt, dd {
     padding: 5px 10px;
   }
 
-  dt:hover {
-    background-color: #555459;
-    color: #fff;
+  dt {
+
+    &::hover {
+      background-color: #555459;
+      color: #fff;
+    }
   }
 }
 
@@ -93,8 +98,11 @@ There is no no-color option ("less --help" for help)
   overflow: auto;
   margin-top: 10px;
 
-  a:hover {
-    text-decoration: none;
+  a {
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .min-user-photo {

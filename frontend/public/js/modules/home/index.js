@@ -3,6 +3,6 @@
 var angular = require('angular');
 
 angular
-    .module('Home', ['ui.router'])
+    .module('Home', [])
     .config(require('./config'))
     .controller('HomeController', require('./controller'));

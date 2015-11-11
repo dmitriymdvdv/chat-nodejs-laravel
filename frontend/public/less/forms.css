@@ -26,6 +26,7 @@ There is no no-color option ("less --help" for help)
     .box-shadow;
     .border-radius(5px);
   }
+
   .form-heading {
     text-align: center;
   }
@@ -57,7 +58,7 @@ There is no no-color option ("less --help" for help)
   }
 
   .row,
-  .user-auth .row-fluid {
+  .row-fluid {
     margin-bottom: 15px;
   }
 

@@ -32,20 +32,25 @@
 
   .user-block {
     padding: 10px;
+
+    &:hover {
+      background-color: #555459;
+      color: #fff;
+    }
   }
 
-  .user-block:hover {
-    background-color: #555459;
-    color: #fff;
-  }
+
 
   dt, dd {
     padding: 5px 10px;
   }
 
-  dt:hover {
-    background-color: #555459;
-    color: #fff;
+  dt {
+
+    &::hover {
+      background-color: #555459;
+      color: #fff;
+    }
   }
 }
 
@@ -92,8 +97,11 @@
   overflow: auto;
   margin-top: 10px;
 
-  a:hover {
-    text-decoration: none;
+  a {
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .min-user-photo {
