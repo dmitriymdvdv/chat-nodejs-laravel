@@ -6,7 +6,7 @@ module.exports = [
     function ($stateProvider, authRoles) {
         $stateProvider
             .state('login', {
-                url: '/api/v1/login',
+                url: '/login',
                 template: require('./templates/login.html'),
                 controller: 'authController',
                 data: {
@@ -16,7 +16,7 @@ module.exports = [
                 }
             })
             .state('passwordReset', {
-                url: '/api/v1/password_reset',
+                url: '/password_reset',
                 template: require('./templates/password-reset.html'),
                 controller: 'authController',
                 data: {
@@ -26,7 +26,7 @@ module.exports = [
                 }
             })
             .state('confirmPassword', {
-                url: '/api/v1/confirm_password',
+                url: '/confirm_password',
                 template: require('./templates/confirm-password.html'),
                 controller: 'authController',
                 data: {

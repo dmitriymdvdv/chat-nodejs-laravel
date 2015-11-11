@@ -7,7 +7,7 @@ module.exports = [
 
         $stateProvider
             .state('user', {
-                url: '/api/v1/user',
+                url: '/user',
                 controller: 'UserController',
                 data: {
                     access: [

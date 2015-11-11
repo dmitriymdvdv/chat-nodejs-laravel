@@ -7,7 +7,7 @@ module.exports = [
 
         $stateProvider
             .state('chats', {
-                url: '/api/v1/chats',
+                url: '/chats',
                 template: require('./templates/mainAppLayout.html'),
                 data: {
                     access: [
@@ -16,7 +16,7 @@ module.exports = [
                 }
             })
             .state('manage-chats', {
-                url: '/api/v1/chats/manage',
+                url: '/chats/manage',
                 template: require('./templates/manageChatPage.html'),
                 data: {
                     access: [
