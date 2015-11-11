@@ -3,12 +3,21 @@
 module.exports = [
     '$stateProvider',
     'authRoles',
-    function chatStates($stateProvider, authRoles) {
+    function ($stateProvider, authRoles) {
 
         $stateProvider
             .state('chats', {
                 url: '/chats',
                 template: require('./templates/mainAppLayout.html'),
+                data: {
+                    access: [
+                        authRoles.user
+                    ]
+                }
+            })
+            .state('chats.active', {
+                url: '/chat',
+                template: require('./templates/chatbar.html'),
                 data: {
                     access: [
                         authRoles.user

@@ -7,6 +7,7 @@ module.exports = function() {
     ];
 
     function ChatController($scope){
+        $scope.isChatPicked = false;
     }
 
     return ChatController;
