@@ -17,7 +17,7 @@ require('./modules/chat');
 var initInject = angular.injector(['ng']);
 var $http = initInject.get('$http');
 
-$http.get('js/fakeJson.json').then(function (response) {
+$http.get('http://slack.dev/api/v1/user/1').then(function (response) {
     domready(function () {
         angular
             .module('PHPLabs', [

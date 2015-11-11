@@ -11,27 +11,29 @@
 |
 */
 
-Route::resource(
-    'user',
-    'UserController',
-    ['only' => ['store', 'index', 'show']]
-);
+Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
-// User routes
-Route::get('/api/v1/user/{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
 
-Route::post('/api/v1/user', ['as' => 'user.store', 'uses' => 'UserController@store']);
+    // User routes
 
-Route::put('/api/v1/user{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
+    Route::get('/user/{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
 
-Route::delete('/api/v1/user{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+    Route::post('/user', ['as' => 'user.store', 'uses' => 'UserController@store']);
+
+    Route::put('/user{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
+
+    Route::delete('/user{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+
+});
 
 // Default routes
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
 ]);
+
