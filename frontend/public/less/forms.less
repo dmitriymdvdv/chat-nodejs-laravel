@@ -1,0 +1,69 @@
+@form-background-color: #fff;
+@form-border-color: #e5e5e5;
+
+.border-radius(@value: 5px) {
+  -webkit-border-radius: @value;
+  -moz-border-radius: @value;
+  border-radius: @value;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.user-auth {
+  padding: 100px 0 0;
+
+  .form-horizontal {
+    max-width: 320px;
+    padding: 19px 29px;
+    margin: 0 auto 20px;
+    background-color: @form-background-color;
+    border: 1px solid @form-border-color;
+    .box-shadow;
+    .border-radius(5px);
+  }
+
+  .form-heading {
+    text-align: center;
+  }
+
+  .error,
+  .form-horizontal .controls {
+    text-align: right;
+  }
+
+  .error {
+    display: none;
+  }
+
+  .password {
+    position: relative;
+  }
+
+  .table-cell {
+    display: table-cell;
+    padding: 15px 0 0;
+    min-width: 80px;
+  }
+
+  .table-row {
+    display: table-row;
+    & > .table-cell:first-child {
+      padding: 0;
+    }
+  }
+
+  .row,
+  .row-fluid {
+    margin-bottom: 15px;
+  }
+
+  .reset-password {
+    position: absolute;
+    right: 5px;
+    bottom: 6px;
+  }
+}

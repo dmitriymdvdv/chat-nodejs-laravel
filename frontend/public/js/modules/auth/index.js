@@ -9,4 +9,3 @@ angular
     .controller('authController', require('./controller'))
     .provider('authService', require('./provider'))
     .factory('authFactory', require('./factory'));
-

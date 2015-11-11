@@ -1,17 +1,33 @@
 'use strict';
 
-module.exports = function () {
-
-    authConfig.$inject = [
-        '$stateProvider',
-        'authRoles'
-    ];
-
-    function authConfig($stateProvider, authRoles) {
-
+module.exports = [
+    '$stateProvider',
+    'authRoles',
+    function ($stateProvider, authRoles) {
         $stateProvider
             .state('login', {
-                template: '',
+                url: '/login',
+                template: require('./templates/login.html'),
+                controller: 'authController',
+                data: {
+                    access: [
+                        authRoles.guest
+                    ]
+                }
+            })
+            .state('passwordReset', {
+                url: '/password_reset',
+                template: require('./templates/password-reset.html'),
+                controller: 'authController',
+                data: {
+                    access: [
+                        authRoles.guest
+                    ]
+                }
+            })
+            .state('confirmPassword', {
+                url: '/confirm_password',
+                template: require('./templates/confirm-password.html'),
                 controller: 'authController',
                 data: {
                     access: [
@@ -39,6 +55,4 @@ module.exports = function () {
             });
 
     }
-
-    return authConfig;
-};
+];
