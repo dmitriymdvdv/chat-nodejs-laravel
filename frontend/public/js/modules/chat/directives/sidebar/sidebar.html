@@ -11,7 +11,8 @@
     </div>
 
     <dl>
-        <dt><a ui-sref="manage-chats" class="list-title transition">Public chats</a></dt>
+        <dt><a ui-sref="manage-chats" class="list-title transition">Public chats</a><a
+                class="list-title transition pull-right" ng-click="openNewChatModal()">New Chat</a></dt>
         <dd>
             <ul class="list-unstyled">
                 <li><a href="#">name of public chat</a></li>
@@ -23,8 +24,8 @@
         </dd>
 
 
-
-        <dt><a href="#" class="list-title transition">Private chats</a></dt>
+        <dt><a href="#" class="list-title transition left">Private chats</a><a class="list-title transition pull-right"
+                                                                          ng-click="openNewChatModal()">New Chat</a></dt>
         <dd>
             <ul class="list-unstyled">
                 <li><a href="#">name of private chat</a></li>
