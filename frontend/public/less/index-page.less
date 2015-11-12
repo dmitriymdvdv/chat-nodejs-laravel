@@ -1,0 +1,125 @@
+// Color variables (appears count calculates by raw css)
+@color0: rgb(105, 187, 255);
+@color1: #f8f8f8;
+@color2: rgb(48, 92, 127);
+
+// Width variables (appears count calculates by raw css)
+@width0: 100%; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@height1: 100%; // Appears 4 times
+
+body {
+  height: @height1;
+}
+
+.header {
+  margin-bottom: 70px !important;
+}
+
+.text {
+  color: #e3e7e9;
+  font-size: large;
+}
+
+html {
+  height: @height1;
+}
+
+.wrap {
+  height: @height1;
+  height: auto !important;
+  margin: 0 auto -60px;
+  min-height: @height1;
+  padding: 0 0 60px;
+  & > .container {
+    padding: 60px 15px 0;
+  }
+}
+
+.footer {
+  background-color: transparent;
+  height: 60px;
+}
+
+.container {
+  .credit {
+    margin: 20px 0;
+  }
+}
+
+.navbar {
+  background: transparent !important;
+  border: none !important;
+  padding-top: 15px;
+}
+
+.gradient {
+  background-attachment: fixed;
+  background-color: #5396cd;
+  background-image: -ms-repeating-linear-gradient(bottom, @color0 0%, @color0 11.6%, @color0 21.4%, rgb(48, 92, 127) 100%);
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0, @color0), color-stop(0.116, @color0), color-stop(0.214, @color0), color-stop(1, rgb(48, 92, 127)));
+  background-image: -webkit-repeating-linear-gradient(bottom, @color0 0%, @color0 11.6%, @color0 21.4%, rgb(48, 92, 127) 100%);
+  background-image: repeating-linear-gradient(to top, @color0 0%, @color0 11.6%, @color0 21.4%, rgb(48, 92, 127) 100%);
+  background-image: url(data:image/svg+xml; base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjNjliYmZmIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiM2OWJiZmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjExNTk5OTk5OTk5OTk5OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzY5YmJmZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMjE0Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzMwNWM3ZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
+}
+
+.logo-index-page {
+  background: @color1;
+  border-radius: 4px;
+  color: #28669F;
+  padding: 12px;
+}
+
+ul.nav {
+  li {
+    a {
+      color: @color1 !important;
+      &:visited {
+        color: @color1 !important;
+      }
+      &:hover {
+        color: rgba(247, 247, 247, 0.46) !important;
+      }
+      &:active {
+        color: rgba(247, 247, 247, 0.46) !important;
+      }
+    }
+  }
+  li.active {
+    a {
+      color: @color1 !important;
+    }
+  }
+}
+
+.navbar-toggle {
+  border: none;
+  &:focus {
+    background-color: transparent !important;
+  }
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
+.icon-bar {
+  background-color: @color1 !important;
+}
+
+footer.footer {
+  border: none !important;
+  a {
+    color: @color1 !important;
+    color: @color1 !important;
+    margin-left: 15px;
+    &:hover {
+      color: rgba(247, 247, 247, 0.46) !important;
+      text-decoration: none;
+    }
+  }
+}
+
+img.indexPageImg {
+  width: @width0;
+}
