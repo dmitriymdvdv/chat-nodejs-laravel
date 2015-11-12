@@ -1,15 +1,9 @@
 'use strict';
 
-module.exports = function() {
+module.exports =  [
+    '$scope',
+    function ($scope){
 
-    ChatController.$inject = [
-        '$scope'
-    ];
-
-    function ChatController($scope){
-        $scope.isChatPicked = false;
     }
 
-    return ChatController;
-
-};
+];

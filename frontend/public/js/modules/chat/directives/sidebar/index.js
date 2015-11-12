@@ -3,8 +3,6 @@
 module.exports = function() {
     return {
         restrict: 'AE',
-        template: require('./sidebar.html'),
-        controller: ['$scope', function($scope) {
-        }]
+        template: require('./sidebar.html')
     }
 };
