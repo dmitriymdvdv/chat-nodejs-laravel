@@ -23,6 +23,7 @@ $http.get('http://slack.dev/api/v1/user/1').then(function (response) {
             .module('PHPLabs', [
                 'ui.router',
                 'ui.bootstrap',
+                'picardy.fontawesome',
 
                 'ITA.EmbeddedData',
                 'ITA.Request',

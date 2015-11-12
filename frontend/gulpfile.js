@@ -19,6 +19,7 @@ var jsLibs = [
     './public/bower_components/angular/angular.js',
     './public/bower_components/angular-ui-router/release/angular-ui-router.js',
     './public/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    './public/bower_components/angular-fontawesome/dist/angular-fontawesome.js',
     './public/bower_components/moment/moment.js',
     './public/bower_components/moment-timezone/moment-timezone.js',
     './public/bower_components/lodash/lodash.js',
