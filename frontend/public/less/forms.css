@@ -67,4 +67,20 @@ There is no no-color option ("less --help" for help)
     right: 5px;
     bottom: 6px;
   }
+
+  @media screen and (max-width: 380px){
+
+    .table-cell , .table-row{
+      display: block;
+      padding: 0;
+    }
+
+    .table-row:first-child {
+      padding: 0 0 10px;
+    }
+
+    input , button{
+      width: 100%;
+    }
+  }
 }

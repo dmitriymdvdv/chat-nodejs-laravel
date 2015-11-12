@@ -11,7 +11,7 @@ module.exports = [
                 controller: [
                     '$state',
                     function($state) {
-                        $state.go('chats.choose')
+                        $state.go('chats.overview');
                     }
                 ],
                 data: {
@@ -20,20 +20,12 @@ module.exports = [
                     ]
                 }
             })
-            .state('chats.choose', {
-                views: {
-                    'chatbar' : {
-                        template: '<section class="chatbar">Please choose chat</section>'
-                    }
-                }
+            .state('chats.overview', {
+                template: '<section class="chatbar">Please choose chat</section>'
             })
             .state('chats.active', {
-                url: '/chat',
-                views: {
-                    'chatbar' : {
-                        template: require('./templates/chatbar.html')
-                    }
-                }
+                url: '/chat/:chatId',
+                template: require('./templates/chatbar.html')
             })
             .state('manage-chats', {
                 url: '/chats/manage',
