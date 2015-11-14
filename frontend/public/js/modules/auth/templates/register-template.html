@@ -1,0 +1,91 @@
+<div class="container-fluid register" ng-controller="RegisterController as registration">
+    <form class="form-horizontal sign-up-form" role="form" name="signUpForm" novalidate>
+        <div class="row-fluid">
+            <h2 class="form-heading">Sign up</h2>
+        </div>
+        <div class="row-fluid">
+            <div class="label-input">
+                <div class="label-input label-cell">
+                    <label class="control-label" for="first-name">First name:</label>
+                </div>
+                <div class="input-cell">
+                    <input type="text"
+                           class="form-control"
+                           id="first-name"
+                           name="firstName"
+                           ng-model="registration.authData.name"
+                           required>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="label-input">
+                <div class="label-cell">
+                    <label class="control-label" for="last-name">Last name:</label>
+                </div>
+                <div class="input-cell">
+                    <input type="text"
+                           class="form-control"
+                           id="last-name"
+                           name="lastName"
+                           ng-model="registration.authData.surname">
+                </div>
+            </div>
+        </div >
+        <div class="row-fluid">
+            <div class="label-input">
+                <div class="label-cell">
+                    <label class="control-label" for="email">Email:</label>
+                </div>
+                <div class="input-cell">
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           name="email"
+                           ng-model="registration.authData.email"
+                           required>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="label-input">
+                <div class="label-cell">
+                    <label class="control-label" for="pass">Password:</label>
+                </div>
+                <div class="input-cell">
+                    <input type="password"
+                           class="form-control"
+                           id="pass"
+                           name="password"
+                           ng-model="registration.authData.password"
+                           required>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="label-input">
+                <div class="label-cell">
+                    <label class="control-label" for="confirm">Confirm password:</label>
+                </div>
+                <div class="input-cell">
+                    <input type="password"
+                           class="form-control"
+                           id="confirm"
+                           name="confirm"
+                           ng-model="registration.authData.confirm"
+                           required
+                           check-password-directive
+                           compare-to="registration.authData.password">
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="control">
+                <button type="submit" class="btn button"
+                        ng-click="registration.signUpForm.$valid && registration(registration.authData)"
+                        >Sign Up
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

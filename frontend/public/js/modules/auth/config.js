@@ -45,7 +45,8 @@ module.exports = [
                 }
             })
             .state('register', {
-                template: '',
+                url: '/register',
+                template: require('./templates/register-template.html'),
                 controller: 'authController',
                 data: {
                     access: [
@@ -53,6 +54,5 @@ module.exports = [
                     ]
                 }
             });
-
     }
 ];
