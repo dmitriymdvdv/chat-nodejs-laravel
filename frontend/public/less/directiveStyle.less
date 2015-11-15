@@ -1,0 +1,17 @@
+@message-color: #ff0000;
+@valid-border: #00bb55;
+@invalid-border: #cb2277;
+
+.ng-invalid{
+  border-color: desaturate(@invalid-border, 15%);
+  outline-color: @invalid-border;
+}
+.ng-valid{
+  border-color: desaturate(@valid-border, 40%);
+  outline-color: @valid-border;
+}
+.message{
+  font-size: small;
+  padding: 5px auto;
+  color: @message-color;
+}
