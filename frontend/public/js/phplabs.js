@@ -10,14 +10,14 @@ require('./common/ita-loading');
 
 //require project modules
 require('./modules/home');
-require('./modules/admin');
 require('./modules/auth');
 require('./modules/chat');
+require('./modules/user');
 
 var initInject = angular.injector(['ng']);
 var $http = initInject.get('$http');
 
-$http.get('http://slack.dev/api/v1/user/1').then(function (response) {
+$http.get('./js/fakeJson.json').then(function (response) {
     domready(function () {
         angular
             .module('PHPLabs', [
@@ -29,9 +29,9 @@ $http.get('http://slack.dev/api/v1/user/1').then(function (response) {
                 'ITA.Loading',
 
                 'Home',
-                'Admin',
                 'Auth',
-                'Chat'
+                'Chat',
+                'User'
             ])
             .config([
                 'itaEmbeddedDataServiceProvider',
