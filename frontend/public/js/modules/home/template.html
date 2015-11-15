@@ -1,24 +1,70 @@
-<nav class="navbar navbar-default">
-    <div class="container">
-        <ul class="nav navbar-nav">
-            <li>
-                <a ui-sref="login">Login</a>
-            </li>
-            <li>
-                <a ui-sref="chats">Chats</a>
-            </li>
-            <li>
-                <a ui-sref="passwordReset">Password reset</a>
-            </li>
-            <li>
-                <a ui-sref="confirmPassword">Confirm password</a>
-            </li>
-            <li>
-                <a ui-sref="manage-chats">Manage chats</a>
-            </li>
-        </ul>
+<div class="gradient wrap">
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="navbar navbar-default">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">
+                        <strong class="logo-index-page">
+                            Another Slack
+                        </strong>
+                    </a>
+                    <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
+                            ng-click="navCollapsed = !navCollapsed">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" collapse="navCollapsed">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">Link 4</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">Sign In</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row body">
+            <div class="col-sm-6">
+                <div ng-controller="HomeController" id="slides_control">
+                    <div>
+                        <carousel interval="interval">
+                            <slide ng-repeat="slide in slides" active="slide.active">
+                                <img class="indexPageImg" ng-src="{{slide.image}}">
+
+                                <div class="carousel-caption">
+                                    <h4>{{slide.msg}}</h4>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae debitis, dicta exercitationem
+                    impedit mollitia nihil nobis nulla obcaecati optio, repellendus tempora tempore tenetur ullam vel
+                    veritatis vitae voluptatem voluptates!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis fugiat id ipsum
+                    laboriosam maxime minima molestias mollitia nobis quaerat, quasi repellendus reprehenderit sapiente
+                    soluta vel velit, voluptate! Officia, quod.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur consequuntur debitis
+                    dolorem eaque est explicabo minima, neque quia tempore totam ullam voluptatum. Deleniti error odio
+                    quia, ratione tenetur totam!
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
-<div class="logo-container">
-    <img src="/img/logo.png" alt="iTechArt" >
 </div>
+<footer class="modal-footer footer">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 5</a>
+</footer>
