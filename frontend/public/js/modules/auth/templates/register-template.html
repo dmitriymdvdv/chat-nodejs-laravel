@@ -5,86 +5,90 @@
         </div>
         <div class="row-fluid">
             <div class="label-input">
-                <div class="label-input label-cell">
-                    <label class="control-label" for="first-name">First name:</label>
-                </div>
-                <div class="input-cell">
-                    <input type="text"
-                           class="form-control"
-                           id="first-name"
-                           name="firstName"
-                           ng-model="name"
-                           required>
-                </div>
+                <label class="control-label" for="first-name">First name:</label>
+            </div>
+            <div class="input-cell">
+                <input type="text"
+                       class="form-control"
+                       id="first-name"
+                       name="firstName"
+                       ng-model="name"
+                       required>
             </div>
         </div>
         <div class="row-fluid">
             <div class="label-input">
-                <div class="label-cell">
-                    <label class="control-label" for="last-name">Last name:</label>
-                </div>
-                <div class="input-cell">
-                    <input type="text"
-                           class="form-control"
-                           id="last-name"
-                           name="lastName"
-                           ng-model="surname">
-                </div>
+                <label class="control-label" for="last-name">Last name:</label>
             </div>
-        </div >
-        <div class="row-fluid">
-            <div class="label-input">
-                <div class="label-cell">
-                    <label class="control-label" for="email">Email:</label>
-                </div>
-                <div class="input-cell">
-                    <input type="email"
-                           class="form-control"
-                           id="email"
-                           name="email"
-                           ng-model="email"
-                           required>
-                </div>
+            <div class="input-cell">
+                <input type="text"
+                       class="form-control"
+                       id="last-name"
+                       name="lastName"
+                       ng-model="surname">
             </div>
         </div>
         <div class="row-fluid">
             <div class="label-input">
-                <div class="label-cell">
-                    <label class="control-label" for="pass">Password:</label>
-                </div>
-                <div class="input-cell">
-                    <input type="password"
-                           class="form-control"
-                           id="pass"
-                           name="password"
-                           ng-model="password"
-                           required>
-                </div>
+                <label class="control-label" for="email">Email:</label>
+            </div>
+            <div class="input-cell">
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       name="email"
+                       ng-model="email"
+                       required>
             </div>
         </div>
         <div class="row-fluid">
             <div class="label-input">
-                <div class="label-cell">
-                    <label class="control-label" for="confirm">Confirm password:</label>
-                </div>
-                <div class="input-cell">
-                    <input type="password"
-                           class="form-control"
-                           id="confirm"
-                           name="confirm"
-                           ng-model="confirm"
-                           required
-                           check-password-directive
-                           compare-to="password"
-                           ng-init="focus=false;blur=false"
-                           ng-focus="focus=true; blur=false"
-                           ng-blur="blur=true; focus=false">
-                    <div class="message" ng-show="signUpForm.confirm.$invalid
-                                                    && signUpForm.confirm.$dirty
-                                                    && !signUpForm.confirm.$pristine
-                                                    && blur">
-                        Error: check your password fields
-                    </div>
+                <label class="control-label" for="phone">Mobile phone:</label>
+            </div>
+            <div class="input-cell">
+                <input type="text"
+                       class="form-control"
+                       id="phone"
+                       name="phone"
+                       ng-model="phone"
+                       required>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="label-input">
+                <label class="control-label" for="pass">Password:</label>
+            </div>
+            <div class="input-cell">
+                <input type="password"
+                       class="form-control"
+                       id="pass"
+                       name="password"
+                       ng-model="password"
+                       required>
+
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="label-input">
+                <label class="control-label" for="confirm">Confirm password:</label>
+            </div>
+            <div class="input-cell">
+                <input type="password"
+                       class="form-control"
+                       id="confirm"
+                       name="confirm"
+                       ng-model="confirm"
+                       required
+                       check-password-directive
+                       compare-to="password"
+                       ng-init="focus=false;blur=false"
+                       ng-focus="focus=true; blur=false"
+                       ng-blur="blur=true; focus=false">
+                <div class="message" ng-show="signUpForm.confirm.$invalid
+                                              && signUpForm.confirm.$dirty
+                                              && !signUpForm.confirm.$pristine
+                                              && blur">
+                    Your passwords don't mutch
                 </div>
             </div>
         </div>

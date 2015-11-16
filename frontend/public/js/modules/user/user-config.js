@@ -19,17 +19,17 @@ module.exports = [
             .state('profile', {
                 url: '/profile',
                 template: require('./profile/profile.html'),
-                controller: 'UserController',
+                controller: 'ProfileController',
                 data: {
                     access: [
                         authRoles.user
                     ]
                 }
             })
-            .state('profileInfo', {
+            .state('userInfo', {
                 url: '/user/info',
                 template: require('./profile/userInfo.html'),
-                controller: 'UserController',
+                controller: 'UserInfoController',
                 data: {
                     access: [
                         authRoles.user

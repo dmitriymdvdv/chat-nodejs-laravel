@@ -7,6 +7,7 @@ var angular = require('angular');
 require('./common/ita-embedded-data');
 require('./common/ita-request');
 require('./common/ita-loading');
+require('./common/directives');
 
 //require project modules
 require('./modules/home');
@@ -25,9 +26,11 @@ $http.get('./js/fakeJson.json').then(function (response) {
                 'ui.bootstrap',
                 'picardy.fontawesome',
 
+
                 'ITA.EmbeddedData',
                 'ITA.Request',
                 'ITA.Loading',
+                'Common.Directive',
 
                 'Home',
                 'Auth',

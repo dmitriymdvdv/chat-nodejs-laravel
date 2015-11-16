@@ -17,13 +17,15 @@
             </ul>
         </div>
     </nav>
-    <div class="avatar-part">
+    <div class="avatar-part" >
         <div class="image-div"><img src="/img/user.png" class="img-rounded image"></div>
         <div class="info">
-            <p><label class="label-info">User: {{authData.name + authData.surname}}</label></p>
-            <p><label class="label-info">Date of birth: {{authData.birthday}}</label></p>
-            <p><label class="label-info">Phone: {{authData.phone}}</label></p>
-            <p><label class="label-info">Email: {{authData.email}}</label></p>
+            <p><label class="label-info">
+                User: {{userData.first_name +" "+ userData.last_name}}
+            </label></p>
+            <p><label class="label-info">Date of birth: {{userData.date_of_birth}}</label></p>
+            <p><label class="label-info">Phone: {{userData.mobile_phone}}</label></p>
+            <p><label class="label-info">Email: {{userData.email}}</label></p>
         </div>
     </div>
 </div>

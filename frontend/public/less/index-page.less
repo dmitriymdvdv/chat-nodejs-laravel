@@ -70,25 +70,26 @@ html {
   color: #28669F;
   padding: 12px;
 }
-
-ul.nav {
-  li {
-    a {
-      color: @color1 !important;
-      &:visited {
-        color: @color1 !important;
-      }
-      &:hover {
-        color: rgba(247, 247, 247, 0.46) !important;
-      }
-      &:active {
-        color: rgba(247, 247, 247, 0.46) !important;
+.collapse {
+  ul.nav {
+    li {
+      a {
+        color: @color1;
+        &:visited {
+          color: @color1;
+        }
+        &:hover {
+          color: rgba(247, 247, 247, 0.46);
+        }
+        &:active {
+          color: rgba(247, 247, 247, 0.46);
+        }
       }
     }
-  }
-  li.active {
-    a {
-      color: @color1 !important;
+    li.active {
+      a {
+        color: @color1;
+      }
     }
   }
 }
