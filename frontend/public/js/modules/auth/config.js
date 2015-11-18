@@ -47,7 +47,7 @@ module.exports = [
             .state('register', {
                 url: '/register',
                 template: require('./templates/register-template.html'),
-                controller: 'authController',
+                controller: 'RegisterController',
                 data: {
                     access: [
                         authRoles.guest

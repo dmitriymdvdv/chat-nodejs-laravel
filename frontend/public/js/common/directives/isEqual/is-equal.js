@@ -5,10 +5,10 @@ module.exports = [function() {
         restrict: 'A',
         require: 'ngModel',
         scope: {
-            otherModelValue: "=compareTo",
+            otherModelValue: "=equalTo",
         },
         link: function(scope, element, attr, ngModel){
-            ngModel.$validators.compareTo = function(modelValue){
+            ngModel.$validators.equalTo = function(modelValue){
 
                 return modelValue === scope.otherModelValue;
             };

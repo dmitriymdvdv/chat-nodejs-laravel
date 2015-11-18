@@ -17,9 +17,9 @@ module.exports = [
                 }
             })
             .state('profile', {
-                url: '/profile',
-                template: require('./profile/profile.html'),
-                controller: 'ProfileController',
+                url: '/edit-profile',
+                template: require('./profile/edit-profile.html'),
+                controller: 'EditProfileController',
                 data: {
                     access: [
                         authRoles.user
@@ -27,9 +27,9 @@ module.exports = [
                 }
             })
             .state('userInfo', {
-                url: '/user/info',
-                template: require('./profile/userInfo.html'),
-                controller: 'UserInfoController',
+                url: '/user/profile',
+                template: require('./profile/profile.html'),
+                controller: 'EditProfileController',
                 data: {
                     access: [
                         authRoles.user
