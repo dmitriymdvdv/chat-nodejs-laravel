@@ -23,14 +23,14 @@ class ChatMessages extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'chat_id'];
 
     /**
      * The attributes excluded from the Model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['user_id', 'chat_id'];
+    protected $hidden = [];
 
     /*
      *

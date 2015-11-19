@@ -23,14 +23,14 @@ class UserMessages extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['message_id','recepient_id'];
 
     /**
      * The attributes excluded from the Model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['message_id','recepient_id'];
+    protected $hidden = [];
     /*
      *
      */

@@ -13,9 +13,9 @@ class UserRestoreHashes extends Model
 {
     protected $table = 'user_restore_hashes';
 
-    protected $fillable = ['restore_token','expired'];
+    protected $fillable = ['user_id', 'restore_token','expired'];
 
-    protected $hidden = ['user_id'];
+    protected $hidden = [];
     /*
      *
      */

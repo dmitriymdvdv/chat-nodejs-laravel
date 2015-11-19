@@ -23,14 +23,14 @@ class Message extends Model
      *
      * @var array
      */
-    protected $fillable = ['message','date_of_creation'];
+    protected $fillable = ['id','user_id', 'message','date_of_creation'];
 
     /**
      * The attributes excluded from the Model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id','user_id'];
+    protected $hidden = [];
     /*
      *
      */
