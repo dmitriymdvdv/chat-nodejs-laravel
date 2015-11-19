@@ -1,0 +1,118 @@
+@background-color: #fff;
+@width: 320px;
+@height: 320px;
+
+.margin(@top, @right, @bottom, @left){
+  margin: @arguments;
+}
+
+.padding(@top, @right, @bottom, @left){
+  padding: @arguments;
+}
+.default {
+
+  .avatar-part {
+
+    background-color: @background-color;
+    min-height: 600px;
+    .margin(2%, auto, 2%, 2%);
+
+    .margin(0%, auto, 3%, auto);
+    .padding(1%, auto, 3%, auto);
+
+    .info {
+      display: table-row;
+      max-height: 30px;
+      min-width: 70px;
+      float:left;
+      clear: left;
+      .margin(10%, 3%, 30%, 3%);
+
+      p {
+        .padding(3%, auto, 1%, 3%);
+      }
+
+      .label-info {
+        background-color: @background-color;
+        font-weight: normal;
+        font-size: 16px;
+        color: #102313;
+        .padding(3%, 2%, 0%, 5%);
+      }
+    }
+    .image {
+      display: table-row;
+      float: left;
+      width: @width/2;
+      height: @height/2;
+      alt: "user photo";
+      .margin(1%, auto, -5%, 5%);
+      .padding(0%, auto, 40%, -10%);
+    }
+  }
+  @media screen and(min-width: 400px){
+      .avatar-part{
+        min-height: 180px;
+        .margin(7%, auto, auto, 7%);
+
+        .info{
+          min-height: 250px;
+          min-width: 180px;
+          display: table-cell;
+          clear: none;
+          float: left;
+          .margin(0%, auto, 3%, 3%);
+          .padding(15%, auto, 3%, -50%);
+
+          p {
+            .margin(1%, auto, 1%, 3%);
+            .padding(1%, auto, 1%, -50%);
+          }
+
+          .label-info {
+            font-size: 20px;
+          }
+        }
+
+        .image {
+          float: left;
+          display: table-cell;
+          width: @width/2;
+          height: @height/2;
+          .margin(0%, auto, -5%, 10%);
+        }
+      }
+  }
+  @media screen and (min-width: 800px) {
+    .avatar-part {
+      min-height: 350px;
+      .margin(7%, auto, auto, 7%);
+      .info {
+        min-height: 70px;
+        min-width: 350px;
+        clear: none;
+        float: left;
+        display: table-cell;
+        .margin(3%, auto, 3%, auto);
+        .padding(25%, auto, 3%, -50%);
+
+        p {
+          .margin(1%, auto, 1%, 1%);
+          .padding(1%, auto, 1%, 3%);
+        }
+
+        .label-info {
+          font-size: 24px;
+        }
+      }
+
+      .image {
+        width: @width;
+        height: @height;
+        display: table-cell;
+        float: left;
+        .margin(0%, auto, -5%, 10%);
+      }
+    }
+  }
+}

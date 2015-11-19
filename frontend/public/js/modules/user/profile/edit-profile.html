@@ -1,0 +1,140 @@
+<div class="container-fluid profile">
+    <form class="form-horizontal user-profile-form" role="form"
+          name="updateForm" novalidate>
+        <div class="row-fluid">
+            <h2 class="form-heading">Edit your profile</h2>
+        </div>
+        <div class="general-info">
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="first-name">
+                        your first name:
+                    </label>
+                </div>
+                <div class="input-div">
+                    <input  type="text"
+                            class="form-control"
+                            id="first-name"
+                            name="firstName"
+                            ng-model="userData.first_name">
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="last-name">
+                        your last name:
+                    </label>
+                </div>
+                <div class="input-div">
+                    <input  type="text"
+                            class="form-control"
+                            id="last-name"
+                            name="lastName"
+                            ng-model="userData.last_name">
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="email">
+                        your email:
+                    </label>
+                </div>
+                <div class="input-div" ng-class="{'ng-invalid':updateForm.email.$invalid}">
+                    <input  type="text"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            ng-model="userData.email"
+                            ng-change="checkEmail()">
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="date-of-birth">
+                        your birthday:
+                    </label>
+                </div>
+                <div class="input-div">
+                    <input  type="text"
+                            class="form-control"
+                            id="date-of-birth"
+                            name="birthday"
+                            ng-model="userData.date_of_birth">
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="mobile-phone">
+                        your mobile phone:
+                    </label>
+                </div>
+                <div class="input-div" ng-class="{'ng-invalid':updateForm.phone.$invalid}">
+                    <input  type="text"
+                            class="form-control"
+                            id="mobile-phone"
+                            name="phone"
+                            ng-model="userData.mobile_phone"
+                            ng-change="checkPhone()">
+                </div>
+            </div>
+        </div>
+        <div class="pass-part">
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="new-pass">
+                        input your new password:
+                    </label>
+                </div>
+                <div class="input-div">
+                    <input  type="password"
+                            class="form-control"
+                            name="pass"
+                            id="new-pass"
+                            ng-model="pass"
+                            placeholder="input password">
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="label-div">
+                    <label class="control-label" for="confirm-new-pass">
+                        please, confirm your new password:
+                    </label>
+                </div>
+                <div class="input-div">
+                    <input  type="password"
+                            class="form-control"
+                            id="confirm-new-pass"
+                            name="confirm"
+                            ng-model="confirm"
+                            placeholder="repeat password"
+                            is-equal equal-to="pass"
+                            ng-init="focus=false;blur=false"
+                            ng-focus="focus=true; blur=false"
+                            ng-blur="blur=true; focus=false">
+                    <div class="message" ng-show="updateForm.confirm.$invalid
+                                                    && updateForm.confirm.$dirty
+                                                    && !updateForm.confirm.$pristine
+                                                    && blur">
+                        Your passwords don't match
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid avatar">
+            <div class="image-wrap">
+                <img src="/img/user.png" class="img-rounded userImg">
+            </div>
+            <div class="fake-button">
+                <input type="file">
+            </div>
+        </div>
+        <div class="button-div">
+            <div class="row-fluid">
+                <button type="submit" class="btn button"
+                        ng-click="updateForm.$valid && updateUserData(authData)">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

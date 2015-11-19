@@ -70,25 +70,29 @@ html {
   color: #28669F;
   padding: 12px;
 }
-
-ul.nav {
-  li {
-    a {
-      color: @color1 !important;
-      &:visited {
-        color: @color1 !important;
-      }
-      &:hover {
-        color: rgba(247, 247, 247, 0.46) !important;
-      }
-      &:active {
-        color: rgba(247, 247, 247, 0.46) !important;
+.collapse {
+  ul.nav {
+    li {
+      border: none;
+      a {
+        color: @color1;
+        text-decoration: none;
+        &:visited {
+          color: @color1;
+        }
+        &:hover {
+          color: rgba(247, 247, 247, 0.46);
+        }
+        &:active {
+          color: rgba(247, 247, 247, 0.46);
+        }
       }
     }
-  }
-  li.active {
-    a {
-      color: @color1 !important;
+    li.active {
+      border: none;
+      a {
+        color: @color1;
+      }
     }
   }
 }
@@ -110,7 +114,6 @@ ul.nav {
 footer.footer {
   border: none !important;
   a {
-    color: @color1 !important;
     color: @color1 !important;
     margin-left: 15px;
     &:hover {

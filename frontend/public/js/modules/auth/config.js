@@ -45,14 +45,14 @@ module.exports = [
                 }
             })
             .state('register', {
-                template: '',
-                controller: 'authController',
+                url: '/register',
+                template: require('./templates/register-template.html'),
+                controller: 'RegisterController',
                 data: {
                     access: [
                         authRoles.guest
                     ]
                 }
             });
-
     }
 ];
