@@ -24,6 +24,8 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
     Route::delete('/user{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
 
+    Route::get('/test{user?}', 'TestController@index');
+
 });
 
 // Default routes
@@ -31,6 +33,8 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+
+
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

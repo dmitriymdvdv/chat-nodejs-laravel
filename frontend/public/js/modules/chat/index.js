@@ -7,6 +7,8 @@ angular
     .config(require('./chat-config'))
     .controller('ChatController', require('./chat-controller'))
     .factory('ChatFactory', require('./chat-factory'))
-    .controller('NewModalController',require('./new-chat/NewModalController'))
+    .controller('NewModalController', require('./new-chat/new-modal-controller'))
+    .controller('SideBarController', require('./directives/sidebar/controller'))
+    .service('NewChatService', require('./new-chat/new-chat-service'))
     .directive('sideBar', require('./directives/sidebar'))
     .directive('messageContainer', require('./directives/messageContainer'));

@@ -3,18 +3,7 @@
 module.exports = function() {
     return {
         restrict: 'AE',
-        controller: [
-            '$scope',
-            '$modal',
-            function ($scope, $modal) {
-                $scope.openNewChatModal = function () {
-                    var $modalInstance = $modal.open({
-                        template: require('../../new-chat/template.html'),
-                        controller: 'NewModalController'
-                    });
-                };
-            }
-        ],
+        controller: 'SideBarController',
         template: require('./sidebar.html')
     }
 };

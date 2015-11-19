@@ -24,6 +24,7 @@ $http.get('./js/fakeJson.json').then(function (response) {
             .module('PHPLabs', [
                 'ui.router',
                 'ui.bootstrap',
+                'ui.select',
                 'picardy.fontawesome',
 
 
