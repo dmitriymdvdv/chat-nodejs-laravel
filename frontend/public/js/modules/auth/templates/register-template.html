@@ -65,7 +65,7 @@
                        class="form-control"
                        id="pass"
                        name="password"
-                       ng-model="authData.password"
+                       ng-model="authData.password_hash"
                        required>
 
             </div>
@@ -81,7 +81,7 @@
                        name="confirm"
                        ng-model="authData.confirm"
                        required  is-equal
-                       equal-to="authData.password"
+                       equal-to="authData.password_hash"
                        ng-init="focus=false;blur=false"
                        ng-focus="focus=true; blur=false"
                        ng-blur="blur=true; focus=false">

@@ -6,7 +6,7 @@ angular
     .module('Auth', [])
     .config(require('./config'))
     .constant('authRoles', require('./roles'))
-    .controller('authController', require('./controller'))
+    .controller('AuthController', require('./controller'))
     .controller('RegisterController', require('./register-controller'))
     .provider('authService', require('./provider'))
     .factory('authFactory', require('./factory'));

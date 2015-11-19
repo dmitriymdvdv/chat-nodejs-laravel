@@ -45,7 +45,6 @@ class UserController extends Controller
 
     public function show($id)
     {
-//        $user = User::findOrFail($id);
         $user = $this->createFakeUser($id);
         return response()->json($user, 200);
     }

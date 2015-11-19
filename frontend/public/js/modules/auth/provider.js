@@ -27,7 +27,7 @@ module.exports = function () {
                 },
 
                 hasIdentity: function() {
-                    return self.authData.id ? true : false;
+                    return self.authData.email ? true : false;
                 }
             };
         }

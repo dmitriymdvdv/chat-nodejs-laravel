@@ -1,12 +1,10 @@
 'use strict';
 
-module.exports = function () {
-    authController.$inject = [
-        '$scope',
-        'authFactory'
-    ];
+module.exports = [
+    '$scope',
+    'authFactory',
 
-    function authController($scope, authFactory) {
+    function ($scope, authFactory) {
 
         $scope.login = function() {
             console.log('login');
@@ -22,5 +20,4 @@ module.exports = function () {
 
     }
 
-    return authController;
-};
+];

@@ -8,7 +8,7 @@ module.exports = [
             .state('login', {
                 url: '/login',
                 template: require('./templates/login.html'),
-                controller: 'authController',
+                controller: 'AuthController',
                 data: {
                     access: [
                         authRoles.guest
@@ -18,7 +18,7 @@ module.exports = [
             .state('passwordReset', {
                 url: '/password_reset',
                 template: require('./templates/password-reset.html'),
-                controller: 'authController',
+                controller: 'AuthController',
                 data: {
                     access: [
                         authRoles.guest
@@ -28,7 +28,7 @@ module.exports = [
             .state('confirmPassword', {
                 url: '/confirm_password',
                 template: require('./templates/confirm-password.html'),
-                controller: 'authController',
+                controller: 'AuthController',
                 data: {
                     access: [
                         authRoles.guest
@@ -37,7 +37,7 @@ module.exports = [
             })
             .state('logout', {
                 template: '',
-                controller: 'authController',
+                controller: 'AuthController',
                 data: {
                     access: [
                         authRoles.user
@@ -54,5 +54,6 @@ module.exports = [
                     ]
                 }
             });
+
     }
 ];

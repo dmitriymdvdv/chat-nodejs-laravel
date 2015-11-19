@@ -3,17 +3,13 @@
 module.exports = [
     '$stateProvider',
     'authRoles',
-    function ($stateProvider, authRoles) {
+    function chatStates($stateProvider, authRoles) {
+
         $stateProvider
             .state('chats', {
                 url: '/chats',
                 template: require('./templates/mainAppLayout.html'),
-                controller: [
-                    '$state',
-                    function($state) {
-                        $state.go('chats.overview');
-                    }
-                ],
+                controller: 'ChatController',
                 data: {
                     access: [
                         authRoles.user

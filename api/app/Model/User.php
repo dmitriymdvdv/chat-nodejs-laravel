@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    public $timestamps = false;
+
     /**
      * The database table used by the Model.
      *

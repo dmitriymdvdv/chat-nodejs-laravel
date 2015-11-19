@@ -13,22 +13,20 @@
 
 Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
+    Route::post('register', 'RegistrationController@registration');
 
-    // User routes
+    Route::group(['prefix' => 'user'], function () {
 
-    Route::get('/user/{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
+        Route::get('{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
+        Route::post('/', ['as' => 'user.store', 'uses' => 'UserController@store']);
+        Route::put('{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
+        Route::delete('{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
 
-    Route::post('/user', ['as' => 'user.store', 'uses' => 'UserController@store']);
-
-    Route::put('/user{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
-
-    Route::delete('/user{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+    });
 
     Route::get('/test{user?}', 'TestController@index');
 
 });
-
-// Default routes
 
 Route::get('/', 'WelcomeController@index');
 
