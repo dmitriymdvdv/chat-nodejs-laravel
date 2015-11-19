@@ -23,14 +23,14 @@ class Chat extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','description', 'is_private'];
+    protected $fillable = ['id','user_id','name','description', 'is_private'];
 
     /**
      * The attributes excluded from the Model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id','user_id'];
+    protected $hidden = [];
     /*
      * relations
      */

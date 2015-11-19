@@ -23,7 +23,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['email','password_hash','first_name',
+    protected $fillable = [ 'id', 'email','password_hash','first_name',
                             'last_name','date_of_birth',
                             'mobile_phone','avatar_url'];
 
@@ -32,7 +32,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $hidden = ['id'];
+    protected $hidden = [];
 
     /*
      *
