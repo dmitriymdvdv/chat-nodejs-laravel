@@ -3,3 +3,4 @@ public/bower_components
 public/dist/*
 server/npm-debug.log
 npm-debug.log
+public/less/*.css

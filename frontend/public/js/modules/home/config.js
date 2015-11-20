@@ -2,12 +2,18 @@
 
 module.exports = [
     '$stateProvider',
-    function ($stateProvider) {
+    'authRoles',
+    function ($stateProvider, authRoles) {
         $stateProvider
             .state('home', {
                 url: '/',
                 controller: 'HomeController',
-                template: require('./template.html')
+                template: require('./template.html'),
+                data: {
+                    access: [
+                        authRoles.guest
+                    ]
+                }
             });
     }
 ];

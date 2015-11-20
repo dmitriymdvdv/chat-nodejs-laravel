@@ -7,9 +7,8 @@ RegisterController.$inject =[
     '$state'
 ];
 
-function RegisterController($scope, authService) {
-
-    console.log('023232323');
+function RegisterController($scope, authService, $http, $state) {
+    
     $scope.authData = { };
 
     $scope.checkEmail = function(){
@@ -39,10 +38,19 @@ function RegisterController($scope, authService) {
     };
 
     $scope.registration = function(authData){
-        if($scope.authData.email.$valid
-            && $scope.authData.mobile_phone.$valid) {
-            //set identity data
-            authService.setIdentity(authData);
+
+        if($scope.signUpForm.email.$valid && $scope.signUpForm.phone.$valid) {
+
+            var baseUrl = 'http://slack.dev/api/v1/';
+
+            $http.post(baseUrl + 'register', authData)
+                .success(function (res) {
+                    authService.setIdentity(res);
+                    $state.go('chats');
+                })
+                .error(function() {
+                    console.log('error');
+                });
         }
     };
 }

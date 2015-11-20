@@ -11,6 +11,7 @@ require('./common/directives');
 
 //require project modules
 require('./modules/home');
+require('./modules/admin');
 require('./modules/auth');
 require('./modules/chat');
 require('./modules/user');
@@ -18,7 +19,7 @@ require('./modules/user');
 var initInject = angular.injector(['ng']);
 var $http = initInject.get('$http');
 
-$http.get('./js/fakeJson.json').then(function (response) {
+$http.get('http://slack.dev/api/v1/user/1').then(function (response) {
     domready(function () {
         angular
             .module('PHPLabs', [
@@ -27,14 +28,13 @@ $http.get('./js/fakeJson.json').then(function (response) {
                 'ui.select',
                 'picardy.fontawesome',
 
-
                 'ITA.EmbeddedData',
                 'ITA.Request',
                 'ITA.Loading',
                 'Common.Directive',
 
-                'Home',
                 'Auth',
+                'Home',
                 'Chat',
                 'User'
             ])
@@ -53,8 +53,8 @@ $http.get('./js/fakeJson.json').then(function (response) {
 
 
                 }
-            ]);
-            //.run(require('./app-run'));
+            ])
+            .run(require('./app-run'));
 
         angular.bootstrap(document, ['PHPLabs']);
 

@@ -1,14 +1,15 @@
 'use strict';
 
-module.exports =
-[
+module.exports = [
     '$scope',
     '$modal',
-    function($scope, $modal) {
+    'authService',
+    function($scope, $modal, authService) {
+
+        $scope.user = authService.getIdentity();
 
         function openNewChatModal(params) {
             var $modalInstance;
-
             $modalInstance = $modal.open({
                 template: require('../../new-chat/template.html'),
                 controller: 'NewModalController',

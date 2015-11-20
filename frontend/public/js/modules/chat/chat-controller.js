@@ -2,8 +2,10 @@
 
 module.exports =  [
     '$scope',
-    function ($scope){
-
+    '$state',
+    'authService',
+    function ($scope, $state, authService){
+        $state.go('chats.overview');
     }
 
 ];

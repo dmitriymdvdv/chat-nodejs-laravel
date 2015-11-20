@@ -1,8 +1,9 @@
 {
-  "email": "email@mail.ru",
   "first_name": "John",
   "last_name": "Conor",
+  "email": "email@mail.ru",
   "date_of_birth": "22.03.1990",
-  "mobile_phone": "357-22-32",
+  "mobile_number": "357-22-32",
+  "password_hash": "1234567",
   "avatar_url": "url"
 }
