@@ -24,7 +24,11 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
     });
 
-    Route::get('/test{user?}', 'TestController@index');
+    Route::post('/users', 'UserController@index');
+
+    //Chat routes
+
+    Route::post('/chat/create', 'ChatController@create');
 
 });
 

@@ -6,10 +6,9 @@ module.exports = [
     'authService',
     function($scope, $modal, authService) {
 
-        $scope.user = authService.getIdentity();
-
         function openNewChatModal(params) {
             var $modalInstance;
+
             $modalInstance = $modal.open({
                 template: require('../../new-chat/template.html'),
                 controller: 'NewModalController',
@@ -18,9 +17,10 @@ module.exports = [
                         return {
 
                             modalTitle: params.isPrivate ? 'private' : 'public',
-                            isPrivate: params.isPrivate
-
+                            isPrivate: params.isPrivate,
+                            authData: authService.getIdentity()
                         }
+
                     }
                 }
             });

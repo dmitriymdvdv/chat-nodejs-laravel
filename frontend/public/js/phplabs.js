@@ -8,6 +8,7 @@ require('./common/ita-embedded-data');
 require('./common/ita-request');
 require('./common/ita-loading');
 require('./common/directives');
+require('./common/settings');
 
 //require project modules
 require('./modules/home');
@@ -36,7 +37,8 @@ $http.get('http://slack.dev/api/v1/user/1').then(function (response) {
                 'Auth',
                 'Home',
                 'Chat',
-                'User'
+                'User',
+                'Settings'
             ])
             .config([
                 'itaEmbeddedDataServiceProvider',

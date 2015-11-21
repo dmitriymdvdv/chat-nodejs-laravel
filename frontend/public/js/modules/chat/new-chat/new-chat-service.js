@@ -2,7 +2,9 @@
 
 module.exports = [
     '$q',
-    function ($q) {
+    '$http',
+    'appSettings',
+    function ($q, $http, appSettings) {
 
         this.validateUsersField = function (fieldValue) {
 
@@ -16,6 +18,17 @@ module.exports = [
                 deferred.reject();
             }
             return deferred.promise;
+        };
+        this.createNewChat = function (params) {
+
+            return $http
+                .post(appSettings.apiUrl + 'chat/create', params);
+        };
+        this.getUsers = function (params) {
+
+            return $http
+                .post(appSettings.apiUrl + 'users', params)
         }
+
     }
 ];
