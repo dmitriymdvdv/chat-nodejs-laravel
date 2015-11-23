@@ -36,7 +36,7 @@ module.exports =
                         query: query,
                         //TODO: delete authorId from request
                         user_id: data.authData.id,
-                        users_id: JSON.stringify(getUsersId($scope.chat.users))
+                        'users_id[]': getUsersId($scope.chat.users)
                     };
                     NewChatService.getUsers(params)
                         .then(function (response) {
@@ -78,7 +78,7 @@ module.exports =
                         }
                     };
                     NewChatService
-                        .createNewChat(JSON.stringify(params))
+                        .createNewChat(params)
                         .then(function () {
                             $modalInstance.close();
                         }, function () {

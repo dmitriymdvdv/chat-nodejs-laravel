@@ -13,7 +13,6 @@ class UserController extends Controller
 
         if (!empty($data['query'])) {
 
-            $data['users_id'] = json_decode($data['users_id']);
             $data['users_id'][] = $data['user_id'];
 
             $users = User::whereNotIn('id', $data['users_id'])
