@@ -27,7 +27,7 @@ module.exports = [
         this.getUsers = function (params) {
 
             return $http
-                .post(appSettings.apiUrl + 'users', params)
+                .get(appSettings.apiUrl + 'users', {params: params})
         }
 
     }

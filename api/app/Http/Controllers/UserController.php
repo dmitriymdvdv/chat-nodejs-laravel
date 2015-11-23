@@ -11,14 +11,15 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        if (!empty($data['user'])) {
+        if (!empty($data['query'])) {
 
-            $data['usersId'][] = $data['authorId'];
+            $data['users_id'] = json_decode($data['users_id']);
+            $data['users_id'][] = $data['user_id'];
 
-            $users = User::whereNotIn('id', $data['usersId'])
+            $users = User::whereNotIn('id', $data['users_id'])
                 ->where(function ($query) use ($data) {
-                    $query->where('first_name', 'LIKE', '%' . $data['user'] . '%')
-                        ->orWhere('last_name', 'LIKE', '%' . $data['user'] . '%');
+                    $query->where('first_name', 'LIKE', '%' . $data['query'] . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $data['query'] . '%');
                 })
                 ->get(['id', 'first_name', 'last_name']);
 

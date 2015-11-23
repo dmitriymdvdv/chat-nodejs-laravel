@@ -13,44 +13,43 @@ module.exports =
             $scope.chat = {
                 name: '',
                 description: '',
-                users: [],
-                errors: {
-                    inputUsersField: {
-                        valid: false,
-                        message: 'Field must contain at least one user.'
-                    },
-                    newChatError: {
-                        show: false,
-                        message: 'An error has occurred. Try again later.'
-                    }
+                users: []
+            };
+
+            $scope.errors = {
+                inputUsersField: {
+                    valid: false,
+                    message: 'Field must contain at least one user.'
+                },
+                newChatError: {
+                    show: false,
+                    message: 'An error has occurred. Try again later.'
                 }
             };
 
             $scope.modalTitle = data.modalTitle;
             $scope.users = [];
 
-            $scope.refreshUsers = function (user) {
-                if (user != "") {
+            $scope.refreshUsers = function (query) {
+                if (query != "") {
                     var params = {
-                        user: user,
+                        query: query,
                         //TODO: delete authorId from request
-                        authorId: data.authData.id,
-                        usersId: getUsersId($scope.chat.users)
+                        user_id: data.authData.id,
+                        users_id: JSON.stringify(getUsersId($scope.chat.users))
                     };
-                    NewChatService.getUsers(JSON.stringify(params))
+                    NewChatService.getUsers(params)
                         .then(function (response) {
                             $scope.users = response.data;
                         });
                 }
-                return [];
             };
 
             function getUsersId(users) {
-                var selectedUsersId = [];
-                for (var i = 0; i < users.length; i++) {
 
-                    selectedUsersId.push(users[i].id);
-                }
+                var selectedUsersId = users.map(function (user) {
+                    return user.id;
+                });
                 return selectedUsersId;
             }
 
@@ -58,15 +57,15 @@ module.exports =
                 NewChatService
                     .validateUsersField($scope.chat.users)
                     .then(function () {
-                        $scope.chat.errors.inputUsersField.valid = true;
+                        $scope.errors.inputUsersField.valid = true;
                     }, function () {
-                        $scope.chat.errors.inputUsersField.valid = false;
+                        $scope.errors.inputUsersField.valid = false;
                     });
 
             };
 
             $scope.create = function () {
-                if ($scope.newChatModalForm.$valid && $scope.chat.errors.inputUsersField.valid) {
+                if ($scope.newChatModalForm.$valid && $scope.errors.inputUsersField.valid) {
 
                     var params = {
                         chatData: {
@@ -74,19 +73,16 @@ module.exports =
                             description: $scope.chat.description,
                             is_private: data.isPrivate,
                             //TODO: delete authorId from request
-                            user_id: data.authData.id
-                        },
-                        usersInChat: {
+                            user_id: data.authData.id,
                             users_id: getUsersId($scope.chat.users)
                         }
                     };
-                    console.log(params);
                     NewChatService
                         .createNewChat(JSON.stringify(params))
                         .then(function () {
                             $modalInstance.close();
                         }, function () {
-                            $scope.chat.errors.newChatError.show = true;
+                            $scope.errors.newChatError.show = true;
                         });
                 }
             };
