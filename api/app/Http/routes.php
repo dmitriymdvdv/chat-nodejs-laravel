@@ -34,6 +34,11 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
     Route::put('chat/leave', 'ChatController@leave');
     Route::delete('chat', 'ChatController@destroy');
 
+    //auth routes
+    Route::post('/login', 'AuthController@login');
+    //Route::options('/login', 'AuthController@login');
+    Route::get('/logout', 'AuthController@logout');
+
 });
 
 Route::get('/', 'WelcomeController@index');
