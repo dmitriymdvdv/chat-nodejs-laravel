@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
+
+    public $timestamps = false;
     /**
      * The database table used by the Model.
      *
@@ -43,7 +45,7 @@ class Chat extends Model
      */
     public function users()
     {
-        return $this->hasMany('App\Model\UserToChat','chat_id');
+        return $this->belongsToMany('App\Model\User', 'users_to_chats');
     }
     /*
      *

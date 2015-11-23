@@ -25,26 +25,28 @@
             </div>
         </div>
         <div class="form-group"
-             ng-class="{'has-error': !isUsersFieldValid && (newChatModalForm.selectedItem.$dirty || newChatModalForm.$submitted)}">
+             ng-class="{'has-error': !errors.inputUsersField.valid && (newChatModalForm.selectedItem.$dirty || newChatModalForm.$submitted)}">
             <label for="select">Add Members</label>
             <ui-select multiple
                        ng-model="chat.users"
                        ng-change="validateUsersField()"
+                       ng-model-options="{ debounce: 250 }"
                        name="selectedItem"
                        id="select">
                 <ui-select-match>
-                    {{ $item.name }}
+                    {{ $item.first_name }} {{ $item.last_name }}
                 </ui-select-match>
-                <ui-select-choices repeat="user in users  | filter: {name: $select.search} "
+                <ui-select-choices repeat="user in users  | filter: $select.search"
                                    refresh="refreshUsers($select.search)"
                                    refresh-delay="0">
-                    <span ng-bind="user.name"></span>
+                    <span ng-bind="user.first_name"></span>
+                    <span ng-bind="user.last_name"></span>
                 </ui-select-choices>
             </ui-select>
             <div role="alert">
-                    <span ng-show="!isUsersFieldValid && (newChatModalForm.selectedItem.$dirty || newChatModalForm.$submitted)">
+                    <span ng-show="!errors.inputUsersField.valid && (newChatModalForm.selectedItem.$dirty || newChatModalForm.$submitted)">
                         <span class="help-block">
-                            Field must contain at least one user.</span>
+                            {{ errors.inputUsersField.message }}</span>
                     </span>
             </div>
         </div>
@@ -59,30 +61,14 @@
 
     </div>
     <div class="modal-footer">
+        <div role="alert">
+                    <span ng-show="errors.newChatError.show">
+                        <span class="new-chat-error-text">
+                            {{ errors.newChatError.message }}
+                        </span>
+                    </span>
+        </div>
         <button type="submit" class="btn btn-primary">Create</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </form>
-    <h4 class="modal-title">Modal title</h4>
-</div>
-<div class="modal-body">
-    <form>
-        <div class="form-group">
-            <label for="chatName">Chat Name</label>
-            <input class="form-control" type="text" id="chatName">
-        </div>
-        <div class="form-group">
-            <label for="chatMembers">Add Members</label>
-            <input class="form-control" type="text" id="chatMembers">
-        </div>
-        <div class="form-group">
-            <label for="chatDescription">Chat Description</label>
-            <textarea class="form-control" id="chatDescription" rows="3"></textarea>
-        </div>
-    </form>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Create</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-</div>
-

@@ -1,32 +1,31 @@
 <?php namespace App\Http\Controllers;
 
 use App\User;
-
 use Illuminate\Http\Request;
-use App\Http\Requests\IndexUserGetRequest;
 use App\Http\Requests\StoreUserPostRequest;
 
 
 class UserController extends Controller
 {
-    public function index(IndexUserGetRequest $req)
+    public function index(Request $request)
     {
-        if (!$req->has('sp')) {
-            $sp = 0;
-        } else {
-            $sp = intval($req->input('sp'));
+        $data = $request->all();
+
+        if (!empty($data['query'])) {
+
+            $data['users_id'][] = $data['user_id'];
+
+            $users = User::whereNotIn('id', $data['users_id'])
+                ->where(function ($query) use ($data) {
+                    $query->where('first_name', 'LIKE', '%' . $data['query'] . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $data['query'] . '%');
+                })
+                ->get(['id', 'first_name', 'last_name']);
+
+            return response()->json($users);
         }
 
-        $response = [
-            'sp' => $sp + 10,
-            'users' => User::orgerBy('created_at', 'desc')->skip($sp)->take(10)->get()
-        ];
-
-        if (count($response['users']) > 0) {
-            return response()->json($response, 200);
-        } else {
-            return response()->json($response, 404);
-        }
+        return [];
     }
 
     public function store(StoreUserPostRequest $req)
@@ -51,6 +50,7 @@ class UserController extends Controller
 
     private function createFakeUser($id){
         return array(
+            'id' => $id,
             'email' => 'email@mail.ru',
             'first_name' => 'John',
             'last_name' => 'Conor',
