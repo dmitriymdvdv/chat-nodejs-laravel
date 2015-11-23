@@ -2,13 +2,11 @@
 @valid-border: #00bb55;
 @invalid-border: #cb2277;
 
-.ng-invalid{
-  border-color: desaturate(@invalid-border, 15%);
-  outline-color: @invalid-border;
-}
-.ng-valid{
-  border-color: desaturate(@valid-border, 40%);
-  outline-color: @valid-border;
+.invalid-field{
+  .ng-invalid {
+    border-color: desaturate(@invalid-border, 15%);
+    outline-color: @invalid-border;
+  }
 }
 .message{
   font-size: small;

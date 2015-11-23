@@ -11,7 +11,8 @@
                         your first name:
                     </label>
                 </div>
-                <div class="input-div">
+                <div class="input-div" ng-class="{'invalid-field': updateForm.firstName.$invalid
+                                                && updateForm.firstName.$dirty}">
                     <input  type="text"
                             class="form-control"
                             id="first-name"
@@ -39,13 +40,14 @@
                         your email:
                     </label>
                 </div>
-                <div class="input-div" ng-class="{'ng-invalid':updateForm.email.$invalid}">
+                <div class="input-div" ng-class="{'invalid-field': updateForm.email.$invalid
+                                                && updateForm.email.$dirty}">
                     <input  type="text"
                             class="form-control"
                             id="email"
                             name="email"
                             ng-model="userData.email"
-                            ng-change="checkEmail()">
+                            ok-email>
                 </div>
             </div>
             <div class="row-fluid">
@@ -68,13 +70,15 @@
                         your mobile phone:
                     </label>
                 </div>
-                <div class="input-div" ng-class="{'ng-invalid':updateForm.phone.$invalid}">
+                <div class="input-div" ng-class="{'invalid-field': updateForm.phone.$invalid
+                                                && updateForm.phone.$dirty}">
                     <input  type="text"
                             class="form-control"
                             id="mobile-phone"
                             name="phone"
                             ng-model="userData.mobile_phone"
-                            ng-change="checkPhone()">
+                            ok-phone>
+
                 </div>
             </div>
         </div>
@@ -85,7 +89,8 @@
                         input your new password:
                     </label>
                 </div>
-                <div class="input-div">
+                <div class="input-div" ng-class="{'invalid-field': updateForm.pass.$invalid
+                                                && updateForm.pass.$dirty}">
                     <input  type="password"
                             class="form-control"
                             name="pass"
@@ -100,7 +105,8 @@
                         please, confirm your new password:
                     </label>
                 </div>
-                <div class="input-div">
+                <div class="input-div" ng-class="{'invalid-field': updateForm.confirm.$invalid
+                                                && updateForm.confirm.$dirty}">
                     <input  type="password"
                             class="form-control"
                             id="confirm-new-pass"
