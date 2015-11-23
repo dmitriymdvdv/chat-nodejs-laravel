@@ -1,14 +1,12 @@
 'use strict';
 
-module.exports =
-
-    [
+module.exports = [
         '$scope',
         '$modalInstance',
         'data',
-        '$http',
         'NewChatService',
-        function ($scope, $modalInstance, data, $http, NewChatService) {
+        'NewChatFactory',
+        function ($scope, $modalInstance, data, NewChatService, NewChatFactory) {
 
             $scope.chat = {
                 name: '',
@@ -38,7 +36,7 @@ module.exports =
                         user_id: data.authData.id,
                         'users_id[]': getUsersId($scope.chat.users)
                     };
-                    NewChatService.getUsers(params)
+                    NewChatFactory.getUsers(params)
                         .then(function (response) {
                             $scope.users = response.data;
                         });
@@ -77,7 +75,7 @@ module.exports =
                             users_id: getUsersId($scope.chat.users)
                         }
                     };
-                    NewChatService
+                    NewChatFactory
                         .createNewChat(params)
                         .then(function () {
                             $modalInstance.close();
