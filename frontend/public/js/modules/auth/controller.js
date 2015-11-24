@@ -5,8 +5,8 @@ module.exports = [
     'authService',
     '$http',
     '$state',
-
-    function ($scope, authService, $http, $state) {
+    'appSettings',
+    function ($scope, authService, $http, $state, appSettings) {
         var url = 'http://slack.dev/api/v1';
         var authData = authService.getIdentity();
 
@@ -15,8 +15,12 @@ module.exports = [
             $http.post(url + '/login', authData)
                 .success(function(){
                     $state.go('chats');
-                }).error(function(status){
-                    if(status == 401){ $state.go('register');}
+                }).error(function(data, status){
+                    if(status == 401){
+                        //return message about error
+
+                        $state.go('login');
+                    }
                     else {
                         if(status == 403){ console.log('Invalid data');}
                     }
@@ -26,8 +30,8 @@ module.exports = [
         $scope.logout = function() {
             console.log('logout');
             $http.get(url + '/logout', authData)
-                .success(function(){
-                    authData = {};
+                .success(function(authData, status){
+                    if(status == 200)
                     $state.go('login');
                 }).error(function(){
                     console.log('Sorry, smth wrong');

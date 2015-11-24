@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,11 +14,14 @@ class AuthController extends Controller
 
     public function logout()
     {
-        return responce()->json(null, 200);
+        Auth::logout();
+        $authData = null;
+        return response()->json(null, 200);
     }
 
     public function login(Request $request)
     {
+
         $authData = $request->all();
 
         $validator = Validator::make($authData, [
@@ -33,18 +35,19 @@ class AuthController extends Controller
         {
             $user = User::where('email', '=', $authData['email'])->first();
 
-//            response(array(1,2,3), 200);
+
             if(!$user)
             {
-                return responce()->json($authData, 401);
+                return response()->json($authData, 401);
             } else
             {
-                if($user->password_hash != Hash::make($authData['password']))
+                if($user->password_hash != /*Hash::make(*/$authData['password']/*)*/)
                 {
-                    return responce()->json($authData, 403);
+                    return response()->json($authData, 403);
                 } else
                 {
-                    return responce()->json($authData, 200);
+                    Auth::login($user);
+                    return response()->json($authData, 200);
                 }
             }
         }
