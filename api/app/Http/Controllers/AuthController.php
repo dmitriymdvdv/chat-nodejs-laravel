@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,12 +41,12 @@ class AuthController extends Controller
                 return response()->json($authData, 401);
             } else
             {
-                if($user->password_hash != /*Hash::make(*/$authData['password']/*)*/)
+                if(!Hash::check($authData['password'],$user->password_hash))
                 {
                     return response()->json($authData, 403);
                 } else
                 {
-                    Auth::login($user);
+                    Authenticatable::login($user);
                     return response()->json($authData, 200);
                 }
             }

@@ -7,6 +7,7 @@ use App\Http\Requests;
 use DB;
 use Validator;
 use App\Model\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationController extends Controller
 {
@@ -23,8 +24,11 @@ class RegistrationController extends Controller
     public function registration(Request $request)
     {
         $newUser = $this->getUserAttributes($request);
+        $newUser['password_hash']  = Hash::make($newUser['password_hash']);
 
         $this->checkUserIsValid($newUser);
+
+
 
         $user = User::firstOrCreate($newUser)->toArray();
 
