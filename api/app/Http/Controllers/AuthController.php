@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,8 +46,8 @@ class AuthController extends Controller
                     return response()->json($authData, 403);
                 } else
                 {
-                    Authenticatable::login($user);
-                    return response()->json($authData, 200);
+                    Auth::loginUsingId($user->id);
+                    return response()->json($user, 200);
                 }
             }
         }
