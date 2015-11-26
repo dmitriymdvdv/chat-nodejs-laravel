@@ -1,4 +1,8 @@
 <div class="container-fluid user-auth">
+    <div class="alert alert-danger fade in" ng-show="error">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong>{{error}}
+    </div>
     <form class="form-horizontal" name="loginForm" novalidate>
         <div class="row-fluid form-heading">
             <h3>Please sign in</h3>
@@ -16,9 +20,7 @@
                 </div>
             </div>
             <div class="table-row">
-
                 <label class="table-cell" for="inputPassword">Password</label>
-
                 <div class="table-cell password">
                     <input class="form-control"
                            type="password"
@@ -27,20 +29,15 @@
                            placeholder="Password">
                     <a ui-sref="passwordReset" class="reset-password btn btn-xs btn-danger">restore</a>
                 </div>
-
             </div>
         </div>
-
         <div class="row-fluid">
-
             <div class="controls">
                 <button type="submit" class="btn btn-success"
                         ng-click="login(authData) && loginForm.$valid">
                     Sign in
                 </button>
             </div>
-
         </div>
-
     </form>
 </div>

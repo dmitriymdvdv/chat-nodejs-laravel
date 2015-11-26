@@ -7,36 +7,22 @@ module.exports = [
     '$state',
     'appSettings',
     function ($scope, authService, $http, $state, appSettings) {
-        var url = 'http://slack.dev/api/v1';
-        /*var authData = authService.getIdentity();*/
 
         $scope.login = function(authData) {
-            $http.post(url + '/login', authData)
+            $http.post(appSettings.apiUrl + 'login', authData)
                 .success(function(){
-                    console.log('this:' + authData);
                     authService.setIdentity(authData);
                     $state.go('chats');
+                    $scope.error = {};
                 }).error(function(data, status){
                     if(status == 401){
-                        //return message about error
-
-                        $state.go('login');
+                        $scope.error = 'check your email';
                     }
                     else {
-                        if(status == 403){ console.log('Invalid data');}
+                        if(status == 411){
+                            $scope.error = 'check your password';
+                        }
                     }
-            });
-        };
-
-        $scope.logout = function() {
-            console.log('logout');
-            $http.get(url + '/logout', authData)
-                .success(function(authData, status){
-                    if(status == 200)
-                    authService.clearIdentity();
-                    $state.go('login');
-                }).error(function(){
-                    console.log('Sorry, smth wrong');
             });
         };
 

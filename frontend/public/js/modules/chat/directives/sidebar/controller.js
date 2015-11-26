@@ -3,7 +3,8 @@
 module.exports = [
     '$scope',
     'ChatService',
-    function($scope, ChatService) {
+    'authFactory',
+    function($scope, ChatService, authFactory) {
 
         $scope.openNewPrivateChat = function() {
 
@@ -21,5 +22,10 @@ module.exports = [
 
             return ChatService.openNewChatModal();
         }
+        $scope.logout = function(){
+
+            authFactory.logOut();
+            $scope.error = $state.params.E;
+        };
     }
 ];

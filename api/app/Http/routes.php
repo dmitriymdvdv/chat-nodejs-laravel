@@ -17,11 +17,11 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
     Route::group(['prefix' => 'user'], function () {
 
-        Route::get('{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
         Route::post('/', ['as' => 'user.store', 'uses' => 'UserController@store']);
         Route::put('{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
         Route::delete('{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
 
+        Route::get('/current', 'UserController@show');
     });
 
     Route::get('/users', 'UserController@index');

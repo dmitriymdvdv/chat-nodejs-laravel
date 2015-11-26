@@ -34,8 +34,6 @@ class AuthController extends Controller
         } else
         {
             $user = User::where('email', '=', $authData['email'])->first();
-
-
             if(!$user)
             {
                 return response()->json($authData, 401);
@@ -43,7 +41,7 @@ class AuthController extends Controller
             {
                 if(!Hash::check($authData['password'],$user->password_hash))
                 {
-                    return response()->json($authData, 403);
+                    return response()->json($authData, 411);
                 } else
                 {
                     Auth::loginUsingId($user->id);
