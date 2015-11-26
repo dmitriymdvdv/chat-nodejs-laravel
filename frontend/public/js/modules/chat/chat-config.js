@@ -25,7 +25,8 @@ module.exports = [
             })
             .state('manage-chats', {
                 url: '/chats/manage',
-                template: require('./templates/manageChatPage.html'),
+                controller: 'ManageChatsController',
+                template: require('./manage-chat/template.html'),
                 data: {
                     access: [
                         authRoles.user

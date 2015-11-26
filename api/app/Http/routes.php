@@ -28,14 +28,17 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
     //Chat routes
 
-    Route::post('/chat/create', 'ChatController@create');
+    Route::post('chat/create', 'ChatController@create');
+    Route::put('chat', 'ChatController@update');
+    Route::get('chat', 'ChatController@index');
+    Route::put('chat/leave', 'ChatController@leave');
+    Route::delete('chat', 'ChatController@destroy');
 
 });
 
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
-
 
 
 Route::controllers([

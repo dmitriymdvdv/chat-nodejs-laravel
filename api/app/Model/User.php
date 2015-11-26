@@ -25,7 +25,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'email','password_hash','first_name',
+    protected $fillable = [ 'email','password_hash','first_name',
                             'last_name','date_of_birth',
                             'mobile_phone','avatar_url'];
 
@@ -34,14 +34,14 @@ class User extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = ['pivot','password_hash'];
 
     /*
      *
      */
     public function chats()
     {
-        return $this->hasMany('App\Model\UserToChat','user_id');
+        return $this->belongsToMany('App\Model\Chat','users_to_chats');
     }
     /*
      *

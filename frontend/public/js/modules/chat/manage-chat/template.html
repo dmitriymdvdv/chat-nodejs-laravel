@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+    <div class="text-center page-header">
+        <h1>Manage chats</h1>
+    </div>
+
+    <div class="panel panel-default container">
+        <table class="table text-center">
+
+            <thead>
+            <tr>
+                <th>Chat name</th>
+                <th>Description</th>
+                <th>Manage</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="chat in chats">
+                <td>
+                    {{ chat.name }}
+                    <span ng-if=chat.is_private><fa name="lock" ng-style="{'color': 'forestgreen'}"></fa></span>
+                </td>
+                <td>{{ chat.description }}</td>
+                <td ng-if="chat.user_id == currentUserId">
+                    <a ng-click="manageChat(chat)">Edit</a>
+                    <a ng-click="deleteChat(chat)">Delete</a>
+                </td>
+                <td ng-if="chat.user_id != currentUserId">
+                    <a ng-click="leaveChat(chat)">Leave</a>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
