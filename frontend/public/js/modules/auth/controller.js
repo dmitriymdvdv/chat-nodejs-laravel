@@ -9,7 +9,6 @@ module.exports = [
         $scope.login = function(authData) {
             authFactory.logIn(authData);
             $scope.error = authFactory.logErr;
-            console.log($scope.error);
         };
 
         $scope.register = function() {
