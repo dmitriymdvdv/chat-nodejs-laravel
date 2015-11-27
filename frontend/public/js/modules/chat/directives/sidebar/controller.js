@@ -6,14 +6,20 @@ module.exports = [
     function($scope, ChatService) {
 
         $scope.openNewPrivateChat = function() {
-            return ChatService.openNewChatModal({
-                isPrivate: true
+
+            ChatService.setChatParams({
+                is_private: true
             });
+
+            return ChatService.openNewChatModal();
         };
         $scope.openNewPublicChat = function() {
-            return ChatService.openNewChatModal({
-                isPrivate: false
+
+            ChatService.setChatParams({
+                is_private: false
             });
+
+            return ChatService.openNewChatModal();
         }
     }
 ];

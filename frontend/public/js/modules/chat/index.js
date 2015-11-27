@@ -6,6 +6,7 @@ angular
     .module('Chat', [])
     .config(require('./chat-config'))
     .constant('ChatConst', require('./chat-const'))
+    .value('ChatValues', require('./chat-values'))
     .controller('ChatController', require('./chat-controller'))
     .factory('ChatFactory', require('./chat-factory'))
     .controller('NewModalController', require('./new-chat/new-modal-controller'))

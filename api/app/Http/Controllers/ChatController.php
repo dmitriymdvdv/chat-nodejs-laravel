@@ -64,7 +64,7 @@ class ChatController extends Controller
             return response()->json($chats);
         }
 
-        return response([], 500);
+        return response([], 400);
 
     }
 
@@ -86,7 +86,7 @@ class ChatController extends Controller
         if ($chat->save()) {
             return response()->json();
         }
-        return response()->json([], 500);
+        return response()->json([], 400);
     }
 
     public function destroy(Request $request)
@@ -106,7 +106,7 @@ class ChatController extends Controller
         if ($chat->users()->detach() && $chat->delete()) {
             return response()->json();
         }
-        return response()->json([], 500);
+        return response()->json([], 400);
 
     }
 

@@ -18,9 +18,10 @@ module.exports = [
 
 
         $scope.manageChat = function (params) {
-            return ChatService.openNewChatModal({
-                chat: params
-            });
+
+            ChatService.setChatParams(params);
+
+            return ChatService.openNewChatModal();
         };
 
         $scope.leaveChat = function (chat) {

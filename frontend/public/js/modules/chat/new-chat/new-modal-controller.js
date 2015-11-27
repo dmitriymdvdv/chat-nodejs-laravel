@@ -9,16 +9,14 @@ module.exports = [
     'NewChatService',
     'authService',
     'ChatFactory',
-    'ChatConst',
     function ($scope,
               $modalInstance,
               data,
               NewChatService,
               authService,
-              ChatFactory,
-              ChatConst) {
+              ChatFactory) {
 
-        $scope.chat = angular.copy(data.chat || ChatConst.chat);
+        $scope.chat = angular.copy(data);
         $scope.chat.users = unsetAuthUser($scope.chat.users);
         $scope.errors = {
             inputUsersField: {
@@ -30,7 +28,6 @@ module.exports = [
                 message: 'An error has occurred. Try again later.'
             }
         };
-        $scope.typeOfChat = data.typeOfChat;
         $scope.users = [];
 
         $scope.$watch('chat.users', function (newValue, oldValue) {
@@ -69,40 +66,46 @@ module.exports = [
 
         }
 
+        function create() {
+            var params = angular.copy($scope.chat);
+            //TODO: delete authdata from request
+            //TODO: change to params  = $scope.chat
+            params.user_id = authService.getIdentity().id;
+            params.users = getUsersId(params.users);
+            params.is_private = $scope.chat.is_private;
+            ChatFactory
+                .createNewChat(params)
+                .then(function () {
+                    $modalInstance.close();
+                }, function () {
+                    $scope.errors.newChatError.show = true;
+                });
+        }
+
+        function update() {
+            var params = angular.copy($scope.chat);
+            params.users = getUsersId(params.users);
+            ChatFactory
+                .updateChat(params)
+                .then(function () {
+                    data.name = $scope.chat.name;
+                    data.description = $scope.chat.description;
+                    data.users = $scope.chat.users;
+                    $modalInstance.close();
+                }, function () {
+                    $scope.errors.newChatError.show = true;
+                });
+        }
+
 
         $scope.sendData = function () {
             if ($scope.newChatModalForm.$valid && $scope.errors.inputUsersField.valid) {
                 if (!$scope.chat.id) {
-                    var params = angular.copy($scope.chat);
-                    //TODO: delete authdata from request
-                    params.user_id = authService.getIdentity().id;
-                    params.users = getUsersId(params.users);
-                    params.is_private = data.typeOfChat;
-                    ChatFactory
-                        .createNewChat(params)
-                        .then(function () {
-                            $modalInstance.close();
-                        }, function () {
-                            $scope.errors.newChatError.show = true;
-                        });
+                    create();
                 } else if ($scope.chat.id) {
-                    var params = angular.copy($scope.chat);
-                    params.users = getUsersId(params.users);
-                    ChatFactory
-                        .updateChat(params)
-                        .then(function () {
-                            data.chat.name = $scope.chat.name;
-                            data.chat.description = $scope.chat.description;
-                            data.chat.users = $scope.chat.users;
-                            $modalInstance.close();
-                        }, function () {
-                            $scope.errors.newChatError.show = true;
-                        });
-
+                    update();
                 }
-
             }
-
         };
 
         $scope.cancel = function () {
