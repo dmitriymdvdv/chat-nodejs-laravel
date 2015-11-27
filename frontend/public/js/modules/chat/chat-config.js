@@ -7,7 +7,7 @@ module.exports = [
 
         $stateProvider
             .state('chats', {
-                url: '/chats:E',
+                url: '/chats',
                 template: require('./templates/mainAppLayout.html'),
                 controller: 'ChatController',
                 data: {
