@@ -8,11 +8,11 @@ EditProfileController.$inject =[
 function EditProfileController($scope, authService) {
 
     $scope.userData = authService.getIdentity();
-    $scope.updateData = function (authData) {
-        if($scope.userData.email.$valid &&
-            $scope.userData.mobile_phone.$valid) {
+    $scope.updateData = function (userData) {
+        if(userData.email.$valid &&
+            userData.mobile_phone.$valid) {
 
-            authService.setIdentity($scope.userData);
+            authService.setIdentity(userData);
         }
     };
 }

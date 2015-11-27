@@ -25,7 +25,7 @@ module.exports = [
         $scope.logout = function(){
 
             authFactory.logOut();
-            $scope.error = $state.params.E;
+            $scope.error = authFactory.logErr;
         };
     }
 ];
