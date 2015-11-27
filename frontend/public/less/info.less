@@ -2,23 +2,14 @@
 @width: 320px;
 @height: 320px;
 
-.margin(@top, @right, @bottom, @left){
-  margin: @arguments;
-}
-
-.padding(@top, @right, @bottom, @left){
-  padding: @arguments;
-}
 .default {
 
   .avatar-part {
 
     background-color: @background-color;
     min-height: 600px;
-    .margin(2%, auto, 2%, 2%);
-
-    .margin(0%, auto, 3%, auto);
-    .padding(1%, auto, 3%, auto);
+    margin: 0 auto 3% auto;
+    padding: 10px auto 40px auto;
 
     .info {
       display: table-row;
@@ -26,10 +17,10 @@
       min-width: 70px;
       float:left;
       clear: left;
-      .margin(10%, 3%, 30%, 3%);
+      margin: 10% 3% 30% 3%;
 
       p {
-        .padding(3%, auto, 1%, 3%);
+        padding: 40px auto 10px 40px;
       }
 
       .label-info {
@@ -37,7 +28,7 @@
         font-weight: normal;
         font-size: 16px;
         color: #102313;
-        .padding(3%, 2%, 0%, 5%);
+        padding: 40px 25px 0 80px;
       }
     }
     .image {
@@ -46,14 +37,14 @@
       width: @width/2;
       height: @height/2;
       alt: "user photo";
-      .margin(1%, auto, -5%, 5%);
-      .padding(0%, auto, 40%, -10%);
+      margin: 1% auto -5% 5%;
+      padding: 0 auto 200px -150px;
     }
   }
   @media screen and(min-width: 400px){
       .avatar-part{
         min-height: 180px;
-        .margin(7%, auto, auto, 7%);
+        margin: 7% auto auto 7%;
 
         .info{
           min-height: 250px;
@@ -61,12 +52,12 @@
           display: table-cell;
           clear: none;
           float: left;
-          .margin(0%, auto, 3%, 3%);
-          .padding(15%, auto, 3%, -50%);
+          margin: 0% auto 3% 3%;
+          padding: 80px auto 12px -80px;
 
           p {
-            .margin(1%, auto, 1%, 3%);
-            .padding(1%, auto, 1%, -50%);
+            margin: 1% auto 1% 3%;
+            padding: 5px auto 5px -80px;
           }
 
           .label-info {
@@ -79,26 +70,26 @@
           display: table-cell;
           width: @width/2;
           height: @height/2;
-          .margin(0%, auto, -5%, 10%);
+          margin: 0% auto -5% 10%;
         }
       }
   }
   @media screen and (min-width: 800px) {
     .avatar-part {
       min-height: 350px;
-      .margin(7%, auto, auto, 7%);
+      margin: 7% auto auto 7%;
       .info {
         min-height: 70px;
         min-width: 350px;
         clear: none;
         float: left;
         display: table-cell;
-        .margin(3%, auto, 3%, auto);
-        .padding(25%, auto, 3%, -50%);
+        margin: 3% auto 3% auto;
+        padding: 40px auto 12px -80px;
 
         p {
-          .margin(1%, auto, 1%, 1%);
-          .padding(1%, auto, 1%, 3%);
+          margin: 1% auto 1% 1%;
+          padding: 3px auto 3px 9px;
         }
 
         .label-info {
@@ -111,7 +102,7 @@
         height: @height;
         display: table-cell;
         float: left;
-        .margin(0%, auto, -5%, 10%);
+        margin: 0% auto -5% 10%;
       }
     }
   }

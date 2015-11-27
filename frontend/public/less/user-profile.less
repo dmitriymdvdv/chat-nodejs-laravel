@@ -13,41 +13,19 @@
   border-radius: @radius;
 }
 
-.max-width(@width){
-  max-width: @width;
-}
-
-.margin(@top, @right, @bottom, @left){
-  margin: @arguments;
-}
-
-.padding(@top, @right, @bottom, @left){
-  padding: @arguments;
-  margin: @top @right @bottom @left;
-}
-
-.padding(@top, @right, @bottom, @left){
-  padding: @top @right @bottom @left;
-}
-
 .frame_border(@width, @type, @color){
   border: @arguments;
 }
 
 .profile {
 
-  .user-profile-form {
-    background-color: @form-background-color;
-    .frame_border(1px, solid, @form-border-color);
-    .margin(5%, auto, 20%, auto);
-
     .user-profile-form {
       background-color: @form-background-color;
+      max-width: 600px;
+      margin: 10% auto 20% auto;
       .frame_border(1px, solid, @form-border-color);
-      .margin(10%, auto, 20%, auto);
       .border-radius(5px);
       .box-shadow;
-      .max-width(600px);
     }
 
     .button-div {
@@ -55,23 +33,23 @@
 
       .button {
         vertical-align: middle;
+        margin: 3% auto;
         .frame_border(1px, solid, @button-border-color);
-        .margin(3%, auto, 3%, auto);
       }
     }
 
     .label-div {
-      .padding(0, auto, 0, 2%);
+      padding: 0 auto 0 12px;
 
       .control-label {
         text-align: left;
-        .margin(0, 3%, 0, 3%);
-        .padding(3%, auto, 0, 2%);
+        margin: 0 3%;
+        padding: 18px auto 0 12px;
       }
     }
 
     .input-div {
-      .padding(1%, 3%, 0, 2%);
+      padding: 6px 18px 0 12px;
     }
 
     .form-heading {
@@ -79,7 +57,6 @@
     }
 
     .avatar {
-
       position: relative;
       overflow: hidden;
       &:hover {
@@ -88,23 +65,23 @@
         }
       }
 
-      .image-wrap {
+    .image-wrap {
         .userImg {
           display: block;
           width: 128px;
           height: 128px;
           alt: "user photo";
           float: none;
-          .margin(0%, auto, 0%, auto);
+          margin: 0% auto;
         }
       }
 
-      .fake-button {
+    .fake-button {
         left: 0;
         top: 0;
         position: absolute;
         width: 100%;
-        .margin(0, auto, -128px, 40%);
+        margin: 0 auto -128px 40%;
 
         input {
           font-size: 80px;
@@ -113,97 +90,30 @@
           position: absolute;
           width: 128px;
           cursor: pointer;
-
-          .button {
-            vertical-align: middle;
-            .frame_border(1px, solid, @button-border-color);
-            .margin(3%, auto, 3%, auto);
-          }
-          .button-div {
-            text-align: center;
-          }
-          .control-label {
-            text-align: left;
-            .margin(0, 3%, 0, 3%);
-            .padding(3%, auto, 0, 2%);
-          }
-          .label-div {
-            .padding(0, auto, 0, 2%);
-          }
-          .input-div {
-            .padding(1%, 3%, 0, 2%);
-          }
-          .form-control-label {
-            .padding(0, 2%, 0, 2%);
-          }
-          .form-heading {
-            text-align: center;
-          }
-          .avatar {
-            overflow: hidden;
-            position: relative;
-            &:hover {
-              .button-wrapper {
-                bottom: 0;
-              }
-            }
-            .image-div {
-
-              .profileImage {
-                display: block;
-                width: @width;
-                height: @height;
-                alt: "user photo";
-                float: none;
-                .margin(0, auto, 0, auto);
-              }
-            }
-            .button-wrapper {
-              height: 30px;
-              left: 0;
-              bottom: -30px;
-              width: 100%;
-              position: absolute;
-
-              top: 0;
-              a {
-                display: block;
-                z-index: 2;
-              }
-              input {
-                z-index: 1;
-                font-size: 70px;
-                opacity: 0;
-              }
-            }
-          }
-          @media screen and (min-width: 400px) {
-            .image-div {
-              .padding(3%, 30%, 3%, 38%);
-            }
-
-            .profileImage {
-              display: table-cell;
-            }
-
-            .profileImage {
-              display: table-cell;
-            }
-
-            .label-div {
-              min-width: 270px;
-              display: table-cell;
-              vertical-align: middle;
-            }
-
-            .input-div {
-              width: 100%;
-              display: table-cell;
-            }
-
-          }
         }
       }
+  }
+
+  @media screen and (min-width: 400px) {
+    .image-div {
+      padding: 12px 120px 12px 144px;
     }
+
+    .profileImage {
+      display: table-cell;
+    }
+
+    .label-div {
+      min-width: 270px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .input-div {
+      width: 100%;
+      display: table-cell;
+    }
+
   }
 }
+
