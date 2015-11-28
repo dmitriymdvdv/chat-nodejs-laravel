@@ -52,7 +52,6 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
                     $urlRouterProvider.otherwise('/');
 
                     authServiceProvider.authData = response.data;
-                    console.log(response.data);
                 }
             ])
             .run(require('./app-run'));

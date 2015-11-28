@@ -36,7 +36,6 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
     //auth routes
     Route::post('/login', 'AuthController@login');
-
     Route::get('/logout', 'AuthController@logout');
 
 });

@@ -24,16 +24,14 @@ class RegistrationController extends Controller
     public function registration(Request $request)
     {
         $newUser = $this->getUserAttributes($request);
-        $newUser['password']  = Hash::make($newUser['password_hash']);
-        unset($newUser['password_hash']);
+        $this->checkUserIsValid($newUser);
 
-        //todo remake registration
+        $newUser['password']  = Hash::make($newUser['password']);
 
-
-
-        $user = User::firstOrCreate($newUser)->toArray();
-
-        return response()->json($user, 200);
+        if(User::firstOrCreate($newUser)->toArray()){
+            return response()->json([], 200);
+        }
+        return response()->json([],400);
     }
 
     /**
@@ -109,7 +107,7 @@ class RegistrationController extends Controller
             'mobile_phone',
             'first_name',
             'last_name',
-            'password_hash'
+            'password'
         ]);
     }
 
@@ -120,7 +118,7 @@ class RegistrationController extends Controller
             'mobile_phone' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'password_hash' => 'required',
+            'password' => 'required',
         ]);
 
 
