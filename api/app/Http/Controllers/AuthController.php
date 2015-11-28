@@ -14,9 +14,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
-        $authData = null;
-        return response()->json(null, 200);
+         Auth::logout();
     }
 
     public function login(Request $request)
@@ -39,15 +37,24 @@ class AuthController extends Controller
                 return response()->json($authData, 401);
             } else
             {
-                if(!Hash::check($authData['password'],$user->password_hash))
+                if(Auth::attempt(['email' => 'test@test.com', 'password' => 'test']))
+                {
+                    return response()->json(Auth::user());
+                }
+                /*if(!Hash::check($authData['password'],$user->password_hash))
                 {
                     return response()->json($authData, 411);
                 } else
                 {
-                    Auth::loginUsingId($user->id);
+
+                    //Auth::login($user);
+                    if(Auth::check()){
+                        $test =1;
+                    }
                     return response()->json($user, 200);
-                }
+                }*/
             }
         }
+        return response()->json();
     }
 }

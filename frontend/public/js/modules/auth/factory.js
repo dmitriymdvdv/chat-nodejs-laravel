@@ -6,7 +6,6 @@ module.exports = [
     'authService',
     'appSettings',
     '$state',
-
     function ($http, authService, appSettings, $state) {
 
         var error = '';
@@ -40,18 +39,17 @@ module.exports = [
 
             logOut: function () {
                 return $http
-                    .get(appSettings.apiUrl + 'logout')
-                    .then(function(data) {
+                    .get(appSettings.apiUrl + 'logout');
+                    /*.then(function(data) {
                         if (data.status === 200) {
                             authService.clearIdentity();
-                            $state.go('login');
                         }
                     },function(data){
                         if(data.status != 200){
                             error = 'Some problems with server. Try later, please';
                             $state.go('chats');
                         }
-                    });
+                    });*/
             },
 
             logErr: error

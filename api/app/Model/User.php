@@ -7,9 +7,10 @@
  */
 namespace App\Model;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Model implements Authenticatable
 {
     public $timestamps = false;
 
@@ -25,7 +26,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'email','password_hash','first_name',
+    protected $fillable = [ 'email','password','first_name',
                             'last_name','date_of_birth',
                             'mobile_phone','avatar_url'];
 
@@ -34,7 +35,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $hidden = ['pivot','password_hash'];
+    protected $hidden = ['pivot','password'];
 
     /*
      *
@@ -70,5 +71,26 @@ class User extends Model
     public function chatMaster()
     {
         return $this->hasMany('App\Model\Chat','user_id');
+    }
+
+    public function setRememberToken($value)
+    {
+        // TODO: Implement setRememberToken() method.
+    }
+    public function getRememberToken()
+    {
+        // TODO: Implement getRememberToken() method.
+    }
+    public function getAuthPassword()
+    {
+        // TODO: Implement getAuthPassword() method.
+    }
+    public function getRememberTokenName()
+    {
+        // TODO: Implement getRememberTokenName() method.
+    }
+    public function getAuthIdentifier()
+    {
+        // TODO: Implement getAuthIdentifier() method.
     }
 }

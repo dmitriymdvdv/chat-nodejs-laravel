@@ -24,9 +24,10 @@ class RegistrationController extends Controller
     public function registration(Request $request)
     {
         $newUser = $this->getUserAttributes($request);
-        $newUser['password_hash']  = Hash::make($newUser['password_hash']);
+        $newUser['password']  = Hash::make($newUser['password_hash']);
+        unset($newUser['password_hash']);
 
-        $this->checkUserIsValid($newUser);
+        //todo remake registration
 
 
 
