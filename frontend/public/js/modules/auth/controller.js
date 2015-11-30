@@ -7,8 +7,14 @@ module.exports = [
     function ($scope, authFactory) {
 
         $scope.login = function(authData) {
-            authFactory.logIn(authData);
-            $scope.error = authFactory.logErr;
+            authFactory
+                .logIn(authData)
+                .then(function(data) {
+                    console.log('Success!');
+                }, function(error) {
+                    $scope.error = error.data['error_message'];
+                    console.log('Error!');
+                });
         };
 
         $scope.register = function() {
