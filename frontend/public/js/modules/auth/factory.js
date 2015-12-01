@@ -4,15 +4,25 @@ module.exports = [
 
     '$http',
     'authService',
+    'appSettings',
+    '$state',
+    '$q',
 
-    function ($http, authService) {
+    function ($http, authService, appSettings, $state, $q) {
 
         return {
 
-
             logIn: function (inputs) {
-                return $http.post('/api/v1/auth/login', inputs);
 
+                return $http
+                    .post(appSettings.apiUrl + 'login', inputs)
+                    .then(function(data) {
+                        authService.setIdentity(data.data);
+                        $state.go('chats');
+                        return data;
+                    }, function(error) {
+                        return $q.reject(error);
+                    });
             },
 
             register: function (inputs) {
@@ -20,19 +30,7 @@ module.exports = [
             },
 
             logOut: function () {
-
-                return $http
-                    .post('/api/v1/auth/logout')
-                    .then(function (data) {
-
-                        if (data.status === 200) {
-                            authService.clearIdentity();
-                        }
-
-                    });
-
+                return $http.get(appSettings.apiUrl + 'logout');
             }
-
         }
-
     }];

@@ -20,7 +20,7 @@ require('./modules/user');
 var initInject = angular.injector(['ng']);
 var $http = initInject.get('$http');
 
-$http.get('http://slack.dev/api/v1/user/1').then(function (response) {
+$http.get('http://slack.dev/api/v1/user/current').then(function (response) {
     domready(function () {
         angular
             .module('PHPLabs', [
@@ -52,8 +52,6 @@ $http.get('http://slack.dev/api/v1/user/1').then(function (response) {
                     $urlRouterProvider.otherwise('/');
 
                     authServiceProvider.authData = response.data;
-
-
                 }
             ])
             .run(require('./app-run'));
@@ -61,4 +59,6 @@ $http.get('http://slack.dev/api/v1/user/1').then(function (response) {
         angular.bootstrap(document, ['PHPLabs']);
 
     });
+}, function(){
+
 });

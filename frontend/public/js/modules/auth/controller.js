@@ -6,18 +6,15 @@ module.exports = [
 
     function ($scope, authFactory) {
 
-        $scope.login = function() {
-            console.log('login');
+        $scope.login = function(authData) {
+            authFactory
+                .logIn(authData)
+                .then(function(data) {
+                }, function(error) {
+                    $scope.error = error.data['error_message'];
+                });
         };
 
-        $scope.logout = function() {
-            console.log('logout');
-        };
-
-        $scope.register = function() {
-            console.log('register');
-        };
-
+        $scope.register = function() {};
     }
-
 ];

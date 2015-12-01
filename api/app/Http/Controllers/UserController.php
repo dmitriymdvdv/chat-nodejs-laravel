@@ -3,6 +3,7 @@
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserPostRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -42,21 +43,12 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
-    public function show($id)
+    public function show()
     {
-        $user = $this->createFakeUser($id);
+        if(!Auth::check()){
+            return response()->json([],200);
+        }
+        $user = Auth::user();
         return response()->json($user, 200);
-    }
-
-    private function createFakeUser($id){
-        return array(
-            'id' => $id,
-            'email' => 'email@mail.ru',
-            'first_name' => 'John',
-            'last_name' => 'Conor',
-            'date_of_birth' => '22.03.1990',
-            'mobile_phone' => '357-22-32',
-            'avatar_url' => 'url'
-        );
     }
 }

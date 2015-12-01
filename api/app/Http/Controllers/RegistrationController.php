@@ -7,6 +7,7 @@ use App\Http\Requests;
 use DB;
 use Validator;
 use App\Model\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationController extends Controller
 {
@@ -23,12 +24,14 @@ class RegistrationController extends Controller
     public function registration(Request $request)
     {
         $newUser = $this->getUserAttributes($request);
-
         $this->checkUserIsValid($newUser);
 
-        $user = User::firstOrCreate($newUser)->toArray();
+        $newUser['password']  = Hash::make($newUser['password']);
 
-        return response()->json($user, 200);
+        if(User::firstOrCreate($newUser)->toArray()){
+            return response()->json([], 200);
+        }
+        return response()->json([],400);
     }
 
     /**
@@ -104,7 +107,7 @@ class RegistrationController extends Controller
             'mobile_phone',
             'first_name',
             'last_name',
-            'password_hash'
+            'password'
         ]);
     }
 
@@ -115,7 +118,7 @@ class RegistrationController extends Controller
             'mobile_phone' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'password_hash' => 'required',
+            'password' => 'required',
         ]);
 
 

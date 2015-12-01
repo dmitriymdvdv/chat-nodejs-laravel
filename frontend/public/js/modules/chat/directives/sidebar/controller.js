@@ -3,7 +3,8 @@
 module.exports = [
     '$scope',
     'ChatService',
-    function($scope, ChatService) {
+    'Auth',
+    function($scope, ChatService, Auth) {
 
         $scope.openNewPrivateChat = function() {
 
@@ -20,6 +21,9 @@ module.exports = [
             });
 
             return ChatService.openNewChatModal();
-        }
+        };
+        $scope.logout = function(){
+            Auth.logout();
+        };
     }
 ];

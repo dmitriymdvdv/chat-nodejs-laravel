@@ -1,15 +1,14 @@
-
 <div class="sidebar">
-
     <div class="user-block">
-
         <a href="#" class="logo transition">
             <img class="img-rounded" src="/img/user.png" alt="userphoto">
             <h3 class="username">{{user.first_name}}</h3>
         </a>
-
     </div>
-
+    <div class="alert alert-warning fade in" ng-show="error">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong>{{error}}
+    </div>
     <dl>
         <dt><a ui-sref="manage-chats" class="list-title transition">Public chats</a><a
                 class="list-title transition pull-right" ng-click="openNewPublicChat()">
@@ -26,8 +25,9 @@
         </dd>
 
 
-        <dt><a href="#" class="list-title transition left">Private chats</a><a class="list-title transition pull-right"
-                                                                               ng-click="openNewPrivateChat()">
+        <dt><a href="#" class="list-title transition left">Private chats</a>
+            <a class="list-title transition pull-right"
+               ng-click="openNewPrivateChat()">
             <fa name="plus"></fa>
         </a></dt>
         <dd>
@@ -54,4 +54,5 @@
         </dd>
     </dl>
     <a ui-sref="chats.active" class="btn" ng-click="showChat()">Open Chat</a>
+    <button type="submit" class="btn button" ng-click="logout()">Logout</button>
 </div>
