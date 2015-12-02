@@ -31,23 +31,13 @@ class AuthController extends Controller
         if($validator->fails())
         {
             abort(403, 'Invalid data');
-        }
-        if (Auth::attempt(['email' => $authData['email'],
-                         'password' => $authData['password']])) {
+        } if (Auth::attempt(['email' => $authData['email'],
+            'password' => $authData['password']])) {
             return response()->json(Auth::user(),200);
         } else {
-            $user = User::where('email', '=', $authData['email'])->first();
-            if(!$user)
-            {
-                $authData['error_message'] = 'You input wrong email';
-                return response()->json($authData, 400);
-            } else
-                if(!Hash::check($authData['password'],$user->password))
-                {
-                    $authData['error_message'] = 'You input wrong password';
-                    return response()->json($authData, 400);
-                }
+            $authData['error_message'] = 'Check your input data';
+            return response()->json($authData, 400);
         }
-        return response()->json();
+
     }
 }
