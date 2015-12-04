@@ -11,9 +11,24 @@ module.exports = [
         var errMsg = 'Something went wrong';
         $scope.currentUserId = authService.getIdentity().id;
 
-        ChatFactory.getChatsList($scope.currentUserId)
+        $scope.tabs = [
+            {
+                title: 'Public',
+                chats: []
+            },
+            {
+                title: 'Private',
+                chats: []
+            }
+        ];
+
+
+        ChatFactory.getChatsList({
+                type: 'all'
+            })
             .then(function (response) {
-                $scope.chats = response.data;
+                $scope.tabs[0].chats = response.data.public;
+                $scope.tabs[1].chats = _.map(response.data.private);
             });
 
 
@@ -26,9 +41,7 @@ module.exports = [
 
         $scope.leaveChat = function (chat) {
             var params = {
-                id: chat.id,
-                //TODO:: use Auth on backend
-                user_id: $scope.currentUserId
+                id: chat.id
             };
             alertify
                 .confirm(alertMsg, function () {
@@ -47,7 +60,8 @@ module.exports = [
             alertify
                 .confirm(alertMsg, function () {
                     var params = {
-                        id: chat.id
+                        id: chat.id,
+                        is_private: chat.is_private
                     };
                     ChatFactory
                         .deleteChat(params)
@@ -62,7 +76,8 @@ module.exports = [
         };
 
         function unsetChat(params) {
-            _.remove($scope.chats, 'id', params);
+            _.remove($scope.tabs[0].chats, 'id', params);
+            _.remove($scope.tabs[1].chats, 'id', params);
         }
     }
 ];

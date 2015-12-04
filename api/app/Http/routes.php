@@ -30,9 +30,10 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
 
     Route::post('chat/create', 'ChatController@create');
     Route::put('chat', 'ChatController@update');
-    Route::get('chat', 'ChatController@index');
+    Route::get('chat/list{type}', 'ChatController@chatList');
     Route::put('chat/leave', 'ChatController@leave');
     Route::delete('chat', 'ChatController@destroy');
+    Route::get('chat/list', 'ChatController@chatList');
 
     //auth routes
     Route::post('/login', 'AuthController@login');

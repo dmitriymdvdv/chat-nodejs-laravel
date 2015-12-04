@@ -20,7 +20,7 @@ module.exports = [
                 template: '<section class="chatbar">Please choose chat</section>'
             })
             .state('chats.active', {
-                url: '/chat/:chatId',
+                url: '/:chatId',
                 template: require('./templates/chatbar.html')
             })
             .state('manage-chats', {

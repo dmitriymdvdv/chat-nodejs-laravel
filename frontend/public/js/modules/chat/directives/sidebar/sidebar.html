@@ -2,7 +2,8 @@
     <div class="user-block">
         <a href="#" class="logo transition">
             <img class="img-rounded" src="/img/user.png" alt="userphoto">
-            <h3 class="username">{{user.first_name}}</h3>
+
+            <h3 class="username">{{ currentUserName }}</h3>
         </a>
     </div>
     <div class="alert alert-warning fade in" ng-show="error">
@@ -16,11 +17,10 @@
         </a></dt>
         <dd>
             <ul class="list-unstyled">
-                <li><a href="#">name of public chat</a></li>
-                <li><a href="#">name of public chat</a></li>
-                <li><a href="#">name of public chat</a></li>
-                <li><a href="#">name of public chat</a></li>
-                <li><a href="#">name of public chat</a></li>
+                <li ng-repeat="chat in publicChats | limitTo: 6">
+                    <a ui-sref="chats.active({chatId: chat.id})">{{ chat.name }}</a>
+                </li>
+                <a ng-if="publicChats.length > 6" ng-click="openPublicChatsList()">Show more</a>
             </ul>
         </dd>
 
@@ -31,25 +31,21 @@
             <fa name="plus"></fa>
         </a></dt>
         <dd>
-            <ul class="list-unstyled">
-                <li><a href="#">name of private chat</a></li>
-                <li><a href="#">name of private chat</a></li>
-                <li><a href="#">name of private chat</a></li>
-                <li><a href="#">name of private chat</a></li>
-                <li><a href="#">name of private chat</a></li>
-                <li><a href="#">name of private chat</a></li>
+            <ul class="list-unstyled" >
+                <li ng-repeat="chat in privateChats | limitTo: 6">
+                    <a ui-sref="chats.active({chatId: chat.id})">{{ chat.name }}</a>
+                </li>
+                <a ng-if="privateChats.length > 6" ng-click="openPrivateChatsList()">Show more</a>
             </ul>
         </dd>
 
         <dt><a href="#" class="list-title transition">List of users</a></dt>
         <dd>
             <ul class="list-unstyled">
-                <li><a href="#">name of users</a></li>
-                <li><a href="#">name of users</a></li>
-                <li><a href="#">name of users</a></li>
-                <li><a href="#">name of users</a></li>
-                <li><a href="#">name of users</a></li>
-                <li><a href="#">name of users</a></li>
+                <li ng-repeat="user in users | limitTo:6">
+                    <a href="#">{{ user.first_name + ' ' + user.last_name }}</a>
+                </li>
+                <a href="" ng-if="users.length > 6" ng-click="openUsersList()">Show more</a>
             </ul>
         </dd>
     </dl>

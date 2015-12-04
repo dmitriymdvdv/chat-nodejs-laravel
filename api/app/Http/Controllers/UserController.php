@@ -8,13 +8,21 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    protected $userId;
+
+    public function __construct()
+    {
+        if (Auth::check()) {
+            $this->userId = Auth::user()->id;
+        }
+    }
+
     public function index(Request $request)
     {
         $data = $request->all();
 
         if (!empty($data['query'])) {
-
-            $data['users_id'][] = $data['user_id'];
+            $data['users_id'][] = $this->userId;
 
             $users = User::whereNotIn('id', $data['users_id'])
                 ->where(function ($query) use ($data) {
@@ -24,9 +32,13 @@ class UserController extends Controller
                 ->get(['id', 'first_name', 'last_name']);
 
             return response()->json($users);
+        } else {
+            $arr[] = $this->userId;
+            $users = User::whereNotIn('id', $arr)->get();
+            return response()->json($users);
         }
 
-        return [];
+        return response()->json([], 400);
     }
 
     public function store(StoreUserPostRequest $req)
@@ -38,15 +50,15 @@ class UserController extends Controller
             'last_name',
             'date_of_birth',
             'mobile_phone',
-            'avatar_url' ));
+            'avatar_url'));
 
         return response()->json($user, 200);
     }
 
     public function show()
     {
-        if(!Auth::check()){
-            return response()->json([],200);
+        if (!Auth::check()) {
+            return response()->json([], 200);
         }
         $user = Auth::user();
         return response()->json($user, 200);
