@@ -38,7 +38,8 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
                 'Home',
                 'Chat',
                 'User',
-                'Settings'
+                'Settings',
+                'angular-loading-bar'
             ])
             .config([
                 'itaEmbeddedDataServiceProvider',

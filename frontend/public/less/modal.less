@@ -1,6 +1,30 @@
 .modal {
   display: block;
 }
+
+.chat-list {
+  height: 250px;
+  overflow: auto;
+}
+
+div.description-wrapper {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 260px;
+}
+
+.disable-row-lines {
+  > tbody {
+    > tr {
+      > td {
+        border-top: none !important;
+      }
+    }
+
+  }
+
+}
+
 textarea {
   resize: none;
 }

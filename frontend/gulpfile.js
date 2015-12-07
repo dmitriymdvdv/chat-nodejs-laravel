@@ -24,7 +24,8 @@ var jsLibs = [
     './public/bower_components/moment/moment.js',
     './public/bower_components/moment-timezone/moment-timezone.js',
     './public/bower_components/lodash/lodash.js',
-    './node_modules/alertifyjs/build/alertify.js'
+    './node_modules/alertifyjs/build/alertify.js',
+    './public/bower_components/angular-loading-bar/build/loading-bar.js'
 ];
 
 gulp.task('build', ['generate-asset-hashes', 'copy-alertify-styles']);

@@ -7,10 +7,12 @@ namespace App\Http\Controllers;
 use App\Model\Chat;
 use App\Model\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ChatController extends Controller
 {
+    protected $userId;
     /**
      * Validation Rules
      * @var array
@@ -18,8 +20,7 @@ class ChatController extends Controller
     protected $rules = [
         'name' => 'required|string',
         'description' => 'string',
-        'is_private' => 'required|boolean',
-        'users' => 'required|array'
+        'is_private' => 'required|boolean'
     ];
 
     /**
@@ -35,76 +36,136 @@ class ChatController extends Controller
         if ($validator->fails()) {
             return response()->json([], 400);
         }
-        //TODO: use Auth::user()
-        $data['users'][] = $data['user_id'];
-        $chat = Chat::create($data);
-        $chat->users()->attach($data['users']);
+        if ($data['is_private']) {
+            $data['users'][] = $this->userId;
+            $data['user_id'] = $this->userId;
+            $chat = Chat::create($data);
+            $chat->users()->attach($data['users']);
+        } else {
+            $data['user_id'] = $this->userId;
+            $chat = Chat::create($data);
+        }
 
-        //TODO: return value
-        return response()->json();
+
+        return response()->json($chat);
     }
 
-    public function index(Request $request)
+    public function __construct()
     {
+        if (Auth::check()) {
+            $this->userId = Auth::user()->id;
+        }
+    }
 
-        $rules = [
-            'id' => 'integer|required'
-        ];
-        //TODO: if($data['id']) === Auth::user()->id
+    public function chatList(Request $request)
+    {
         $data = $request->all();
-        $validator = Validator::make($data, $rules);
+        $rules = [
+            'type' => 'string|required',
+            'all' => 'string',
+            'id' => 'integer'
+        ];
+        if (Auth::check()) {
+            if ($data['type'] === 'public') {
+                if ($data['all'] === 'true') {
 
-        if ($validator->fails()) {
-            return response()->json([], 400);
+                    $chats = Chat::where('is_private', 0)->get();
+
+                }
+            } elseif ($data['type'] === 'private') {
+                if ($data['all'] === 'true') {
+
+                    $chats = User::with(['chats.users'])
+                        ->find($this->userId)
+                        ->chats
+                        ->where('is_private', 1);
+
+                }
+            } elseif ($data['type'] === 'all') {
+
+                $public = Chat::where('user_id', $this->userId)
+                    ->where('is_private', 0)
+                    ->get();
+                $private = User::with(['chats.users'])
+                    ->find($this->userId)
+                    ->chats
+                    ->where('is_private', 1);
+
+                return response()->json([
+                    'public' => $public,
+                    'private' => $private
+                ]);
+
+            }
+
+            if ($chats) {
+
+                return response()->json($chats);
+
+            }
         }
 
-        $chats = User::with(['chats.users'])->find($data['id'])->chats;
-
-        if ($chats) {
-            return response()->json($chats);
-        }
-
-        return response([], 400);
+        return response()->json([], 400);
 
     }
 
     public function update(Request $request)
     {
 
-        $data = $request->all();
-        $validator = Validator::make($data, $this->rules);
+        if (Auth::check()) {
+            $data = $request->all();
+            $validator = Validator::make($data, $this->rules);
 
-        if ($validator->fails()) {
-            return response()->json([], 400);
-        }
-        //TODO: use Auth::user()
-        $data['users'][] = $data['user_id'];
+            if ($validator->fails()) {
+                return response()->json([], 400);
+            }
+            if ($data['users']) {
+                $data['users'][] = $this->userId;
 
-        $chat = Chat::find($data['id']);
-        $chat->fill($data);
-        $chat->users()->sync($data['users']);
-        if ($chat->save()) {
-            return response()->json();
+                $chat = Chat::find($data['id']);
+                if ($chat->user_id == $this->userId) {
+                    $chat->fill($data);
+                    $chat->users()->sync($data['users']);
+                }
+            } else {
+                $chat = Chat::find($data['id']);
+                if ($chat->user_id == $this->userId)
+                    $chat->fill($data);
+            }
+            if ($chat->save()) {
+                return response()->json();
+            }
         }
         return response()->json([], 400);
     }
 
     public function destroy(Request $request)
     {
-        $rules = [
-            'id' => 'integer|required'
-        ];
-        //TODO: check authorised user
-        $data = $request->all();
-        $validator = Validator::make($data, $rules);
+        if (Auth::check()) {
+            $rules = [
+                'id' => 'integer|required',
+                'is_private' => 'boolean|required'
+            ];
+            $data = $request->all();
+            $validator = Validator::make($data, $rules);
 
-        if ($validator->fails()) {
-            return response()->json([], 400);
-        }
+            if ($validator->fails()) {
+                return response()->json([], 400);
+            }
 
-        $chat = Chat::find($data['id']);
-        if ($chat->users()->detach() && $chat->delete()) {
-            return response()->json();
+            $chat = Chat::find($data['id']);
+
+            if ($chat->user_id == $this->userId) {
+                if ($data['is_private'] == 1) {
+                    if ($chat->users()->detach() && $chat->delete()) {
+                        return response()->json();
+                    }
+                } elseif ($data['is_private'] == 0) {
+                    if ($chat->delete()) {
+                        return response()->json();
+                    }
+                }
+            }
         }
         return response()->json([], 400);
 
@@ -113,20 +174,20 @@ class ChatController extends Controller
     public function leave(Request $request)
     {
 
-        $rules = [
-            'id' => 'integer|required',
-            'user_id' => 'integer|required'
-        ];
-        $data = $request->all();
+        if (Auth::check()) {
+            $rules = [
+                'id' => 'integer|required'
+            ];
+            $data = $request->all();
 
-        $validator = Validator::make($data, $rules);
+            $validator = Validator::make($data, $rules);
 
-        if (!$validator->fails()) {
-            $chat = Chat::find($data['id']);
+            if (!$validator->fails()) {
+                $chat = Chat::find($data['id']);
 
-            //TODO: use Auth::user()
-            if ($chat->users()->detach($data['user_id'])) {
-                return response()->json();
+                if ($chat->users()->detach($this->userId)) {
+                    return response()->json();
+                }
             }
         }
 

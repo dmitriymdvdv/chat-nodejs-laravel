@@ -1,17 +1,19 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = [
+    '$rootScope',
     '$scope',
     '$modalInstance',
     'data',
+    'linked',
     'NewChatService',
     'authService',
     'ChatFactory',
-    function ($scope,
+    function ($rootScope,
+              $scope,
               $modalInstance,
               data,
+              linked,
               NewChatService,
               authService,
               ChatFactory) {
@@ -31,13 +33,18 @@ module.exports = [
         $scope.users = [];
 
         $scope.$watch('chat.users', function (newValue, oldValue) {
-            NewChatService
-                .validateUsersField($scope.chat.users)
-                .then(function () {
-                    $scope.errors.inputUsersField.valid = true;
-                }, function () {
-                    $scope.errors.inputUsersField.valid = false;
-                });
+
+            if ($scope.chat.users) {
+                NewChatService
+                    .validateUsersField($scope.chat.users)
+                    .then(function () {
+                        $scope.errors.inputUsersField.valid = true;
+                    }, function () {
+                        $scope.errors.inputUsersField.valid = false;
+                    });
+            } else {
+                $scope.errors.inputUsersField.valid = true;
+            }
 
         }, true);
 
@@ -45,8 +52,6 @@ module.exports = [
             if (query != "") {
                 var params = {
                     query: query,
-                    //TODO: delete authorId from request
-                    user_id: authService.getIdentity().id,
                     'users_id[]': getUsersId($scope.chat.users)
                 };
                 ChatFactory.getUsers(params)
@@ -68,18 +73,19 @@ module.exports = [
 
         function create() {
             var params = angular.copy($scope.chat);
-            //TODO: delete authdata from request
-            //TODO: change to params  = $scope.chat
-            params.user_id = authService.getIdentity().id;
             params.users = getUsersId(params.users);
-            params.is_private = $scope.chat.is_private;
             ChatFactory
                 .createNewChat(params)
-                .then(function () {
+                .then(function (response) {
+                    sendToListener('newChatCreated', response.data);
                     $modalInstance.close();
                 }, function () {
                     $scope.errors.newChatError.show = true;
                 });
+        }
+
+        function sendToListener(event, data) {
+            $rootScope.$broadcast(event, data);
         }
 
         function update() {

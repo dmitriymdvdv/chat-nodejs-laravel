@@ -1,7 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" aria-label="Close" ng-click="cancel()"><span
             aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">{{ chat.id ? 'Edit' : typeOfChat ? 'Create private chat' : 'Create public chat'}}
+    <h4 class="modal-title">{{ chat.id ? 'Edit' : chat.is_private ? 'Create private chat' : 'Create public chat'}}
     </h4>
 </div>
 <form name="newChatModalForm" ng-submit="sendData()" novalidate>
@@ -25,12 +25,12 @@
                     </span>
             </div>
         </div>
-        <div class="form-group"
+        <div ng-if="chat.is_private" class="form-group"
              ng-class="{'has-error': !errors.inputUsersField.valid && (newChatModalForm.selectedItem.$dirty || newChatModalForm.$submitted)}">
             <label for="select">Add Members</label>
             <ui-select multiple
                        ng-model="chat.users"
-                       ng-model-options="{ debounce: 250 }"
+                       ng-model-options="{ debounce: 100 }"
                        name="selectedItem"
                        id="select">
                 <ui-select-match>

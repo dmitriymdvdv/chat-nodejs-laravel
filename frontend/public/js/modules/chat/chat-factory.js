@@ -6,11 +6,8 @@ module.exports = [
     function ($http, appSettings) {
         return {
             getChatsList: function (params) {
-                var params = {
-                    id: params
-                };
                 return $http
-                    .get(appSettings.apiUrl + 'chat', {params: params});
+                    .get(appSettings.apiUrl + 'chat/list', {params: params});
             },
 
             updateChat: function (params) {
@@ -42,4 +39,3 @@ module.exports = [
         }
     }
 ];
-
