@@ -41,7 +41,7 @@ class ChatController extends Controller
             $data['user_id'] = $this->userId;
             $chat = Chat::create($data);
             $chat->users()->attach($data['users']);
-        } elseif (!$data['is_private']) {
+        } else {
             $data['user_id'] = $this->userId;
             $chat = Chat::create($data);
         }
