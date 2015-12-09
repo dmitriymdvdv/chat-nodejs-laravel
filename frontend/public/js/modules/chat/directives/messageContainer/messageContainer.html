@@ -27,6 +27,11 @@
                 </dl>
             </li>
         </ul>
+        <div class="typing-wrap">
+            <div class="typing" ng-show="isTyping">
+                {{typedUserName}} is typing..
+            </div>
+        </div>
     </div>
 
 
@@ -37,7 +42,8 @@
 
             <textarea class="form-control" rows="3"
                       ng-model="newMessage"
-                      ng-required="string"></textarea>
+                      ng-required="string"
+                      key-press></textarea>
 
             <button class="btn btn-success">
                 <fa name="{{ isLoading ? 'spinner' : 'check' }}"

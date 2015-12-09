@@ -13,15 +13,25 @@ module.exports = [
         $scope.isLoading = false;
         $scope.messages = [];
         $scope.chatId = $state.params.chatId;
+        $scope.isTyping = false;
 
         SocketFactory.emit('join', {
-            chatId: $state.params.chatId
+            chatId: $state.params.chatId,
+            userName: authService.getIdentity()['first_name'] + ' ' + authService.getIdentity()['last_name']
         });
 
         SocketFactory.on('message', function (data) {
             $scope.$apply(function () {
                 $scope.messages.push(data[0]);
             })
+        });
+
+        SocketFactory.on('isTyping', function (data) {
+            $scope.$apply(function () {
+                $scope.isTyping = data.isTyping;
+                $scope.typedUserName = data.person;
+            });
+            $scope.$apply();
         });
 
         $scope.sendMessage = function () {
