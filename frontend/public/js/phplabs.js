@@ -40,14 +40,16 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
                 'Chat',
                 'User',
                 'Settings',
-                'angular-loading-bar'
+                'angular-loading-bar',
+                'duScroll'
             ])
             .config([
                 'itaEmbeddedDataServiceProvider',
                 'itaRequestServiceProvider',
                 '$urlRouterProvider',
                 'authServiceProvider',
-                function (itaEmbeddedDataServiceProvider, itaRequestServiceProvider, $urlRouterProvider, authServiceProvider) {
+                'cfpLoadingBarProvider',
+                function (itaEmbeddedDataServiceProvider, itaRequestServiceProvider, $urlRouterProvider, authServiceProvider, cfpLoadingBarProvider) {
                     itaEmbeddedDataServiceProvider.init(window.embeddedData);
                     itaRequestServiceProvider.baseUrl(window.embeddedData.api.url);
 
@@ -55,6 +57,7 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
 
                     authServiceProvider.authData = response.data;
 
+                    cfpLoadingBarProvider.includeSpinner = false;
                 }
             ])
             .run(require('./app-run'));

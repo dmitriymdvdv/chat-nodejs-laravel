@@ -34,7 +34,7 @@ module.exports = [
 
         $scope.$watch('chat.users', function (newValue, oldValue) {
 
-            if ($scope.chat.users) {
+            if ($scope.chat.is_private) {
                 NewChatService
                     .validateUsersField($scope.chat.users)
                     .then(function () {
