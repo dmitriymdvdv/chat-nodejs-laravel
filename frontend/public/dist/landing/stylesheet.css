@@ -67,7 +67,6 @@ a {
 .main-slide .header-top-content > a {
     display: block;
     float: left;
-    padding-left: 2.5em;
     background-size: contain;
 }
 
@@ -122,6 +121,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 0.38em;
     font-weight: 800;
+    padding-left: 1.688em;
 }
 
 .main-slide .header-content div.sign {
