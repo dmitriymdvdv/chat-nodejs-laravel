@@ -27,7 +27,8 @@ var jsLibs = [
     './public/bower_components/angular-scroll-glue/src/scrollglue.js',
     './node_modules/socket.io/node_modules/socket.io-client/socket.io.js',
     './node_modules/alertifyjs/build/alertify.js',
-    './public/bower_components/angular-loading-bar/build/loading-bar.js'
+    './public/bower_components/angular-loading-bar/build/loading-bar.js',
+    './public/bower_components/angular-scroll/angular-scroll.js'
 ];
 
 gulp.task('build', ['generate-asset-hashes', 'copy-alertify-styles']);

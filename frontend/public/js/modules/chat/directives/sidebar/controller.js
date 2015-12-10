@@ -60,10 +60,8 @@ module.exports = [
 
         $scope.$on('newChatCreated', function (event, data) {
             if(data.is_private == 0) {
-                debugger;
                 $scope.publicChats.push(data);
             }else if(data.is_private == 1) {
-                debugger;
                 $scope.privateChats.push(data);
             }
         });

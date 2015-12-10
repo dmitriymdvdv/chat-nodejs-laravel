@@ -1,70 +1,144 @@
-<div class="gradient wrap">
-    <div class="container-fluid">
-        <div class="row header">
-            <div class="navbar navbar-default">
-                <div class="navbar-header">
-                    <a class="navbar-brand">
-                        <strong class="logo-index-page">
-                            Another Slack
-                        </strong>
-                    </a>
-                    <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
-                            ng-click="navCollapsed = !navCollapsed">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" collapse="navCollapsed">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a>Link 1</a></li>
-                        <li><a>Link 2</a></li>
-                        <li><a>Link 3</a></li>
-                        <li><a>Link 4</a></li>
+<!DOCTYPE html>
+<HTML>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" href="../../../dist/landing/stylesheet.css"/>
+    <link rel="stylesheet" href="../../../dist/landing/media.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:600,700,500,900,100,400,300' rel='stylesheet'
+          type='text/css'>
+    <!--<[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    [endif]>-->
+</head>
+<body>
+<div class="wrapper">
+    <a href="/#/" id="up" class="anchor"></a>
+    <header class="main-slide">
+        <div scroll class="header-top clearfix" ng-class="{'fixedNav': boolChangeClass}">
+            <div class="header-top-content">
+                <a href="#up" du-smooth-scroll><h1>New Slack</h1></a>
+                <nav>
+                    <ul>
+                        <li><a href="#about" du-smooth-scroll>About</a></li>
+                        <li><a href="#team" du-smooth-scroll>Our team</a></li>
+                        <li></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a ui-sref="register">Sign Up</a></li>
-                        <li><a ui-sref="login">Sign In</a></li>
-                    </ul>
-                </div>
+                </nav>
             </div>
         </div>
-        <div class="row body">
-            <div class="col-sm-6">
-                <div ng-controller="HomeController" id="slides_control">
-                    <div>
-                        <carousel interval="interval">
-                            <slide ng-repeat="slide in slides" active="slide.active">
-                                <img class="indexPageImg" ng-src="{{slide.image}}">
+        <div class="header-content">
+            <h2>Welcome to the new age of <span>Messengers</span></h2>
 
-                                <div class="carousel-caption">
-                                    <h4>{{slide.msg}}</h4>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae debitis, dicta exercitationem
-                    impedit mollitia nihil nobis nulla obcaecati optio, repellendus tempora tempore tenetur ullam vel
-                    veritatis vitae voluptatem voluptates!
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis fugiat id ipsum
-                    laboriosam maxime minima molestias mollitia nobis quaerat, quasi repellendus reprehenderit sapiente
-                    soluta vel velit, voluptate! Officia, quod.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur consequuntur debitis
-                    dolorem eaque est explicabo minima, neque quia tempore totam ullam voluptatum. Deleniti error odio
-                    quia, ratione tenetur totam!
-                </div>
+            <h3>modern, improved, yours</h3>
+            <div class="sign">
+                <a ui-sref="login" class="link">Sign in</a>
+                <a ui-sref="register" class="link">Sign Up</a>
             </div>
         </div>
+        <div class="clouds"></div>
+    </header>
+    <div class="main">
+        <a href="#" id="about" class="anchor"></a>
+        <section class="about">
+            <div class="about-content">
+                <article>
+                    <h4>About our project</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis iste illum consequuntur
+                        velit quod autem excepturi minima quo porro laboriosam.</p>
+                    <ul>
+                        <li>
+                            <h5>Lorem ipsum dolor sit.</h5>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio consequuntur tenetur
+                                ullam consequatur sapiente quisquam, porro ab eaque quo tempora.</p>
+                        </li>
+                        <li>
+                            <h5>Lorem ipsum dolor sit.</h5>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio consequuntur tenetur
+                                ullam consequatur sapiente quisquam, porro ab eaque quo tempora.</p>
+                        </li>
+                        <li>
+                            <h5>Lorem ipsum dolor sit.</h5>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio consequuntur tenetur
+                                ullam consequatur sapiente quisquam, porro ab eaque quo tempora.</p>
+                        </li>
+                        <li>
+                            <h5>Lorem ipsum dolor sit.</h5>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio consequuntur tenetur
+                                ullam consequatur sapiente quisquam, porro ab eaque quo tempora.</p>
+                        </li>
+                        <li>
+                            <h5>Lorem ipsum dolor sit.</h5>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio consequuntur tenetur
+                                ullam consequatur sapiente quisquam, porro ab eaque quo tempora.</p>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <a href="#team" id="team" class="anchor"></a>
+        <section class="team">
+            <div class="team-content">
+                <article>
+                    <img src="../../../img/team.png" alt="">
+                    <span>Friends &amp; Colleagues</span>
+                    <h4>Our Team</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit assumenda tempore illo optio
+                        officiis deserunt eveniet repudiandae dicta. Quibusdam animi minus, asperiores ea debitis alias
+                        delectus optio veniam eveniet dolor, cumque quidem autem magni ab cupiditate accusantium unde,
+                        quae dicta.</p>
+                </article>
+                <ul>
+                    <li>
+                        <h6>Member name</h6>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis esse ratione id doloribus
+                            est enim, sunt ipsam, laboriosam ex sed!</p>
+                    </li>
+                    <li>
+                        <h6>Member name</h6>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis esse ratione id doloribus
+                            est enim, sunt ipsam, laboriosam ex sed!</p>
+                    </li>
+                    <li>
+                        <h6>Member name</h6>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis esse ratione id doloribus
+                            est enim, sunt ipsam, laboriosam ex sed!</p>
+                    </li>
+                    <li>
+                        <h6>Member name</h6>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis esse ratione id doloribus
+                            est enim, sunt ipsam, laboriosam ex sed!</p>
+                    </li>
+                    <li>
+                        <h6>Member name</h6>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis esse ratione id doloribus
+                            est enim, sunt ipsam, laboriosam ex sed!</p>
+                    </li>
+                    <li class="loop">
+                        <div class="loopback" style="height: 512px; top: 243px;"></div>
+                        <div class="loopback" style="height: 512px; top: 243px;"></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </div>
+    <footer>
+        &copy;2015 Messenger, Inc. All rights reserved.
+    </footer>
 </div>
-<footer class="modal-footer footer">
-    <a>Link 1</a>
-    <a>Link 2</a>
-    <a>Link 3</a>
-    <a>Link 4</a>
-    <a>Link 5</a>
-</footer>
+</body>
+</HTML>
