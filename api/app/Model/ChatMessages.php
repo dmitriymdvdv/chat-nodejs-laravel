@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChatMessages extends Model
 {
+    public $timestamps = false;
+
     /**
      * The database table used by the Model.
      *
@@ -23,7 +25,7 @@ class ChatMessages extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'chat_id'];
+    protected $fillable = ['message_id', 'chat_id'];
 
     /**
      * The attributes excluded from the Model's JSON form.
