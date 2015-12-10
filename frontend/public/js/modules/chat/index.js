@@ -16,4 +16,6 @@ angular
     .service('ChatService', require('./chat-service'))
     .controller('ManageChatsController', require('./manage-chat/manage-chat-controller'))
     .directive('sideBar', require('./directives/sidebar'))
-    .directive('messageContainer', require('./directives/messageContainer'));
+    .directive('messageContainer', require('./directives/messageContainer'))
+    .factory('MessageContainerFactory', require('./directives/messageContainer/message-container-factory'))
+    .factory('SocketFactory', require('./directives/messageContainer/socket-factory'));

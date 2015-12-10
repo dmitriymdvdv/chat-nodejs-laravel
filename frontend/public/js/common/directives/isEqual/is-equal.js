@@ -5,7 +5,7 @@ module.exports = [function() {
         restrict: 'A',
         require: 'ngModel',
         scope: {
-            otherModelValue: "=equalTo",
+            otherModelValue: "=equalTo"
         },
         link: function(scope, element, attr, ngModel){
             ngModel.$validators.equalTo = function(modelValue){

@@ -24,6 +24,8 @@ var jsLibs = [
     './public/bower_components/moment/moment.js',
     './public/bower_components/moment-timezone/moment-timezone.js',
     './public/bower_components/lodash/lodash.js',
+    './public/bower_components/angular-scroll-glue/src/scrollglue.js',
+    './node_modules/socket.io/node_modules/socket.io-client/socket.io.js',
     './node_modules/alertifyjs/build/alertify.js',
     './public/bower_components/angular-loading-bar/build/loading-bar.js'
 ];
@@ -96,3 +98,5 @@ gulp.task('copy-alertify-styles', function () {
     return gulp.src(['./node_modules/alertifyjs/build/css/alertify.css', './node_modules/alertifyjs/build/css/themes/bootstrap.css'])
         .pipe(gulp.dest('./public/dist/alertify'));
 });
+
+gulp.task('default', ['monitor']);

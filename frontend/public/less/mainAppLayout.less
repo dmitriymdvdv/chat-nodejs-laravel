@@ -100,7 +100,6 @@
   a {
 
     &:hover {
-      color: #fff;
       text-decoration: none;
     }
   }
@@ -116,6 +115,12 @@
 
   .user-message dl {
     margin-left: 60px;
+
+    pre {
+      background: none;
+      border: none;
+    }
+
   }
 
   .time {
@@ -142,4 +147,22 @@
   }
 }
 
+#scrollbar::-webkit-scrollbar-track
+{
+  background-color: #F5F5F5;
+}
 
+#scrollbar::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+#scrollbar::-webkit-scrollbar-thumb
+{
+  background-color: #0ae;
+  border-radius: 6px;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%,
+  color-stop(.5, rgba(255, 255, 255, .2)),
+  color-stop(.5, transparent), to(transparent));
+}

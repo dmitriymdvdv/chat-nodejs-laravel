@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserMessages extends Model
 {
+    public $timestamps = false;
+
     /**
      * The database table used by the Model.
      *
@@ -23,7 +25,7 @@ class UserMessages extends Model
      *
      * @var array
      */
-    protected $fillable = ['message_id','recepient_id'];
+    protected $fillable = ['message_id','recipient_id'];
 
     /**
      * The attributes excluded from the Model's JSON form.
@@ -43,6 +45,6 @@ class UserMessages extends Model
      */
     public function users()
     {
-        return $this->hasMany('App\Model\User','recepient_id');
+        return $this->hasMany('App\Model\User','recipient_id');
     }
 }

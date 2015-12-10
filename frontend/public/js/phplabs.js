@@ -28,6 +28,7 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
                 'ui.bootstrap',
                 'ui.select',
                 'picardy.fontawesome',
+                'luegg.directives',
 
                 'ITA.EmbeddedData',
                 'ITA.Request',
@@ -53,6 +54,7 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
                     $urlRouterProvider.otherwise('/');
 
                     authServiceProvider.authData = response.data;
+
                 }
             ])
             .run(require('./app-run'));

@@ -2,60 +2,30 @@
 
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            # chat-name
+            #{{chatId}} chat-name
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a>Action</a></li>
+            <li><a>Another action</a></li>
+            <li><a>Something else here</a></li>
+            <li><a>Separated link</a></li>
         </ul>
     </div>
 
-    <div class="messages-container">
+    <div class="messages-container" scroll-glue id="scrollbar">
         <ul class="list-unstyled">
-
-            <li class="user-message clearfix">
-                <a class="min-user-photo" href="#">
-                    <img class="img-rounded" src="/img/user.png" alt="userphoto">
+            <li class="user-message clearfix" ng-repeat="message in messages | limitTo:-15 ">
+                <a class="min-user-photo">
+                    <img class="img-rounded" ng-src="{{message.author.avatar_url}}" alt="userphoto">
                 </a>
                 <dl>
-                    <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                    <dd><p>message</p></dd>
+                    <dt>
+                        <a>{{message['author']['first_name']}}</a>
+                        <time class="time">{{message['date_of_creation']}}</time></dt>
+                    <dd><pre>{{message['message']}}</pre></dd>
                 </dl>
             </li>
-
-            <li class="user-message clearfix">
-                <a class="min-user-photo" href="#">
-                    <img class="img-rounded" src="/img/user.png" alt="userphoto">
-                </a>
-                <dl>
-                    <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                    <dd><p>message</p></dd>
-                </dl>
-            </li>
-
-            <li class="user-message clearfix">
-                <a class="min-user-photo" href="#">
-                    <img class="img-rounded" src="/img/user.png" alt="userphoto">
-                </a>
-                <dl>
-                    <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                    <dd><p>message</p></dd>
-                </dl>
-            </li>
-
-            <li class="user-message clearfix">
-                <a class="min-user-photo" href="#">
-                    <img class="img-rounded" src="/img/user.png" alt="userphoto">
-                </a>
-                <dl>
-                    <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                    <dd><p>message</p></dd>
-                </dl>
-            </li>
-
         </ul>
     </div>
 
@@ -63,59 +33,20 @@
 
     <div class="chat-form">
 
-        <form>
+        <form ng-submit="sendMessage()">
 
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3"
+                      ng-model="newMessage"
+                      ng-required="string"></textarea>
 
-            <a class="btn btn-success" href="#" type="submit">Send</a>
+            <button class="btn btn-success">
+                <fa name="{{ isLoading ? 'spinner' : 'check' }}"
+                    spin="{{ isLoading }}"></fa>
+                <span ng-hide="isLoading">Send</span>
+            </button>
 
         </form>
 
     </div>
 
 </section>
-<div class="messages-container">
-    <ul class="list-unstyled">
-
-        <li class="user-message clearfix">
-            <a class="min-user-photo" href="#">
-                <img class="img-rounded" src="/img/user.png" alt="userphoto">
-            </a>
-            <dl>
-                <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                <dd><p>message</p></dd>
-            </dl>
-        </li>
-
-        <li class="user-message clearfix">
-            <a class="min-user-photo" href="#">
-                <img class="img-rounded" src="/img/user.png" alt="userphoto">
-            </a>
-            <dl>
-                <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                <dd><p>message</p></dd>
-            </dl>
-        </li>
-
-        <li class="user-message clearfix">
-            <a class="min-user-photo" href="#">
-                <img class="img-rounded" src="/img/user.png" alt="userphoto">
-            </a>
-            <dl>
-                <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                <dd><p>message</p></dd>
-            </dl>
-        </li>
-
-        <li class="user-message clearfix">
-            <a class="min-user-photo" href="#">
-                <img class="img-rounded" src="/img/user.png" alt="userphoto">
-            </a>
-            <dl>
-                <dt><a href="#">user-name</a> <time class="time">10:30 PM</time></dt>
-                <dd><p>message</p></dd>
-            </dl>
-        </li>
-
-    </ul>
-</div>

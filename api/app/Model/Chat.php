@@ -38,7 +38,7 @@ class Chat extends Model
      */
     public function messages()
     {
-        return $this->hasMany('App\Model\ChatMessages','chat_id');
+        return $this->belongsToMany('App\Model\Messages', 'chat_messages', 'chat_id', 'message_id');
     }
     /*
      *

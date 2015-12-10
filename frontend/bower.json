@@ -22,6 +22,7 @@
     "font-awesome": "~4.4.0",
     "angular-fontawesome": "~1.0.0",
     "ui-select": "angular-ui-select#~0.13.2",
-    "angular-loading-bar": "0.8.0"
+    "angular-loading-bar": "0.8.0",
+    "angular-scroll-glue": "2.0.*"
   }
 }

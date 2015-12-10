@@ -9,8 +9,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Messages extends Model
 {
+    public $timestamps = false;
+
     /**
      * The database table used by the Model.
      *
@@ -30,7 +32,7 @@ class Message extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = ['pivot', 'user_id'];
     /*
      *
      */
@@ -43,6 +45,13 @@ class Message extends Model
      */
     public function usersMessages()
     {
-        return $this->hasOne('App\Model\UserMessages','message_id');
+        return $this->hasOne('App\Model\UserMessages', 'message_id');
+    }
+    /*
+     *
+     */
+    public function chatMessages()
+    {
+        return $this->belongsToMany('App\Model\Chat', 'chat_messages', 'chat_id', 'message_id');
     }
 }
