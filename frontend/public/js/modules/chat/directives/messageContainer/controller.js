@@ -22,6 +22,7 @@ module.exports = [
 
         SocketFactory.on('message', function (data) {
             $scope.$apply(function () {
+                $scope.isTyping = false;
                 $scope.messages.push(data[0]);
             })
         });
