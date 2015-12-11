@@ -64,15 +64,22 @@ class MessageController extends Controller
     public function show(Request $request)
     {
         $user = Auth::user()->toArray();
-        // TODO: add check that this user in chat
+
         if ($user['id'] === (integer)$request->only('user_id')['user_id']) {
 
             $chatId = $request->only('chat_id')['chat_id'];
+            $chat = Chat::find($chatId);
 
-            $messages = Chat::find($chatId)->messages()->with(['author'])->get();
+            if ($chat->toArray()['is_private'] === 0 ||
+                $chat->users()->where('user_id', '=', $user['id'])->exists()) {
 
-            return response()->json($messages, 200);
+                $messages = $chat->messages()->with(['author'])->get();
+                return response()->json($messages, 200);
+
+            }
         }
+
+        return response()->json([], 400);
     }
     /**
      * Show the form for editing the specified resource.
