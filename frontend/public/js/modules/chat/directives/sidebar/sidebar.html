@@ -18,7 +18,11 @@
         <dd>
             <ul class="list-unstyled">
                 <li ng-repeat="chat in publicChats | limitTo: 6">
-                    <a ui-sref="chats.active({chatId: chat.id})">{{ chat.name }}</a>
+                    <a ui-sref="chats.active({chatId: chat.id})" ng-click="unsetNotify(chat.id)">{{ chat.name }}</a>
+                    <fa-stack ng-if="chat.notify.count > 0" size="1">
+                        <fa name="circle" inverse stack="1" size="1"></fa>
+                        <i class="fa-stack-1x calendar-text">{{chat.notify.count}}</i>
+                    </fa-stack>
                 </li>
                 <a ng-if="publicChats.length > 6" ng-click="openPublicChatsList()">Show more</a>
             </ul>
@@ -33,7 +37,11 @@
         <dd>
             <ul class="list-unstyled" >
                 <li ng-repeat="chat in privateChats | limitTo: 6">
-                    <a ui-sref="chats.active({chatId: chat.id})">{{ chat.name }}</a>
+                    <a ui-sref="chats.active({chatId: chat.id})" ng-click="unsetNotify(chat.id)">{{ chat.name }}</a>
+                    <fa-stack ng-if="chat.notify.count > 0" size="1">
+                        <fa name="circle" inverse stack="1" size="1"></fa>
+                        <i class="fa-stack-1x calendar-text">{{chat.notify.count}}</i>
+                    </fa-stack>
                 </li>
                 <a ng-if="privateChats.length > 6" ng-click="openPrivateChatsList()">Show more</a>
             </ul>
