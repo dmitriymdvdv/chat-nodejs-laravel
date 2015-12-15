@@ -45,14 +45,18 @@ class MessageController extends Controller
         $user = Auth::user()->toArray();
 
         if ((integer)$data['user_id'] === $user['id']) {
-            $message = Messages::create($data)->getAttributes();
+            if ($this->userExistsInChat($user['id'], Chat::find($data['chat_id']))) {
 
-            $this->addMessageToChatMessages($message, $data['chat_id']);
+                $message = Messages::create($data)->getAttributes();
 
-            $res = Messages::where('id', '=', $message['id'])->with('author')->get();
-            $res['chat_id'] = $data['chat_id'];
-            Redis::publish('message-channel', json_encode($res));
+                $this->addMessageToChatMessages($message, $data['chat_id']);
+
+                $res = Messages::where('id', '=', $message['id'])->with('author')->get();
+                $res['chat_id'] = $data['chat_id'];
+                Redis::publish('message-channel', json_encode($res));
+            }
         }
+        return response()-json([], 400);
     }
     /**
      * Display the specified resource.
@@ -71,7 +75,7 @@ class MessageController extends Controller
             $chat = Chat::find($chatId);
 
             if ($chat->toArray()['is_private'] === 0 ||
-                $chat->users()->where('user_id', '=', $user['id'])->exists()) {
+                $this->userExistsInChat($user['id'], $chat)) {
 
                 $messages = $chat->messages()->with(['author'])->get();
                 return response()->json($messages, 200);
@@ -124,5 +128,14 @@ class MessageController extends Controller
                 'message_id' => $message['id']
             ]);
 
+    }
+
+    private function userExistsInChat ($userId, Chat $chat) {
+        if($chat) {
+            if ($chat->users()->where('user_id', '=', $userId)->exists()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
