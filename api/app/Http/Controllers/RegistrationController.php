@@ -27,6 +27,7 @@ class RegistrationController extends Controller
         $this->checkUserIsValid($newUser);
 
         $newUser['password']  = Hash::make($newUser['password']);
+        $newUser['avatar_url'] = '/img/user.png';
 
         if(User::firstOrCreate($newUser)->toArray()){
             return response()->json([], 200);
