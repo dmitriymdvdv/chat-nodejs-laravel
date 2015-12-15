@@ -2,30 +2,38 @@
 
 module.exports = [
     '$scope',
+    '$q',
+    '$state',
     'ChatService',
     'ChatFactory',
     'authService',
     'Auth',
-    function ($scope, ChatService, ChatFactory, authService, Auth) {
+    'SocketFactory',
+    function ($scope, $q, $state, ChatService, ChatFactory, authService, Auth, SocketFactory) {
 
         $scope.currentUserName = authService.getIdentity().first_name;
+        $scope.notify = {
+            count: 0
+        };
 
-        ChatFactory
+        var publicChatsPromise = ChatFactory
             .getChatsList({
                 type: 'public',
                 all: 'true'
             })
             .then(function (response) {
                 $scope.publicChats = _.map(response.data);
+                return _.map(response.data, 'id');
             });
 
-        ChatFactory
+        var privateChatsPromise = ChatFactory
             .getChatsList({
                 type: 'private',
                 'all': 'true'
             })
             .then(function (response) {
                 $scope.privateChats = _.map(response.data);
+                return _.map(response.data, 'id');
             });
 
         ChatFactory
@@ -59,9 +67,9 @@ module.exports = [
         };
 
         $scope.$on('newChatCreated', function (event, data) {
-            if(data.is_private == 0) {
+            if (data.is_private == 0) {
                 $scope.publicChats.push(data);
-            }else if(data.is_private == 1) {
+            } else if (data.is_private == 1) {
                 $scope.privateChats.push(data);
             }
         });
@@ -76,8 +84,62 @@ module.exports = [
 
         $scope.openUsersList = function () {
             ChatService.openUsersList($scope.users)
+        };
+
+        SocketFactory.on('notify', function (data) {
+
+            if ($state.params.chatId != data) {
+                var chat = findPrivateChat(data) || findPublicChat(data);
+                if (chat.notify) {
+                    $scope.$apply(function () {
+                        chat.notify.count++;
+                    });
+
+                } else {
+                    $scope.$apply(function () {
+                        $scope.notify.count = 1;
+                        chat.notify = angular.copy($scope.notify);
+                    });
+                }
+            }
+        });
+
+        $q.all([
+            publicChatsPromise,
+            privateChatsPromise
+        ]).then(function (values) {
+            var chatsId;
+            if (values[0].length > 6) {
+                values[0] = _.slice(values[0], 0, 6);
+            }
+            if (values[1].length > 6) {
+                values[1] = _.slice(values[1], 0, 6);
+            }
+            chatsId = _.union(values[0], values[1]);
+
+            SocketFactory.emit('join-to-all', chatsId);
+        });
+
+        function findPrivateChat(data) {
+            return _.find($scope.publicChats, function (res) {
+                return res.id == data
+            });
+
         }
 
+        function findPublicChat(data) {
+            return _.find($scope.privateChats, function (res) {
+                return res.id == data
+            });
+        }
 
+        $scope.unsetNotify = function (chatId) {
+            var chat = findPrivateChat(chatId) || findPublicChat(chatId);
+            if (typeof chat.notify !== 'undefined') {
+                chat.notify = {
+                    count: 0
+                }
+            }
+        }
     }
 ];
