@@ -45,7 +45,8 @@ class MessageController extends Controller
         $user = Auth::user()->toArray();
 
         if ((integer)$data['user_id'] === $user['id']) {
-            if ($this->userExistsInChat($user['id'], Chat::find($data['chat_id']))) {
+            $chat = Chat::find($data['chat_id']);
+            if (!$chat->is_private || $this->userExistsInChat($user['id'], $chat)) {
 
                 $message = Messages::create($data)->getAttributes();
 
@@ -56,7 +57,6 @@ class MessageController extends Controller
                 Redis::publish('message-channel', json_encode($res));
             }
         }
-        return response()-json([], 400);
     }
     /**
      * Display the specified resource.
