@@ -1,4 +1,10 @@
-@sidebar-background-color: #343131;
+@sidebar-background-color: #2d3e50;
+@user-block-background-color: #213242;
+
+@font-face {
+  font-family: 'Helvetic Neue';
+  src: url(../fonts/HelveticaNeueCyr-Thin.otf);
+}
 
 .transition(@value: 1s) {
   transition: @value;
@@ -11,6 +17,7 @@
 }
 
 .sidebar {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -25,13 +32,15 @@
     color: #fff;
     font-family: sans-serif;
 
-    &:hover {
+    &:hover, &:focus {
       text-decoration: none;
     }
   }
 
   .user-block {
     padding: 10px;
+    background-color: @user-block-background-color;
+    border-bottom: 1px solid #212A32;
 
     &:hover {
       background-color: #555459;
@@ -39,7 +48,14 @@
     }
   }
 
+  .chat-name {
+    font-family: 'Helvetica Neue';
+    font-size: 16px;
+  }
 
+  .user-fullname {
+    color: #95A4A5;
+  }
 
   dt, dd {
     padding: 5px 10px;
@@ -60,23 +76,41 @@
   font-size: 0;
 
   .img-rounded, .username {
-    margin: 0;
-    font: 24px 'Lato';
+    margin: 0 10px;
     display: inline-block;
+    vertical-align: middle;
+    text-transform: uppercase;
   }
 
   .img-rounded {
-    width: 80px;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+  }
+
+  .angle-down {
+    font-size: 16px;
+  }
+}
+
+.sidebar-content {
+
+  dt {
+    color: #e1e2e6;
+    text-transform: uppercase;
+    font-family: "latolight", "Helvetica", sans-serif;
+    font-size: 0.9rem;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 }
 
 
-
 .list-title {
   display: inline-block;
   padding: 5px 0;
-  font: 1em 'Lato';
+  font: 1.6em 'Lato';
 }
 
 .list-unstyled {
@@ -174,4 +208,19 @@
   background-image: -webkit-gradient(linear, 0 0, 0 100%,
   color-stop(.5, rgba(255, 255, 255, .2)),
   color-stop(.5, transparent), to(transparent));
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 200px;
+  background-color: @user-block-background-color;
+  border-top: 1px solid #212A32;
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color:  #ccc;
+  }
 }
