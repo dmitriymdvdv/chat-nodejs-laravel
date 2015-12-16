@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     public function logout()
     {
@@ -21,21 +23,22 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
         $authData = $request->all();
 
         $validator = Validator::make($authData, [
             'email' => 'required',
             'password' => 'required'
         ]);
-        if($validator->fails())
-        {
-            abort(403, 'Invalid data');
-        } if (Auth::attempt(['email' => $authData['email'],
-            'password' => $authData['password']])) {
-            return response()->json(Auth::user(),200);
+        $authData['error_message'] = ' Unable to log in.
+                    Please check that you have entered your login and password correctly.';
+        if ($validator->fails()) {
+            return response()->json($authData, 400);
+        }
+        if (Auth::attempt(['email' => $authData['email'],
+            'password' => $authData['password']])
+        ) {
+            return response()->json(Auth::user(), 200);
         } else {
-            $authData['error_message'] = 'Check your input data';
             return response()->json($authData, 400);
         }
 

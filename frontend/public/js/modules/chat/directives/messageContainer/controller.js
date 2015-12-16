@@ -44,6 +44,7 @@ module.exports = [
                         function () {
                             $scope.isLoading = false;
                             console.log('error sending');
+                            $state.go('chats');
                         });
             }
 
@@ -57,6 +58,8 @@ module.exports = [
                 if (res.data.length > 0) {
                     $scope.messages =  res.data;
                 }
+            }, function () {
+                $state.go('chats');
             });
     }
 ];
