@@ -18,4 +18,5 @@ angular
     .directive('sideBar', require('./directives/sidebar'))
     .directive('messageContainer', require('./directives/messageContainer'))
     .factory('MessageContainerFactory', require('./directives/messageContainer/message-container-factory'))
-    .factory('SocketFactory', require('./directives/messageContainer/socket-factory'));
+    .factory('SocketFactory', require('./directives/messageContainer/socket-factory'))
+    .directive('keyPress', require('./directives/messageContainer/key-press-directive'));
