@@ -38,7 +38,9 @@
             <ul class="list-unstyled" >
                 <li ng-repeat="chat in privateChats | limitTo: 6">
                     <fa name="hashtag" inverse></fa>
-                    <a class="chat-name" ui-sref="chats.active({chatId: chat.id})" ng-click="unsetNotify(chat.id)">{{ chat.name }}</a>
+                    <a class="chat-name"
+                       ui-sref="chats.active({chatId: chat.id})"
+                       ng-click="unsetNotify(chat.id);activeChat(chat.name)">{{ chat.name }}</a>
                     <span ng-if="chat.notify.count > 0" class="badge">{{chat.notify.count}}</span>
                 </li>
                 <a ng-if="privateChats.length > 6" ng-click="openPrivateChatsList()">Show more</a>

@@ -140,6 +140,10 @@ module.exports = [
                     count: 0
                 }
             }
-        }
+        };
+
+        $scope.activeChat = function (chatName) {
+            $scope.$emit('chatName', chatName);
+        };
     }
 ];
