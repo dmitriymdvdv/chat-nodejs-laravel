@@ -22,6 +22,7 @@
     </div>
 
 
+
     <div class="chat-form">
 
         <form ng-submit="sendMessage()">
@@ -33,15 +34,11 @@
             </div>
 
             <textarea class="form-control" rows="3"
+                      placeholder="Press enter to send message"
+                      ng-enter="sendMessage()"
                       ng-model="newMessage"
                       ng-required="string"
                       key-press></textarea>
-
-            <button class="btn btn-success">
-                <fa name="{{ isLoading ? 'spinner' : 'check' }}"
-                    spin="{{ isLoading }}"></fa>
-                <span ng-hide="isLoading">Send</span>
-            </button>
 
         </form>
 

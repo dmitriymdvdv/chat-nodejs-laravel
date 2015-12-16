@@ -53,6 +53,12 @@
     font-size: 16px;
   }
 
+  .chat-name-header {
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+    font-size: 24px;
+  }
+
   .user-fullname {
     color: #95A4A5;
   }
@@ -189,16 +195,22 @@
 .chat-form {
   position: absolute;
   background: #fff;
-  bottom: 80px;
+  bottom: 60px;
   left: 20px;
   right: 1rem;
   height: 80px;
   z-index: 52;
 
   form textarea {
-    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid #C5C8C8;
+    border-radius: 4px;
     resize: none;
-    overflow: auto;
+
+    &:focus {
+      border-color: #C5C8C8;
+    }
+
   }
 }
 
