@@ -7,7 +7,12 @@
 
     <div class="messages-container" scroll-glue id="scrollbar">
         <ul class="list-unstyled">
-            <li class="user-message clearfix" ng-repeat="message in messages | limitTo:-15 ">
+            <a class="show-more"
+               ng-init="limit = -15"
+               ng-click="limit = limit * 2"
+               ng-hide="messages.length < 15">Show more</a>
+
+            <li class="user-message clearfix" ng-repeat="message in messages | limitTo:limit ">
                 <a class="min-user-photo">
                     <img class="img-rounded" ng-src="{{message.author.avatar_url}}" alt="userphoto">
                 </a>

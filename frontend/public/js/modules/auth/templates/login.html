@@ -1,43 +1,98 @@
-<div class="container-fluid user-auth">
-    <div class="alert alert-danger fade in" ng-show="error">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Error!</strong>{{error}}
-    </div>
-    <form class="form-horizontal" name="loginForm" novalidate>
-        <div class="row-fluid form-heading">
-            <h3>Please sign in</h3>
+<div class="sign-up-wrapper">
+    <div class="panel sign-in-up" ng-init="selectedTab = 'login'">
+        <ul id="menu" class="panel__menu" ng-class="{'second-box':selectedTab === 'sign'}">
+            <hr/>
+            <li id="signIn"><a ng-click="selectedTab = 'login'">Login</a></li>
+            <li id="signUp"><a ng-click="selectedTab = 'sign'">Sign up</a></li>
+        </ul>
+        <div class="alert alert-danger fade in" ng-show="error">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong>{{error}}
         </div>
-        <div class="table">
-            <div class="table-row">
-                <label class="table-cell" for="inputEmail">Email</label>
-                <div class="table-cell">
-                    <input class="form-control"
-                           type="email"
-                           id="inputEmail"
-                           ng-model="authData.email"
-                           placeholder="Email">
-                    <p class="text-danger bg-warning error">Error massage</p>
+        <div class="panel__wrap">
+            <form ng-submit="login(authData) && loginForm.$valid" id="signInBox" class="panel__box" ng-class="{'active':selectedTab === 'login'}">
+                <label>Email
+                    <input type="email"
+                           ng-model="authData.email"/>
+                </label>
+                <label>Password
+                    <input type="password"
+                           ng-model="authData.password"/>
+                </label>
+                <input type="submit" />
+            </form>
+
+            <form id="signUpBox" ng-controller="RegisterController"
+                  ng-submit="signUpForm.$valid && registration(authData)"
+                  role="form" name="signUpForm" novalidate
+                  class="panel__box" ng-class="{'active':selectedTab === 'sign'}">
+                    <div>
+                        <label>First name:
+                        <input type="text"
+                               class="form-control"
+                               id="first-name"
+                               name="firstName"
+                               ng-class="{'invalid-field': signUpForm.firstName.$invalid
+                                                && signUpForm.firstName.$dirty}"
+                               ng-model="authData.first_name"
+                               required>
+                        </label>
+                    </div>
+                <label>Last name:
+                <input type="text"
+                       class="form-control"
+                       id="last-name"
+                       name="lastName"
+                       ng-model="authData.last_name">
+                </label>
+                <label>
+                    Email
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           ng-class="{'invalid-field': signUpForm.email.$invalid && signUpForm.email.$dirty}"
+                           ng-model="authData.email" ok-email required/>
+                </label>
+                <div >
+                    <label>Mobile phone:
+                    <input type="text"
+                           id="phone"
+                           name="phone"
+                           ng-class="{'invalid-field': signUpForm.phone.$invalid && signUpForm.phone.$dirty}"
+                           ng-model="authData.mobile_phone"
+                           ok-phone required>
+                    </label>
                 </div>
-            </div>
-            <div class="table-row">
-                <label class="table-cell" for="inputPassword">Password</label>
-                <div class="table-cell password">
-                    <input class="form-control"
-                           type="password"
-                           id="inputPassword"
+                <label>Password
+                    <input type="password" id="pass"
+                           name="password"
                            ng-model="authData.password"
-                           placeholder="Password">
-                    <a ui-sref="passwordReset" class="reset-password btn btn-xs btn-danger">restore</a>
+                           required/>
+                </label>
+                <div >
+                    <label> Confirm password:
+                    <input type="password"
+                           class="form-control"
+                           id="confirm"
+                           name="confirm"
+                           ng-model="authData.confirm"
+                           ng-class="{'invalid-field': signUpForm.confirm.$invalid
+                                                && signUpForm.confirm.$dirty}"
+                           required  is-equal
+                           equal-to="authData.password"
+                           ng-init="focus=false;blur=false"
+                           ng-focus="focus=true; blur=false"
+                           ng-blur="blur=true; focus=false">
+                    </label>
+                    <div class="message" ng-show="signUpForm.confirm.$invalid
+                                              && signUpForm.confirm.$dirty
+                                              && !signUpForm.confirm.$pristine
+                                              && blur">
+                        Your passwords don't match
+                    </div>
                 </div>
-            </div>
+                <input type="submit"/>
+            </form>
         </div>
-        <div class="row-fluid">
-            <div class="controls">
-                <button type="submit" class="btn btn-success"
-                        ng-click="login(authData) && loginForm.$valid">
-                    Sign in
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
