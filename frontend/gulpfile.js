@@ -25,6 +25,8 @@ var jsLibs = [
     './public/bower_components/moment-timezone/moment-timezone.js',
     './public/bower_components/lodash/lodash.js',
     './node_modules/alertifyjs/build/alertify.js',
+    './public/bower_components/ng-file-upload/ng-file-upload.js',
+    './public/bower_components/angular-md5/angular-md5.js',
     './public/bower_components/angular-loading-bar/build/loading-bar.js'
 ];
 

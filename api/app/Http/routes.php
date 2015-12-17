@@ -18,9 +18,9 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v1'], function () {
     Route::group(['prefix' => 'user'], function () {
 
         Route::post('/', ['as' => 'user.store', 'uses' => 'UserController@store']);
-        Route::put('{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
-        Route::delete('{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
-
+        Route::put('/edit', 'EditProfileController@editData');
+        Route::delete('/', 'UserController@destroy');
+        Route::post('/edit', 'EditProfileController@moveFile');
         Route::get('/current', 'UserController@show');
     });
 
