@@ -17,8 +17,8 @@ class CreateChatMessagesTable extends Migration {
 			$table->unsignedInteger('message_id');
 			$table->unsignedInteger('chat_id');
 
-			$table->foreign('message_id')->references('id')->on('messages');
-			$table->foreign('chat_id')->references('id')->on('chats');
+			$table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
+			$table->foreign('chat_id')->references('id')->on('chats')->onDelete('cascade');
 
 			$table->index(['message_id','chat_id'],'idx_message_id_chat_id');
 		});

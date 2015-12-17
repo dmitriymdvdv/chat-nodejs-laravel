@@ -23,7 +23,7 @@
                     <fa name="hashtag" inverse></fa>
                     <a class="chat-name"
                        ui-sref="chats.active({chatId: chat.id})"
-                       ng-click="unsetNotify(chat.id);activeChat(chat.name)">{{ chat.name }}</a>
+                       ng-click="unsetNotify(chat.id);activeChat(chat.name);loadUsers(chat.id)">{{ chat.name }}</a>
                     <span ng-if="chat.notify.count > 0" class="badge">{{chat.notify.count}}</span>
                 </li>
                 <a ng-if="publicChats.length > 6" ng-click="openPublicChatsList()">Show more</a>
@@ -43,7 +43,7 @@
                     <fa name="hashtag" inverse></fa>
                     <a class="chat-name"
                        ui-sref="chats.active({chatId: chat.id})"
-                       ng-click="unsetNotify(chat.id);activeChat(chat.name)">{{ chat.name }}</a>
+                       ng-click="unsetNotify(chat.id);activeChat(chat.name);loadUsers(chat.id)">{{ chat.name }}</a>
                     <span ng-if="chat.notify.count > 0" class="badge">{{chat.notify.count}}</span>
                 </li>
                 <a ng-if="privateChats.length > 6" ng-click="openPrivateChatsList()">Show more</a>
