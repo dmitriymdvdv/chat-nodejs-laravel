@@ -17,7 +17,11 @@ module.exports = [
                 }
             })
             .state('chats.overview', {
-                template: '<section class="chatbar">Please choose chat</section>'
+                template: '<section class="chatbar">' +
+                '               <p class="choose-chat">' +
+                '                   Please select a chat to start messaging' +
+                '               </p>' +
+                          '</section>'
             })
             .state('chats.active', {
                 url: '/:chatId',

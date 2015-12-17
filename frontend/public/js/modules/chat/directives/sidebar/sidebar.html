@@ -2,23 +2,28 @@
     <div class="user-block">
         <a href="#" class="logo transition">
             <img class="img-rounded" src="/img/user.png" alt="userphoto">
-
             <h3 class="username">{{ currentUserName }}</h3>
+            <fa name="cog"></fa>
         </a>
     </div>
     <div class="alert alert-warning fade in" ng-show="error">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Error!</strong>{{error}}
     </div>
-    <dl>
-        <dt><a ui-sref="manage-chats" class="list-title transition">Public chats</a><a
-                class="list-title transition pull-right" ng-click="openNewPublicChat()">
-            <fa name="plus"></fa>
-        </a></dt>
+    <dl class="sidebar-content">
+        <dt>
+            <a ui-sref="manage-chats" class="list-title transition">Public CHANNELS</a>
+            <a class="list-title transition pull-right" ng-click="openNewPublicChat()">
+                <fa name="plus"></fa>
+            </a>
+        </dt>
         <dd>
             <ul class="list-unstyled">
                 <li ng-repeat="chat in publicChats | limitTo: 6">
-                    <a ui-sref="chats.active({chatId: chat.id})" ng-click="unsetNotify(chat.id)">{{ chat.name }}</a>
+                    <fa name="hashtag" inverse></fa>
+                    <a class="chat-name"
+                       ui-sref="chats.active({chatId: chat.id})"
+                       ng-click="unsetNotify(chat.id);activeChat(chat.name)">{{ chat.name }}</a>
                     <span ng-if="chat.notify.count > 0" class="badge">{{chat.notify.count}}</span>
                 </li>
                 <a ng-if="publicChats.length > 6" ng-click="openPublicChatsList()">Show more</a>
@@ -26,31 +31,45 @@
         </dd>
 
 
-        <dt><a href="#" class="list-title transition left">Private chats</a>
-            <a class="list-title transition pull-right"
-               ng-click="openNewPrivateChat()">
-            <fa name="plus"></fa>
-        </a></dt>
+        <dt>
+            <a href="#" class="list-title transition left">Private CHANNELS</a>
+            <a class="list-title transition pull-right" ng-click="openNewPrivateChat()">
+                <fa name="plus"></fa>
+            </a>
+        </dt>
         <dd>
             <ul class="list-unstyled" >
                 <li ng-repeat="chat in privateChats | limitTo: 6">
-                    <a ui-sref="chats.active({chatId: chat.id})" ng-click="unsetNotify(chat.id)">{{ chat.name }}</a>
+                    <fa name="hashtag" inverse></fa>
+                    <a class="chat-name"
+                       ui-sref="chats.active({chatId: chat.id})"
+                       ng-click="unsetNotify(chat.id);activeChat(chat.name)">{{ chat.name }}</a>
                     <span ng-if="chat.notify.count > 0" class="badge">{{chat.notify.count}}</span>
                 </li>
                 <a ng-if="privateChats.length > 6" ng-click="openPrivateChatsList()">Show more</a>
             </ul>
         </dd>
 
-        <dt><a href="#" class="list-title transition">List of users</a></dt>
+        <dt>
+            <a href="#" class="list-title transition">users</a>
+            <a class="list-title transition pull-right">
+                <fa name="users" inverse></fa>
+            </a>
+        </dt>
         <dd>
             <ul class="list-unstyled">
                 <li ng-repeat="user in users | limitTo:6">
-                    <a href="#">{{ user.first_name + ' ' + user.last_name }}</a>
+                    <fa name="user" inverse></fa>
+                    <a class="user-fullname">{{ user.first_name + ' ' + user.last_name }}</a>
                 </li>
-                <a href="" ng-if="users.length > 6" ng-click="openUsersList()">Show more</a>
+                <a ng-if="users.length > 6" ng-click="openUsersList()">Show more</a>
             </ul>
         </dd>
     </dl>
-    <a ui-sref="chats.active" class="btn" ng-click="showChat()">Open Chat</a>
-    <button type="submit" class="btn button" ng-click="logout()">Logout</button>
+    <div class="footer">
+        <a ng-click="logout()">
+            Logout
+            <fa name="sign-out"></fa>
+        </a>
+    </div>
 </div>

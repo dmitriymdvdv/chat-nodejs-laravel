@@ -1,17 +1,9 @@
 <section class="chatbar">
 
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            #{{chatId}} chat-name
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a>Action</a></li>
-            <li><a>Another action</a></li>
-            <li><a>Something else here</a></li>
-            <li><a>Separated link</a></li>
-        </ul>
-    </div>
+    <h4>
+        <fa name="hashtag"></fa>
+        {{chatName}}
+    </h4>
 
     <div class="messages-container" scroll-glue id="scrollbar">
         <ul class="list-unstyled">
@@ -21,13 +13,16 @@
                 </a>
                 <dl>
                     <dt>
+                        <fa name="at"></fa>
                         <a>{{message['author']['first_name']}}</a>
-                        <time class="time">{{message['date_of_creation']}}</time></dt>
+                        <time class="time">{{message['date_of_creation']}}</time>
+                    </dt>
                     <dd><pre>{{message['message']}}</pre></dd>
                 </dl>
             </li>
         </ul>
     </div>
+
 
 
     <div class="chat-form">
@@ -41,15 +36,11 @@
             </div>
 
             <textarea class="form-control" rows="3"
+                      placeholder="Press enter to send message"
+                      ng-enter="sendMessage()"
                       ng-model="newMessage"
                       ng-required="string"
                       key-press></textarea>
-
-            <button class="btn btn-success">
-                <fa name="{{ isLoading ? 'spinner' : 'check' }}"
-                    spin="{{ isLoading }}"></fa>
-                <span ng-hide="isLoading">Send</span>
-            </button>
 
         </form>
 
