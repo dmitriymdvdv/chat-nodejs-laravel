@@ -11,7 +11,7 @@ module.exports = [
     'SocketFactory',
     function ($scope, $q, $state, ChatService, ChatFactory, authService, Auth, SocketFactory) {
 
-        $scope.currentUserName = authService.getIdentity().first_name;
+        $scope.currentUser = authService.getIdentity();
         $scope.notify = {
             count: 0
         };
