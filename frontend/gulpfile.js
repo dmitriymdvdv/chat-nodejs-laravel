@@ -27,6 +27,8 @@ var jsLibs = [
     './public/bower_components/angular-scroll-glue/src/scrollglue.js',
     './node_modules/socket.io/node_modules/socket.io-client/socket.io.js',
     './node_modules/alertifyjs/build/alertify.js',
+    './public/bower_components/ng-file-upload/ng-file-upload.js',
+    './public/bower_components/angular-md5/angular-md5.js',
     './public/bower_components/angular-loading-bar/build/loading-bar.js',
     './public/bower_components/angular-scroll/angular-scroll.js'
 ];
@@ -99,5 +101,3 @@ gulp.task('copy-alertify-styles', function () {
     return gulp.src(['./node_modules/alertifyjs/build/css/alertify.css', './node_modules/alertifyjs/build/css/themes/bootstrap.css'])
         .pipe(gulp.dest('./public/dist/alertify'));
 });
-
-gulp.task('default', ['monitor']);

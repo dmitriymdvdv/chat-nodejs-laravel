@@ -28,6 +28,9 @@ $http.get('http://slack.dev/api/v1/user/current').then(function (response) {
                 'ui.bootstrap',
                 'ui.select',
                 'picardy.fontawesome',
+                'ngFileUpload',
+                'angular-md5',
+                'angular-loading-bar',
                 'luegg.directives',
 
                 'ITA.EmbeddedData',
