@@ -20,16 +20,20 @@
     <div class="avatar-part">
         <div class="image-div"><img src="{{userData.avatar_url}}" class="img-responsive image"></div>
         <div class="info">
-            <div><label class="label-info">User: {{userData.first_name + ' ' + userData.last_name}}</label></div>
-            <div><label class="label-info">Date of birth: {{userData.date_of_birth}}</label></div>
-            <div><label class="label-info">Phone: {{userData.mobile_phone}}</label></div>
-            <div><label class="label-info">Email: {{userData.email}}</label></div>
-        </div>
-        <div class="button-div">
-            <button type="submit" class="btn button"
-                    ng-click="edit()">
-                Edit profile
-            </button>
+            <div><label class="label-info"><strong>User:</strong>
+                {{userData.first_name + " " + userData.last_name}}</label></div>
+            <div><label class="label-info"><strong>Date of birth:</strong> {{userData.date_of_birth}}</label></div>
+            <div><label class="label-info"><strong>Phone:</strong> {{userData.mobile_phone}}</label></div>
+            <div><label class="label-info"><strong>Email:</strong> {{userData.email}}</label></div>
+            <p>
+                <div class="button-div">
+                    <button type="submit" class="btn button"
+                            ng-click="edit()">
+                        Edit profile
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </div>
+            </p>
         </div>
     </div>
 </div>
