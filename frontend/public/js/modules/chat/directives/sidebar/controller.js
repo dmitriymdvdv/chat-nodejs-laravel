@@ -36,14 +36,6 @@ module.exports = [
                 return _.map(response.data, 'id');
             });
 
-        ChatFactory
-            .getUsers({
-                query: ''
-            })
-            .then(function (response) {
-                $scope.users = response.data;
-            });
-
         $scope.openNewPrivateChat = function () {
 
             ChatService.setChatParams({
@@ -67,10 +59,15 @@ module.exports = [
         };
 
         $scope.$on('newChatCreated', function (event, data) {
-            if (data.is_private == 0) {
-                $scope.publicChats.push(data);
-            } else if (data.is_private == 1) {
-                $scope.privateChats.push(data);
+            _.remove(data[1],'id',authService.getIdentity().id);
+            var chat = data[0] || data;
+            if(data[1]) {
+                chat.users = data[1];
+            }
+            if (chat.is_private == 0) {
+                $scope.publicChats.push(chat);
+            } else if (chat.is_private == 1) {
+                $scope.privateChats.push(chat);
             }
         });
 
@@ -144,6 +141,21 @@ module.exports = [
 
         $scope.activeChat = function (chatName) {
             $scope.$emit('chatName', chatName);
+        };
+
+        $scope.loadUsers = function (chatId) {
+            var chat = findPrivateChat(chatId) || findPublicChat(chatId);
+            _.remove(chat.users,'id',authService.getIdentity().id);
+            $scope.users = chat.users;
+            if (!$scope.users) {
+                ChatFactory
+                    .getUsers({
+                        query: ''
+                    })
+                    .then(function (response) {
+                        $scope.users = response.data;
+                    });
+            }
         };
     }
 ];

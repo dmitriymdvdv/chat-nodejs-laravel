@@ -45,6 +45,14 @@ class ChatController extends Controller
             $data['user_id'] = $this->userId;
             $chat = Chat::create($data);
         }
+        if($chat->is_private) {
+            $users = $chat->users()->get();
+
+            return response()->json([
+                $chat,
+                $users
+            ]);
+        }
 
 
         return response()->json($chat);
