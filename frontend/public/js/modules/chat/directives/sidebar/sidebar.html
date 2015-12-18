@@ -1,8 +1,8 @@
 <div class="sidebar">
     <div class="user-block">
-        <a href="#" class="logo transition">
-            <img class="img-rounded" src="/img/user.png" alt="userphoto">
-            <h3 class="username">{{ currentUserName }}</h3>
+        <a ui-sref="profile" class="logo transition">
+            <img class="img-rounded" src="{{currentUser.avatar_url}}" alt="userphoto">
+            <h3 class="username">{{ currentUser.first_name }}</h3>
             <fa name="cog"></fa>
         </a>
     </div>
@@ -12,7 +12,7 @@
     </div>
     <dl class="sidebar-content">
         <dt>
-            <a ui-sref="manage-chats" class="list-title transition">Public CHANNELS</a>
+            <a ui-sref="manage-chats" class="list-title transition">Public CHANNELS <fa name="cog"></fa></a>
             <a class="list-title transition pull-right" ng-click="openNewPublicChat()">
                 <fa name="plus"></fa>
             </a>

@@ -20,7 +20,7 @@ function RegisterController($scope, authService, $http, $state) {
             $http.post(baseUrl + 'register', authData)
                 .success(function (res) {
                     authService.setIdentity(res);
-                    $state.go('chats');
+                    $scope.$emit('loginTab');
                 })
                 .error(function() {
                     console.log('error');

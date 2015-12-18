@@ -16,5 +16,9 @@ module.exports = [
         };
 
         $scope.register = function() {};
+
+        $scope.$on('loginTab', function () {
+            $scope.selectedTab = 'login';
+        });
     }
 ];

@@ -4,3 +4,5 @@
 .env
 composer.lock
 /config/database.php
+public/images
+/slack.dev-error.log

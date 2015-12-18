@@ -29,8 +29,10 @@ module.exports = [
 
         SocketFactory.on('isTyping', function (data) {
             $scope.$apply(function () {
-                $scope.isTyping = data.isTyping;
-                $scope.typedUserName = data.person;
+                if (data.chat === $scope.chatId) {
+                    $scope.isTyping = data.isTyping;
+                    $scope.typedUserName = data.person;
+                }
             });
             $scope.$apply();
         });

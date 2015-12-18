@@ -15,17 +15,19 @@ function EditProfileController($scope, authService, UserFactory, Upload, appSett
 
     $scope.updateData = function (userData) {
 
-        var dotIndex = userData.avatar_url.name.lastIndexOf('.');
-        var ext = userData.avatar_url.name.substring(dotIndex);
-        userData.file = {
-            name: md5.createHash(name).slice(0, 10),
-            path: transformToUrl(userData.avatar_url.name),
-            ext: ext
-        };
-        userData.avatar_url = 'api/public/images/avatars/'
-            + userData.file.path
-            + userData.file.name
-            + userData.file.ext;
+        if(typeof userData.avatar_url !== "string") {
+            var dotIndex = userData.avatar_url.name.lastIndexOf('.');
+            var ext = userData.avatar_url.name.substring(dotIndex);
+            userData.file = {
+                name: md5.createHash(name).slice(0, 10),
+                path: transformToUrl(userData.avatar_url.name),
+                ext: ext
+            };
+            userData.avatar_url = 'api/public/images/avatars/'
+                + userData.file.path
+                + userData.file.name
+                + userData.file.ext;
+        }
 
         UserFactory.update(userData)
             .then(function (data) {},

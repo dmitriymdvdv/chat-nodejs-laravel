@@ -49,7 +49,7 @@ return [
 		],
 		'images' => [
 			'driver' => 'local',
-			'root' => 	'images/'
+			'root' => 	'/'
 		],
 
 		's3' => [
