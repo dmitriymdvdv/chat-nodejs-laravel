@@ -49,7 +49,7 @@ return [
 		],
 		'images' => [
 			'driver' => 'local',
-			'root' => 	'/'
+			'root' => 	public_path().'/images'
 		],
 
 		's3' => [

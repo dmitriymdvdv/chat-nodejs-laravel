@@ -29,8 +29,8 @@ class EditProfileController extends Controller
                         $data['error_message'] = 'Can\'t make directory' . $path;
                         return response()->json($data, 400);
                     }
-                $oldPath = 'temp/' . $user->id . '/temp' . $data['file']['ext'];
-                $newPath = 'images/avatars/' . $data['file']['path'] . $data['file']['name']
+                $oldPath = '/temp/' . $user->id . '/temp' . $data['file']['ext'];
+                $newPath = '/avatars/' . $data['file']['path'] . $data['file']['name']
                     . $data['file']['ext'];
                 if (!file_exists($newPath)) {
                     Storage::disk('images')->move($oldPath, $newPath);
