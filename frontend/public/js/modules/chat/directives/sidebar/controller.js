@@ -144,7 +144,7 @@ module.exports = [
         };
 
         $scope.loadUsers = function (chatId) {
-            var chat = findPrivateChat(chatId) || findPublicChat(chatId);
+            var chat = angular.copy(findPrivateChat(chatId) || findPublicChat(chatId));
             _.remove(chat.users,'id',authService.getIdentity().id);
             $scope.users = chat.users;
             if (!$scope.users) {
