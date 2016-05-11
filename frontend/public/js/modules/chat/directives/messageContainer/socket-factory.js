@@ -4,6 +4,9 @@ module.exports = [
     '$rootScope',
     function ($rootScope) {
         var socket = io();
+        socket.on('connect', function(){ console.log('connect'); });
+        socket.on('disconnect', function(){ console.log('disconnect'); });
+        
         return {
             on: function (eventName, callback) {
                 socket.on(eventName, callback);

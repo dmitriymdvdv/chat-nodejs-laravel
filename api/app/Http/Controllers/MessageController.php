@@ -138,4 +138,24 @@ class MessageController extends Controller
         }
         return false;
     }
+
+    public function showMessages(Request $request)
+    {
+//        $user = Auth::user()->toArray();
+        $user['id'] = (integer)$request->only('user_id')['user_id'];
+
+        $chatId = $request->only('chat_id')['chat_id'];
+        $chat = Chat::find($chatId);
+
+        if ($chat->toArray()['is_private'] === 0 ||
+          $this->userExistsInChat($user['id'], $chat)) {
+
+            $messages = $chat->messages()->with(['author'])->get();
+            return response()->json($messages, 200);
+
+        }
+
+
+        return response()->json([], 400);
+    }
 }

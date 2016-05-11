@@ -60,6 +60,10 @@ io.on('connection', function(socket){
         redis.disconnect();
     });
 
+    socket.on('event', function () {
+        console.log('event');
+    });
+
     function idExists(currentChat) {
         for (var i = 0; i < sideBarChatsId.length; i++) {
             if (sideBarChatsId[i] == Number(currentChat)) {

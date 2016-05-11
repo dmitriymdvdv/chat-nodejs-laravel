@@ -136,6 +136,8 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 			'Barryvdh\Cors\ServiceProvider',
+			Cmgmyr\Messenger\MessengerServiceProvider::class,
+
 
 		/*
 		 * Application Service Providers...

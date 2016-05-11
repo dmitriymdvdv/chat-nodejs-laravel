@@ -9,9 +9,12 @@ namespace App\Model;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 class User extends Model implements Authenticatable
 {
+    use Messagable;
+
     public $timestamps = false;
 
     /**

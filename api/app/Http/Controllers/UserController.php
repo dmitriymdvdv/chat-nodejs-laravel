@@ -27,7 +27,7 @@ class UserController extends Controller
             $users = User::whereNotIn('id', $data['users_id'])
                 ->where(function ($query) use ($data) {
                     $query->where('first_name', 'LIKE', '%' . $data['query'] . '%')
-                        ->orWhere('last_name', 'LIKE', '%' . $data['query'] . '%');
+                        ->orWhere('last_name',  'LIKE', '%' . $data['query'] . '%');
                 })
                 ->get(['id', 'first_name', 'last_name']);
 
@@ -39,6 +39,12 @@ class UserController extends Controller
         }
 
         return response()->json([], 400);
+    }
+
+    public function allUsers(Request $request)
+    {
+        $data = $request->all();
+        return response()->json(User::all(), 200);
     }
 
     public function store(StoreUserPostRequest $req)
@@ -58,7 +64,7 @@ class UserController extends Controller
     public function show()
     {
         if (!Auth::check()) {
-            return response()->json([], 200);
+            return response()->json([], 201);
         }
         $user = Auth::user();
         return response()->json($user, 200);

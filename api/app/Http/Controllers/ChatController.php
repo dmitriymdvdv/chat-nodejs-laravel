@@ -203,4 +203,17 @@ class ChatController extends Controller
 
 
     }
+
+    public function allChatList(Request $request)
+    {
+        $chats = Chat::where('is_private', 0)->get();
+        return response()->json($chats, 200);
+    }
+
+    public function findOrCreate(Request $request)
+    {
+        $data = $request->json();
+        $chat = Chat::create($data);
+        $chat->users()->attach($data['users']);
+    }
 }
