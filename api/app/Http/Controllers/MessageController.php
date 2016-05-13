@@ -119,6 +119,44 @@ class MessageController extends Controller
         //
     }
 
+    public function showMessages(Request $request)
+    {
+        $user['id'] = (integer)$request->only('user_id')['user_id'];
+
+        $chatId = $request->only('chat_id')['chat_id'];
+        $chat = Chat::find($chatId);
+
+        if ($chat->toArray()['is_private'] === 0 ||
+          $this->userExistsInChat($user['id'], $chat)) {
+
+            $messages = $chat->messages()->with(['author'])->get();
+            return response()->json($messages, 200);
+
+        }
+
+
+        return response()->json([], 400);
+    }
+
+    public function storeMessage(Request $request)
+    {
+        $data = $request->all();
+
+        $user['id'] = (integer)$data['user_id'];
+        $chat = Chat::find($data['chat_id']);
+        if (!$chat->is_private || $this->userExistsInChat($user['id'], $chat)) {
+
+            $message = Messages::create($data)->getAttributes();
+
+            $this->addMessageToChatMessages($message, $data['chat_id']);
+
+            $res = Messages::where('id', '=', $message['id'])->with('author')->get();
+            $res['chat_id'] = $data['chat_id'];
+            Redis::publish('message-channel', json_encode($res));
+        }
+
+    }
+
     private function addMessageToChatMessages($message, $chatId) {
 
         $messageToChat = new Messages();
@@ -139,23 +177,5 @@ class MessageController extends Controller
         return false;
     }
 
-    public function showMessages(Request $request)
-    {
-//        $user = Auth::user()->toArray();
-        $user['id'] = (integer)$request->only('user_id')['user_id'];
 
-        $chatId = $request->only('chat_id')['chat_id'];
-        $chat = Chat::find($chatId);
-
-        if ($chat->toArray()['is_private'] === 0 ||
-          $this->userExistsInChat($user['id'], $chat)) {
-
-            $messages = $chat->messages()->with(['author'])->get();
-            return response()->json($messages, 200);
-
-        }
-
-
-        return response()->json([], 400);
-    }
 }

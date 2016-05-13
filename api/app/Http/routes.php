@@ -73,6 +73,7 @@ Route::group(['middleware' => 'cors', 'prefix' => 'api/v2'], function () {
 
 //    Route::post('message', 'MessageController@store');
     Route::post('message',  'MessageController@showMessages');
+    Route::post('newMessage',  'MessageController@storeMessage');
 
 
 });

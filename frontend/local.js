@@ -35,7 +35,7 @@ io.on('connection', function(socket){
     redis.subscribe('message-channel');
 
     redis.on('message', function (channel, message) {
-
+        console.log(message);
         message = JSON.parse(message);
 
         if (idExists(message['chat_id'])) {

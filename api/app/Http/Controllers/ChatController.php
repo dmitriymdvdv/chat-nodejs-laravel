@@ -45,7 +45,7 @@ class ChatController extends Controller
             $data['user_id'] = $this->userId;
             $chat = Chat::create($data);
         }
-        if($chat->is_private) {
+        if ($chat->is_private) {
             $users = $chat->users()->get();
 
             return response()->json([
@@ -200,20 +200,62 @@ class ChatController extends Controller
         }
 
         return response()->json([], 400);
-
-
     }
 
     public function allChatList(Request $request)
     {
-        $chats = Chat::where('is_private', 0)->get();
+        $data = $request->all();
+        $chats = $this->getUserPrivateChats($data['user_id']);
         return response()->json($chats, 200);
     }
 
     public function findOrCreate(Request $request)
     {
-        $data = $request->json();
-        $chat = Chat::create($data);
-        $chat->users()->attach($data['users']);
+        $data = $request->all();
+        $chats = $this->getUsersPrivateChats($data['user_id'], $data['selected_user_id']);
+        if (!empty($chats['items'])) {
+            return response()->json($chats, 210);
+        }
+        $chat = $this->newChat($data);
+        return response()->json($chat, 201);
+    }
+
+    private function newChat($data)
+    {
+        if ($data['is_private']) {
+            $data['users'][] = $data['user_id'];
+            $data['users'][] = $data['selected_user_id'];
+            $chat = Chat::create($data);
+            $chat->users()->attach($data['users']);
+        } else {
+            $chat = Chat::create($data);
+        }
+//        if ($chat->is_private) {
+//            $users = $chat->users()->get();
+//        }
+        return $chat;
+    }
+
+    private function chatsWithThatUsers($data)
+    {
+        return response()->json([
+            'public' => $this->getUserPublicChats($data['user_id']),
+            'private' => $this->getUserPrivateChats($data['user_id'])
+        ]);
+    }
+
+    private function getUserPrivateChats($userId)
+    {
+        return User::with(['chats.users'])->find($userId)->chats->where('is_private', 1);
+    }
+
+    private function getUsersPrivateChats($firstUserId, $secondUserId)
+    {
+        return User::with(['chats.users'])->find($firstUserId)->find($secondUserId)->chats->where('is_private', 1);
+    }
+
+    private function getUserPublicChats($userId)
+    {
+        return Chat::where('user_id', $userId)->where('is_private', 0)->get();
     }
 }
