@@ -35,6 +35,7 @@ class EditProfileController extends Controller
                 if (!file_exists($path. $data['file']['name']. $data['file']['ext'])) {
                     Storage::disk('images')->move($oldPath, $newPath);
                 }
+                $data['avatar_url'] = $path . $data['file']['name']. $data['file']['ext'];
             }
         }
 
